@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=tech.digiroad.ImageFlow
+Exec=@bindir@/imageflow --gapplication-service

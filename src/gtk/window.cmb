@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE cambalache-project SYSTEM "cambalache-project.dtd">
+<!-- Created with Cambalache 0.96.3 -->
+<cambalache-project version="0.96.0" target_tk="gtk-4.0">
+  <ui template-class="ImageFlow" filename="window.ui" sha256="d18dbf6fdda08537def536ca314b1192f594db6abeb7f3371913bb4e1c50e73a"/>
+</cambalache-project>

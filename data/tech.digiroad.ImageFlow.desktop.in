@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ImageFlow
+Exec=imageflow
+Icon=tech.digiroad.ImageFlow
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=video;converter;image;gif;webp
+StartupNotify=false
+DBusActivatable=true

@@ -1,0 +1,336 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.96.3 -->
+<interface>
+  <!-- interface-name window.ui -->
+  <requires lib="Adw" version="1.0"/>
+  <requires lib="gio" version="2.0"/>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.7"/>
+  <template class="ImageFlow" parent="AdwApplicationWindow">
+    <property name="content">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="AdwToastOverlay" id="overlay">
+            <property name="child">
+              <object class="GtkVideo" id="display"/>
+            </property>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle" id="title">
+                <property name="title">ImageFlow</property>
+              </object>
+            </property>
+            <child type="start">
+              <object class="GtkButton" id="open-file">
+                <property name="child">
+                  <object class="AdwButtonContent">
+                    <property name="icon-name">document-open-symbolic</property>
+                    <property name="label" translatable="yes">Open</property>
+                  </object>
+                </property>
+                <property name="tooltip-text" translatable="yes">Open video file</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="menu-model">primary_menu</property>
+                <property name="tooltip-text" translatable="yes">Application menu</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkCheckButton" id="loop">
+                <property name="label" translatable="yes">Loop</property>
+                <property name="margin-end">10</property>
+                <property name="tooltip-text" translatable="yes">Video looping</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="bottom">
+          <object class="GtkGrid">
+            <property name="accessible-role">grid</property>
+            <property name="column-spacing">10</property>
+            <property name="halign">center</property>
+            <property name="margin-bottom">20</property>
+            <property name="margin-end">20</property>
+            <property name="margin-start">20</property>
+            <property name="margin-top">20</property>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="width-request">220</property>
+                <child>
+                  <object class="AdwComboRow" id="image-size">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <property name="strings" translatable="yes">Original
+4320p
+2160p
+1440p
+1080p
+720p
+480p
+360p
+User</property>
+                      </object>
+                    </property>
+                    <property name="subtitle" translatable="yes">Image size</property>
+                    <property name="title" translatable="yes">Size</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSpinRow" id="image-width">
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="lower">320.0</property>
+                        <property name="page-increment">1.0</property>
+                        <property name="step-increment">1.0</property>
+                        <property name="upper">8192.0</property>
+                        <property name="value">1280.0</property>
+                      </object>
+                    </property>
+                    <property name="numeric">True</property>
+                    <property name="title" translatable="yes">Width</property>
+                    <property name="width-request">220</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSpinRow" id="image-height">
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="lower">240.0</property>
+                        <property name="page-increment">1.0</property>
+                        <property name="step-increment">1.0</property>
+                        <property name="upper">4096.0</property>
+                        <property name="value">720.0</property>
+                      </object>
+                    </property>
+                    <property name="numeric">True</property>
+                    <property name="title" translatable="yes">Height</property>
+                    <property name="width-request">220</property>
+                  </object>
+                </child>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwComboRow" id="scaler">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <property name="strings">Area
+Bicubic
+Bicublin
+Bilinear
+Fast Bilinear
+Gauss
+Lanczos
+Neighbor
+Sinc
+Spline</property>
+                      </object>
+                    </property>
+                    <property name="subtitle" translatable="yes">Interpolation</property>
+                    <property name="title" translatable="yes">Scaler</property>
+                    <property name="width-request">260</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSwitchRow" id="keep-aspect-ratio">
+                    <property name="active">True</property>
+                    <property name="subtitle" translatable="yes">Keep aspect ratio</property>
+                    <property name="title" translatable="yes">Ratio</property>
+                    <property name="width-request">220</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSpinRow" id="framerate">
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="lower">5.0</property>
+                        <property name="page-increment">1.0</property>
+                        <property name="step-increment">1.0</property>
+                        <property name="upper">360.0</property>
+                        <property name="value">30.0</property>
+                      </object>
+                    </property>
+                    <property name="numeric">True</property>
+                    <property name="subtitle" translatable="yes">Frames per second</property>
+                    <property name="title" translatable="yes">FPS</property>
+                    <property name="width-request">220</property>
+                  </object>
+                </child>
+                <layout>
+                  <property name="column">1</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwComboRow" id="palette">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <property name="strings">Diff
+Full
+Single</property>
+                      </object>
+                    </property>
+                    <property name="subtitle" translatable="yes">Statistics mode</property>
+                    <property name="title" translatable="yes">Palette</property>
+                    <property name="width-request">260</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwComboRow" id="dither">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <property name="strings">Atkinson
+Bayer
+Burkes
+Floyd Steinberg
+Heckbert
+None
+Sierra 2
+Sierra 2 (4a)
+Sierra 3</property>
+                      </object>
+                    </property>
+                    <property name="subtitle" translatable="yes">Dithering mode</property>
+                    <property name="title" translatable="yes">Dither</property>
+                    <property name="width-request">260</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwComboRow" id="format">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <property name="strings">GIF
+WebP</property>
+                      </object>
+                    </property>
+                    <property name="title" translatable="yes">Format</property>
+                    <property name="width-request">160</property>
+                  </object>
+                </child>
+                <layout>
+                  <property name="column">2</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="valign">center</property>
+                <child>
+                  <object class="AdwButtonRow" id="generate">
+                    <property name="sensitive">False</property>
+                    <property name="title" translatable="yes">Generate</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSwitchRow" id="preview">
+                    <property name="sensitive">False</property>
+                    <property name="title" translatable="yes">Preview</property>
+                    <property name="width-request">160</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwButtonRow" id="save-file">
+                    <property name="sensitive">False</property>
+                    <property name="title" translatable="yes">Save</property>
+                  </object>
+                </child>
+                <layout>
+                  <property name="column">3</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="default-height">800</property>
+    <property name="default-width">800</property>
+    <property name="title" translatable="yes">ImageFlow</property>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="action">app.preferences</attribute>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+      </item>
+      <item>
+        <attribute name="action">win.show-help-overlay</attribute>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+      </item>
+      <item>
+        <attribute name="action">app.about</attribute>
+        <attribute name="label" translatable="yes">_About ImageFlow</attribute>
+      </item>
+    </section>
+  </menu>
+  <object class="AdwPreferencesDialog" id="pref-dialog">
+    <property name="child">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="AdwPreferencesGroup">
+            <property name="margin-bottom">20</property>
+            <property name="margin-end">20</property>
+            <property name="margin-start">20</property>
+            <property name="margin-top">20</property>
+            <child>
+              <object class="AdwComboRow" id="pref-theme">
+                <property name="model">
+                  <object class="GtkStringList">
+                    <property name="strings" translatable="yes">Light
+Dark</property>
+                  </object>
+                </property>
+                <property name="subtitle" translatable="yes">Theme variant</property>
+                <property name="title" translatable="yes">Theme</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="bayer-scale">
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="page-increment">1.0</property>
+                    <property name="step-increment">1.0</property>
+                    <property name="upper">5.0</property>
+                    <property name="value">2.0</property>
+                  </object>
+                </property>
+                <property name="numeric">True</property>
+                <property name="subtitle" translatable="yes">Crosshatch pattern visibility level</property>
+                <property name="title" translatable="yes">Bayer scale</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSwitchRow" id="accurate-rnd">
+                <property name="subtitle" translatable="yes">Interpolation, use accurate rounding</property>
+                <property name="title" translatable="yes">Accurate rounding</property>
+              </object>
+            </child>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar"/>
+        </child>
+      </object>
+    </property>
+    <property name="content-width">400</property>
+  </object>
+</interface>

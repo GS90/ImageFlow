@@ -1,0 +1,296 @@
+# Copyright 2026 Golodnikov Sergey
+# Golodnikov Sergey <nn19051990@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-04 13:53+0300\n"
+"PO-Revision-Date: 2026-01-04 13:56+0300\n"
+"Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 49.0\n"
+"X-DL-Lang: ru\n"
+"X-DL-Module: \n"
+"X-DL-Branch: \n"
+"X-DL-Domain: \n"
+
+#: data/tech.digiroad.ImageFlow.desktop.in:2
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:267
+msgid "ImageFlow"
+msgstr "ImageFlow"
+
+#: data/tech.digiroad.ImageFlow.desktop.in:8
+msgid "video;converter;image;gif;webp"
+msgstr "video;converter;image;gif;webp"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
+msgid "Converting video files into animated images"
+msgstr "Преобразование видеофайлов в анимированные изображения"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:10
+msgid "Golodnikov Sergey"
+msgstr "Голодников Сергей"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
+msgid ""
+"This application is designed for converting videos into animated GIF and "
+"WebP images using the FFmpeg library. It allows you to configure basic "
+"parameters, such as the resulting image resolution, frame rate, applied "
+"filters (interpolation method, dithering mode), and palette generation "
+"method."
+msgstr ""
+"Приложение предназначено для конвертации видео в анимированные изображения "
+"форматов GIF и WebP с использованием библиотеки FFmpeg. Оно позволяет "
+"настроить основные параметры, такие как разрешение итогового изображения, "
+"частоту кадров, применяемые фильтры (метод интерполяции, режим дизеринга) и "
+"способ создания палитры."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:15
+msgid "Features:"
+msgstr "Особенности:"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:17
+msgid "All conversion parameters can be configured."
+msgstr "Все параметры конвертации могут быть настроены."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:18
+msgid "Preview of the result."
+msgstr "Предварительный просмотр результата."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:19
+msgid "Support for many formats."
+msgstr "Поддержка множества форматов."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:20
+msgid "Intuitive and user-friendly interface."
+msgstr "Интуитивно понятный и удобный интерфейс."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:43
+msgid "ImageFlow in light mode"
+msgstr "ImageFlow, светлая тема"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:47
+msgid "ImageFlow in dark mode"
+msgstr "ImageFlow, тёмная тема"
+
+#: src/gtk/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Основные"
+
+#: src/gtk/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Показать сочетания клавиш"
+
+#: src/gtk/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Выход"
+
+#: src/gtk/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Preferences"
+msgstr "Настройки"
+
+#: src/gtk/window.ui:31
+msgid "Open"
+msgstr "Открыть"
+
+#: src/gtk/window.ui:34
+msgid "Open video file"
+msgstr "Открыть видеофайл"
+
+#: src/gtk/window.ui:44
+msgid "Application menu"
+msgstr "Меню приложения"
+
+#: src/gtk/window.ui:49
+msgid "Loop"
+msgstr "Повтор"
+
+#: src/gtk/window.ui:51
+msgid "Video looping"
+msgstr "Зацикливание видео"
+
+#: src/gtk/window.ui:72
+msgid ""
+"Original\n"
+"4320p\n"
+"2160p\n"
+"1440p\n"
+"1080p\n"
+"720p\n"
+"480p\n"
+"360p\n"
+"User"
+msgstr ""
+"Исходное\n"
+"4320p\n"
+"2160p\n"
+"1440p\n"
+"1080p\n"
+"720p\n"
+"480p\n"
+"360p\n"
+"Другое"
+
+#: src/gtk/window.ui:83
+msgid "Image size"
+msgstr "изображения"
+
+#: src/gtk/window.ui:84
+msgid "Size"
+msgstr "Размер"
+
+#: src/gtk/window.ui:99
+msgid "Width"
+msgstr "Ширина"
+
+#: src/gtk/window.ui:115
+msgid "Height"
+msgstr "Высота"
+
+#: src/gtk/window.ui:143
+msgid "Interpolation"
+msgstr "интерполяции"
+
+#: src/gtk/window.ui:144
+msgid "Scaler"
+msgstr "Метод"
+
+#: src/gtk/window.ui:151
+msgid "Keep aspect ratio"
+msgstr "соотношение сторон"
+
+#: src/gtk/window.ui:152
+msgid "Ratio"
+msgstr "Сохранить"
+
+#: src/gtk/window.ui:168
+msgid "Frames per second"
+msgstr "кадров"
+
+#: src/gtk/window.ui:169
+msgid "FPS"
+msgstr "Частота"
+
+#: src/gtk/window.ui:190
+msgid "Statistics mode"
+msgstr "видеопотока"
+
+#: src/gtk/window.ui:191
+msgid "Palette"
+msgstr "Палитра"
+
+#: src/gtk/window.ui:210
+msgid "Dithering mode"
+msgstr "дизеринга"
+
+#: src/gtk/window.ui:211
+msgid "Dither"
+msgstr "Режим"
+
+#: src/gtk/window.ui:223
+msgid "Format"
+msgstr "Формат"
+
+#: src/gtk/window.ui:239
+msgid "Generate"
+msgstr "Генерировать"
+
+#: src/gtk/window.ui:245
+msgid "Preview"
+msgstr "Просмотр"
+
+#: src/gtk/window.ui:252
+msgid "Save"
+msgstr "Сохранить"
+
+#: src/gtk/window.ui:273
+msgid "_Preferences"
+msgstr "_Настройки"
+
+#: src/gtk/window.ui:277
+msgid "_Keyboard Shortcuts"
+msgstr "_Сочетания клавиш"
+
+#: src/gtk/window.ui:281
+msgid "_About ImageFlow"
+msgstr "_О программе"
+
+#: src/gtk/window.ui:298
+msgid ""
+"Light\n"
+"Dark"
+msgstr ""
+"Светлая\n"
+"Тёмная"
+
+#: src/gtk/window.ui:302
+msgid "Theme variant"
+msgstr "Выбор темы приложения"
+
+#: src/gtk/window.ui:303
+msgid "Theme"
+msgstr "Тема"
+
+#: src/gtk/window.ui:317
+msgid "Crosshatch pattern visibility level"
+msgstr "Уровень видимости перекрестной штриховки"
+
+#: src/gtk/window.ui:318
+msgid "Bayer scale"
+msgstr "Bayer, размер шаблона"
+
+#: src/gtk/window.ui:323
+msgid "Interpolation, use accurate rounding"
+msgstr "Интерполяция, использовать точное округление"
+
+#: src/gtk/window.ui:324
+msgid "Accurate rounding"
+msgstr "Точное округление"
+
+#: src/window.py:60
+msgid "Saved:"
+msgstr "Сохранено:"
+
+#: src/window.py:61
+msgid "Done, image size in MB:"
+msgstr "Завершено, размер изображения (Мб):"
+
+#: src/window.py:62
+msgid "Source"
+msgstr "Исходный код"
+
+#: src/window.py:63
+msgid ""
+"Application for converting video files into high-quality animated images."
+msgstr ""
+"Приложение для преобразования видеофайлов в высококачественные анимированные "
+"изображения."
+
+#~ msgid "Resolution"
+#~ msgstr "Разрешение"
+
+#~ msgid "Image width"
+#~ msgstr "Ширина изображения"
+
+#~ msgid "Image height"
+#~ msgstr "Высота изображения"
+
+#~ msgid "Interpolation method"
+#~ msgstr "Метод интерполяции"
+
+#~ msgid "Output file format"
+#~ msgstr "Формат выходного файла"
+
+#~ msgid "Use accurate rounding"
+#~ msgstr "Использовать точное округление"

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+
+  <id>tech.digiroad.ImageFlow</id>
+  <name>ImageFlow</name>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <summary>Converting video files into animated images</summary>
+  <developer id="tech.digiroad">
+    <name>Golodnikov Sergey</name>
+  </developer>
+
+  <description>
+    <p>This application is designed for converting videos into animated GIF and WebP images using the FFmpeg library. It allows you to configure basic parameters, such as the resulting image resolution, frame rate, applied filters (interpolation method, dithering mode), and palette generation method.</p>
+    <p>Features:</p>
+    <ul>
+      <li>All conversion parameters can be configured.</li>
+      <li>Preview of the result.</li>
+      <li>Support for many formats.</li>
+      <li>Intuitive and user-friendly interface.</li>
+    </ul>
+  </description>
+
+  <url type="homepage">https://github.com/GS90/ImageFlow</url>
+  <url type="vcs-browser">https://github.com/GS90/ImageFlow</url>
+  <url type="bugtracker">https://github.com/GS90/ImageFlow/issues</url>
+
+  <url type="help">https://digiroad.tech/en/projects/imageflow</url>
+  <url type="contact">https://digiroad.tech/en/main</url>
+
+  <translation type="gettext">imageflow</translation>
+  <launchable type="desktop-id">tech.digiroad.ImageFlow.desktop</launchable>
+  <content_rating type="oars-1.1"/>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#fafafb</color>
+    <color type="primary" scheme_preference="dark">#222226</color>
+  </branding>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/GS90/ImageFlow/refs/heads/main/data/screenshots/light.png</image>
+      <caption>ImageFlow in light mode</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/GS90/ImageFlow/refs/heads/main/data/screenshots/dark.png</image>
+      <caption>ImageFlow in dark mode</caption>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+
+    <release version="0.9.0" date="2026-01-04">
+      <description translate="no">
+        <p>Initial release.</p>
+      </description>
+    </release>
+
+  </releases>
+
+</component>

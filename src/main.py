@@ -1,0 +1,427 @@
+# main.py
+#
+# Copyright 2026 Golodnikov Sergey
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+
+import gi
+gi.require_version('Gtk', '4.0')
+gi.require_version('Adw', '1')
+from gi.repository import Adw, Gio, Gtk
+
+from . import data
+from .window import WindowIF
+
+
+class ImageFlowApplication(Adw.Application):
+    def __init__(self):
+        super().__init__(application_id='tech.digiroad.ImageFlow',
+                         flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
+                         resource_base_path='/tech/digiroad/ImageFlow')
+        self.create_action('quit', lambda *_: self.quit(), ['<control>q'])
+        self.create_action('about', self.about_action, None)
+        self.create_action('preferences',
+                           self.preferences_action,
+                           ['<primary>p'])
+
+    def do_activate(self):
+        self.settings = Gio.Settings.new('tech.digiroad.ImageFlow')
+        self.options = {}
+        self.options_load()
+
+        self.w = self.props.active_window
+        if not self.w:
+            self.w = WindowIF(application=self)
+        self.w.present()
+        self.update_theme()
+
+        loop_state = self.settings.get_boolean('loop')
+        self.w.loop.set_active(loop_state)
+        self.w.display.set_loop(loop_state)
+
+        self.options_set()
+
+        self.source, self.result, self.current = '', '', ''
+
+        self.name = ''
+        self.dir = tempfile.mkdtemp(prefix='if_')
+        self.palette = os.path.join(self.dir, 'palette.png')
+        self.sources_size = None
+
+        self.freeze = False
+
+        self.w.image_size.connect('notify::selected-item', self.size_switch)
+        self.w.image_width.connect('notify::value', self.size_change)
+        self.w.image_height.connect('notify::value', self.size_change)
+        self.w.preview.connect('notify::active', self.preview_switch)
+        self.w.generate.connect('activated', self.generate)
+        self.w.open_file.connect('clicked', self.open_file)
+        self.w.save_file.connect('activated', self.save_file)
+        self.w.loop.connect('toggled', self.loop_state)
+
+    def size_original(self):
+        result = subprocess.run([
+            'ffprobe', '-v', 'error',
+            '-select_streams', 'v', '-show_entries',
+            'stream=width,height', '-of', 'csv=p=0', self.source
+        ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result.returncode != 0:
+            err = result.stderr.decode('utf-8').strip()
+            print('Analysis error:', err)
+            self.message_show('Analysis error', err)
+            return
+        size = result.stdout.decode('utf-8').strip()
+        split = size.split(',')
+        if len(split) == 2:
+            try:
+                width, height = int(split[0]), int(split[1])
+                self.sources_size = (width, height)
+                self.freeze = True
+                self.w.image_width.set_value(width)
+                self.w.image_height.set_value(height)
+                self.freeze = False
+                self.w.image_size.set_selected(0)
+            except ValueError as err:
+                print('Analysis error:', str(err))
+                self.message_show('Analysis error', str(err))
+
+    def open_file(self, button):
+        dialog = Gtk.FileChooserNative.new(
+            title='Select a video file',
+            parent=self.w.get_native(),
+            action=Gtk.FileChooserAction.OPEN,
+        )
+        dialog.set_modal(True)
+
+        # all files:
+        filter = Gtk.FileFilter.new()
+        filter.set_name('All')
+        filter.add_pattern('*.*')
+        dialog.add_filter(filter)
+
+        # video files:
+        filter = Gtk.FileFilter.new()
+        filter.set_name('Video')
+
+        types = (
+            'video/mp4',
+            'video/mpeg',
+            'video/ogg',
+            'video/quicktime',
+            'video/webm',
+            'video/x-matroska',
+        )
+        for t in types:
+            filter.add_mime_type(t)
+
+        extensions = (
+            '*.avi',
+            '*.mkv',
+            '*.mov',
+            '*.mp4',
+            '*.mpeg',
+            '*.mpg',
+            '*.webm',
+        )
+        for e in extensions:
+            filter.add_pattern(e)
+
+        dialog.add_filter(filter)
+        dialog.set_filter(filter)  # set as default
+
+        def open_file_response(dialog, response_id):
+            if response_id == Gtk.ResponseType.ACCEPT:
+                file = dialog.get_file()
+                if file:
+                    self.result, self.name = '', ''
+                    self.source = file.get_path()
+                    self.w.display.set_filename(self.source)
+                    self.current = self.source
+                    button.remove_css_class('suggested-action')  # open-file
+                    self.w.title.set_subtitle(os.path.basename(self.source))
+                    # generate: on
+                    self.w.generate.add_css_class('warning')
+                    self.w.generate.set_sensitive(True)
+                    # preview: off
+                    self.w.preview.remove_css_class('success')
+                    self.w.preview.set_sensitive(False)
+                    self.w.preview.set_active(False)
+                    # save: off
+                    self.w.save_file.remove_css_class('suggested-action')
+                    self.w.save_file.set_sensitive(False)
+                    # analysis
+                    self.size_original()
+            dialog.destroy()
+
+        dialog.connect('response', open_file_response)
+        dialog.show()
+
+    def save_file(self, _):
+        def save_file_finish(dialog, result):
+            try:
+                file = dialog.save_finish(result)
+                if file:
+                    shutil.copy2(self.result, file.get_path())
+                    self.w.overlay.add_toast(Adw.Toast(
+                        title=f'{self.w.ts_save} {self.name}',
+                        timeout=4,
+                    ))
+            except Exception as err:
+                err = str(err)
+                if 'dismissed by user' not in err.lower():
+                    print('Saving error:', err)
+                    self.message_show('Saving error', err)
+
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title('Save result')
+        dialog.set_initial_name(self.name)
+        dialog.save(self.w, None, save_file_finish)
+
+    def size_switch(self, widget, _):
+        self.freeze = True
+        size = data.size[widget.get_selected()]
+        if size == 'Оriginal':
+            if self.sources_size is not None:
+                self.w.image_width.set_value(self.sources_size[0])
+                self.w.image_height.set_value(self.sources_size[1])
+        elif size == 'User':
+            pass
+        else:
+            self.w.image_width.set_value(size[0])
+            self.w.image_height.set_value(size[1])
+        self.freeze = False
+
+    def size_change(self, widget, _):
+        if not self.freeze:
+            self.w.image_size.set_selected(len(data.size) - 1)
+
+    def preview_switch(self, widget, _):
+        if self.result != '':
+            if widget.get_active():
+                self.w.display.set_filename(self.result)
+                self.current = self.result
+                self.w.preview.add_css_class('success')
+            else:
+                self.w.display.set_filename(self.source)
+                self.current = self.source
+                self.w.preview.remove_css_class('success')
+
+    def loop_state(self, toggle_button):
+        state = toggle_button.get_active()
+        self.settings.set_boolean('loop', state)
+        self.w.display.set_loop(state)
+        if self.current != '':
+            self.w.display.set_filename(self.current)
+
+    # --------------------------------------------------------------------------
+
+    def options_load(self):
+        for k in self.settings.keys():
+            if k in ('accurate-rnd', 'bayer-scale', 'loop', 'theme'):  # pref
+                continue
+            elif k == 'ratio':
+                self.options[k] = self.settings.get_boolean(k)
+            else:
+                self.options[k] = self.settings.get_int(k)
+
+    def options_save(self):
+        self.options_get()
+        for k in self.options:
+            if k == 'ratio':
+                self.settings.set_boolean(k, self.options[k])
+            else:
+                self.settings.set_int(k, self.options[k])
+
+    def options_set(self):
+        self.w.image_size.set_selected(self.options['image-size'])
+        self.w.image_width.set_value(self.options['image-width'])
+        self.w.image_height.set_value(self.options['image-height'])
+        self.w.scaler.set_selected(self.options['scaler'])
+        self.w.keep_aspect_ratio.set_active(self.options['ratio'])
+        self.w.framerate.set_value(self.options['fps'])
+        self.w.palette.set_selected(self.options['palette'])
+        self.w.dither.set_selected(self.options['dither'])
+        self.w.format.set_selected(self.options['format'])
+
+    def options_get(self):
+        self.options = {
+            'image-size': self.w.image_size.get_selected(),
+            'image-width': int(self.w.image_width.get_value()),
+            'image-height': int(self.w.image_height.get_value()),
+            'scaler': self.w.scaler.get_selected(),
+            'ratio': self.w.keep_aspect_ratio.get_active(),
+            'fps': int(self.w.framerate.get_value()),
+            'palette': self.w.palette.get_selected(),
+            'dither': self.w.dither.get_selected(),
+            'format': self.w.format.get_selected(),
+        }
+
+    # --------------------------------------------------------------------------
+
+    def preparation(self) -> tuple[str, str, str]:
+        fn = 'result' + data.format[self.options['format']]
+        self.result = os.path.join(self.dir, fn)
+
+        width = self.options['image-width']
+        height = self.options['image-height']
+
+        if self.options['ratio']:
+            scale = f"scale={width}:-1"
+        else:
+            scale = f'scale={width}:{height}'
+
+        dither = data.dither[self.options['dither']]
+        if dither == 'bayer':
+            dither += f":bayer_scale={self.settings.get_int('bayer-scale')}"
+
+        scaler = data.scaler[self.options['scaler']]
+        if self.settings.get_boolean('accurate-rnd'):
+            scaler += '+accurate_rnd'
+
+        palette = data.palette[self.options['palette']]
+
+        uno = f"fps={self.options['fps']},{scale}:flags={scaler}"
+        dos = f"{uno},palettegen=stats_mode={palette}"
+        tres = f"paletteuse=dither={dither}"
+
+        return (uno, dos, tres)
+
+    def generate(self, action):
+        self.options_save()
+        uno, dos, tres = self.preparation()
+
+        result = subprocess.run([
+            'ffmpeg', '-v', 'error', '-i', self.source,
+            '-vf', dos, '-y', self.palette,
+        ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result.returncode != 0:
+            err = result.stderr.decode('utf-8').strip()
+            print('Palette error:', err)
+            self.message_show('Palette error', err)
+            self.result = ''
+            return
+
+        result = subprocess.run([
+            'ffmpeg', '-v', 'error',
+            '-i', self.source, '-i', self.palette,
+            '-lavfi', f'{uno} [x]; [x][1:v] {tres}',
+            '-y', self.result,
+        ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result.returncode != 0:
+            err = result.stderr.decode('utf-8').strip()
+            print('Generation error:', err)
+            self.message_show('Generation error', err)
+            self.result = ''
+            return
+
+        bn = os.path.splitext(os.path.basename(self.source))[0]
+        self.name = bn + data.format[self.options['format']]
+
+        file_size = round(os.path.getsize(self.result) / (1024 ** 2), 1)
+        file_size = str(file_size).replace('.', ',')
+        self.w.overlay.add_toast(Adw.Toast(
+            title=f'{self.w.ts_size} {file_size}',
+            timeout=8,
+        ))
+
+        self.w.display.set_filename(self.result)
+        self.current = self.result
+        # preview: on
+        self.w.preview.add_css_class('success')
+        self.w.preview.set_sensitive(True)
+        self.w.preview.set_active(True)
+        # save: on
+        self.w.save_file.add_css_class('suggested-action')
+        self.w.save_file.set_sensitive(True)
+
+# ------------------------------------------------------------------------------
+
+    def about_action(self, *args):
+        about = Adw.AboutDialog(
+            application_name='ImageFlow',
+            application_icon='tech.digiroad.ImageFlow',
+            developer_name='Golodnikov Sergey',
+            version='0.9.0',
+            comments=(self.w.ts_comment),
+            website='https://digiroad.tech',
+            developers=['Golodnikov Sergey <nn19051990@gmail.com>'],
+            artists=[
+                'Golodnikov Sergey <nn19051990@gmail.com>',
+                'GNOME Design Team https://welcome.gnome.org/team/design',
+            ],
+            copyright='Copyright © 2026 Golodnikov Sergey',
+            license_type=Gtk.License.GPL_3_0,
+        )
+        about.add_link((self.w.ts_src), 'https://github.com/GS90/ImageFlow')
+        about.present(self.props.active_window)
+
+    def preferences_action(self, widget, _):
+        self.w.pref_theme.set_selected(
+            self.settings.get_int('theme'))
+        self.w.bayer_scale.set_value(
+            self.settings.get_int('bayer-scale'))
+        self.w.accurate_rnd.set_active(
+            self.settings.get_boolean('accurate-rnd'))
+        self.w.pref_dialog.connect('closed', self.preferences_save)
+        self.w.pref_dialog.present(self.props.active_window)
+
+    def preferences_save(self, _):
+        self.settings.set_int(
+            'theme', self.w.pref_theme.get_selected())
+        self.settings.set_int(
+            'bayer-scale', int(self.w.bayer_scale.get_value()))
+        self.settings.set_boolean(
+            'accurate-rnd', self.w.accurate_rnd.get_active())
+        self.update_theme()
+
+    def update_theme(self):
+        style_manager = Adw.StyleManager.get_default()
+        if self.settings.get_int('theme') == 0:
+            style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
+        else:
+            style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+
+    def create_action(self, name, callback, shortcuts=None):
+        action = Gio.SimpleAction.new(name, None)
+        action.connect('activate', callback)
+        self.add_action(action)
+        if shortcuts:
+            self.set_accels_for_action(f'app.{name}', shortcuts)
+
+    def message_show(self, message, detail):
+        dialog = Gtk.AlertDialog(
+            message=message,
+            detail=detail,
+            buttons=('Cancel',)
+        )
+        dialog.choose(
+            parent=self.w,
+            cancellable=None,
+            callback=None,
+            user_data=None
+        )
+
+
+def main(version):
+    app = ImageFlowApplication()
+    return app.run(sys.argv)
