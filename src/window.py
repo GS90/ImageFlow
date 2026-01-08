@@ -51,14 +51,14 @@ class WindowIF(Adw.ApplicationWindow):
     loop = Gtk.Template.Child('loop')
 
     pref_dialog = Gtk.Template.Child('pref-dialog')
-
     pref_theme = Gtk.Template.Child('pref-theme')
     bayer_scale = Gtk.Template.Child('bayer-scale')
     accurate_rnd = Gtk.Template.Child('accurate-rnd')
 
     # variables for translation
-    ts_save = _('Saved:')
     ts_size = _('Done, image size in MB:')
+    ts_save = _('Saved:')
+    ts_save_show = _('Show in files')
     ts_src = _('Source')
     ts_comment = _('Application for converting video files into '
                    'high-quality animated images.')

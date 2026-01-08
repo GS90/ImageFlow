@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-04 13:53+0300\n"
+"POT-Creation-Date: 2026-01-09 01:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -238,12 +238,16 @@ msgstr ""
 msgid "Accurate rounding"
 msgstr ""
 
+#: src/window.py:59
+msgid "Done, image size in MB:"
+msgstr ""
+
 #: src/window.py:60
 msgid "Saved:"
 msgstr ""
 
 #: src/window.py:61
-msgid "Done, image size in MB:"
+msgid "Show in files"
 msgstr ""
 
 #: src/window.py:62

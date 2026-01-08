@@ -3,10 +3,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
+"Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-04 13:53+0300\n"
-"PO-Revision-Date: 2026-01-04 13:56+0300\n"
+"POT-Creation-Date: 2026-01-09 01:36+0300\n"
+"PO-Revision-Date: 2026-01-09 01:51+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -258,13 +258,17 @@ msgstr "Интерполяция, использовать точное окру
 msgid "Accurate rounding"
 msgstr "Точное округление"
 
+#: src/window.py:59
+msgid "Done, image size in MB:"
+msgstr "Завершено, размер изображения (Мб):"
+
 #: src/window.py:60
 msgid "Saved:"
 msgstr "Сохранено:"
 
 #: src/window.py:61
-msgid "Done, image size in MB:"
-msgstr "Завершено, размер изображения (Мб):"
+msgid "Show in files"
+msgstr "Показать в файлах"
 
 #: src/window.py:62
 msgid "Source"

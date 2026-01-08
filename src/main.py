@@ -18,6 +18,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
+# todo:
+#   palettegen: max_colors
+
+
 import os
 import shutil
 import subprocess
@@ -181,11 +185,14 @@ class ImageFlowApplication(Adw.Application):
             try:
                 file = dialog.save_finish(result)
                 if file:
-                    shutil.copy2(self.result, file.get_path())
-                    self.w.overlay.add_toast(Adw.Toast(
-                        title=f'{self.w.ts_save} {self.name}',
-                        timeout=4,
-                    ))
+                    fp = file.get_path()
+                    shutil.copy2(self.result, fp)
+                    toast_title = f'{self.w.ts_save} {self.name}'
+                    toast = Adw.Toast.new(title=toast_title)
+                    toast.set_button_label(button_label=self.w.ts_save_show)
+                    toast.connect('button-clicked',
+                                  lambda s: self.toast_button_show(s, fp))
+                    self.w.overlay.add_toast(toast)
             except Exception as err:
                 err = str(err)
                 if 'dismissed by user' not in err.lower():
@@ -196,6 +203,11 @@ class ImageFlowApplication(Adw.Application):
         dialog.set_title('Save result')
         dialog.set_initial_name(self.name)
         dialog.save(self.w, None, save_file_finish)
+
+    def toast_button_show(self, _, fp):
+        fd = os.path.dirname(fp)
+        if os.path.isdir(fd):
+            subprocess.run(['xdg-open', fd])
 
     def size_switch(self, widget, _):
         self.freeze = True
@@ -361,7 +373,7 @@ class ImageFlowApplication(Adw.Application):
             application_name='ImageFlow',
             application_icon='tech.digiroad.ImageFlow',
             developer_name='Golodnikov Sergey',
-            version='0.9.0',
+            version='0.9.2',
             comments=(self.w.ts_comment),
             website='https://digiroad.tech',
             developers=['Golodnikov Sergey <nn19051990@gmail.com>'],

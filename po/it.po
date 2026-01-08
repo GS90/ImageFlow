@@ -3,271 +3,279 @@
 # This file is distributed under the same license as the PACKAGE package.  
 # ALBANO BATTISTELLA <ALBANOBATTISTELLA@GMAIL.COM>, 2026.  
 #  
-#, fuzzy  
-msgid ""  
-msgstr ""  
-"Project-Id-Version: PACKAGE VERSION\n"  
-"Report-Msgid-Bugs-To: \n"  
-"POT-Creation-Date: 2026-01-04 13:53+0300\n"  
-"PO-Revision-Date: 2026-01-08 19:46+0100\n"  
-"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"  
-"Language-Team: Italian <LL@li.org>\n"  
-"Language: it\n"  
-"MIME-Version: 1.0\n"  
-"Content-Type: text/plain; charset=UTF-8\n"  
-"Content-Transfer-Encoding: 8bit\n"  
-  
-#: data/tech.digiroad.ImageFlow.desktop.in:2  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:267  
-msgid "ImageFlow"  
-msgstr "ImageFlow"  
-  
-#: data/tech.digiroad.ImageFlow.desktop.in:8  
-msgid "video;converter;image;gif;webp"  
-msgstr "video;convertitore;immagine;gif;webp"  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:8  
-msgid "Converting video files into animated images"  
-msgstr "Conversione di file video in immagini animate"  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:10  
-msgid "Golodnikov Sergey"  
-msgstr "Golodnikov Sergey"  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:14  
-msgid ""  
-"This application is designed for converting videos into animated GIF and "  
-"WebP images using the FFmpeg library. It allows you to configure basic "  
-"parameters, such as the resulting image resolution, frame rate, applied "  
-"filters (interpolation method, dithering mode), and palette generation "  
-"method."  
-msgstr ""  
-"Questa applicazione è progettata per convertire video in immagini GIF e "
-"WebP animate utilizzando la libreria FFmpeg. Permette di configurare parametri "
-"di base, come la risoluzione dell'immagine risultante, il frame rate, i filtri " 
-"applicati (metodo di interpolazione, modalità di dithering) e il metodo di generazione "
-"della palette."  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:15  
-msgid "Features:"  
-msgstr "Caratteristiche:"  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:17  
-msgid "All conversion parameters can be configured."  
-msgstr "Tutti i parametri di conversione possono essere configurati."  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:18  
-msgid "Preview of the result."  
-msgstr "Anteprima del risultato."  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:19  
-msgid "Support for many formats."  
-msgstr "Supporto per molti formati."  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:20  
-msgid "Intuitive and user-friendly interface."  
-msgstr "Interfaccia intuitiva e facile da usare."  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:43  
-msgid "ImageFlow in light mode"  
-msgstr "ImageFlow in modalità chiara"  
-  
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:47  
-msgid "ImageFlow in dark mode"  
-msgstr "ImageFlow in modalità scura"  
-  
-#: src/gtk/help-overlay.ui:11  
-msgctxt "shortcut window"  
-msgid "General"  
-msgstr "Generale"  
-  
-#: src/gtk/help-overlay.ui:14  
-msgctxt "shortcut window"  
-msgid "Show Shortcuts"  
-msgstr "Mostra scorciatoie"  
-  
-#: src/gtk/help-overlay.ui:20  
-msgctxt "shortcut window"  
-msgid "Quit"  
-msgstr "Esci"  
-  
-#: src/gtk/help-overlay.ui:26  
-msgctxt "shortcut window"  
-msgid "Preferences"  
-msgstr "Preferenze"  
-  
-#: src/gtk/window.ui:31  
-msgid "Open"  
-msgstr "Apri"  
-  
-#: src/gtk/window.ui:34  
-msgid "Open video file"  
-msgstr "Apri file video"  
-  
-#: src/gtk/window.ui:44  
-msgid "Application menu"  
-msgstr "Menu applicazione"  
-  
-#: src/gtk/window.ui:49  
-msgid "Loop"  
-msgstr "Loop"  
-  
-#: src/gtk/window.ui:51  
-msgid "Video looping"  
-msgstr "Looping video"  
-  
-#: src/gtk/window.ui:72  
-msgid ""  
-"Original\n"  
-"4320p\n"  
-"2160p\n"  
-"1440p\n"  
-"1080p\n"  
-"720p\n"  
-"480p\n"  
-"360p\n"  
-"User"  
-msgstr ""  
-"Originale\n"  
-"4320p\n"  
-"2160p\n"  
-"1440p\n"  
-"1080p\n"  
-"720p\n"  
-"480p\n"  
-"360p\n"  
-"Utente"  
-  
-#: src/gtk/window.ui:83  
-msgid "Image size"  
-msgstr "Dimensione immagine"  
-  
-#: src/gtk/window.ui:84  
-msgid "Size"  
-msgstr "Dimensione"  
-  
-#: src/gtk/window.ui:99  
-msgid "Width"  
-msgstr "Larghezza"  
-  
-#: src/gtk/window.ui:115  
-msgid "Height"  
-msgstr "Altezza"  
-  
-#: src/gtk/window.ui:143  
-msgid "Interpolation"  
-msgstr "Interpolazione"  
-  
-#: src/gtk/window.ui:144  
-msgid "Scaler"  
-msgstr "Ridimensionamento"  
-  
-#: src/gtk/window.ui:151  
-msgid "Keep aspect ratio"  
-msgstr "Mantieni proporzioni"  
-  
-#: src/gtk/window.ui:152  
-msgid "Ratio"  
-msgstr "Proporzioni"  
-  
-#: src/gtk/window.ui:168  
-msgid "Frames per second"  
-msgstr "Fotogrammi al secondo"  
-  
-#: src/gtk/window.ui:169  
-msgid "FPS"  
-msgstr "FPS"  
-  
-#: src/gtk/window.ui:190  
-msgid "Statistics mode"  
-msgstr "Modalità statistiche" 
-  
-#: src/gtk/window.ui:191  
-msgid "Palette"  
-msgstr "Palette"  
-  
-#: src/gtk/window.ui:210  
-msgid "Dithering mode"  
-msgstr "Modalità dithering"  
-  
-#: src/gtk/window.ui:211  
-msgid "Dither"  
-msgstr "Dithering"  
-  
-#: src/gtk/window.ui:223  
-msgid "Format"  
-msgstr "Formato"  
-  
-#: src/gtk/window.ui:239  
-msgid "Generate"  
-msgstr "Genera"  
-  
-#: src/gtk/window.ui:245  
-msgid "Preview"  
-msgstr "Anteprima"  
-  
-#: src/gtk/window.ui:252  
-msgid "Save"  
-msgstr "Salva"  
-  
-#: src/gtk/window.ui:273  
-msgid "_Preferences"  
-msgstr "_Preferenze"  
-  
-#: src/gtk/window.ui:277  
-msgid "_Keyboard Shortcuts"  
-msgstr "_Scorciatoie da tastiera"  
-  
-#: src/gtk/window.ui:281  
-msgid "_About ImageFlow"  
-msgstr "_Informazioni su ImageFlow"  
-  
-#: src/gtk/window.ui:298  
-msgid ""  
-"Light\n"  
-"Dark"  
-msgstr ""  
-"Chiaro\n"  
-"Scuro"  
-  
-#: src/gtk/window.ui:302  
-msgid "Theme variant"  
-msgstr "Variante tema"  
-  
-#: src/gtk/window.ui:303  
-msgid "Theme"  
-msgstr "Tema"  
-  
-#: src/gtk/window.ui:317  
-msgid "Crosshatch pattern visibility level"  
-msgstr "Livello di visibilità del pattern a tratteggio incrociato"  
-  
-#: src/gtk/window.ui:318  
-msgid "Bayer scale"  
-msgstr "Scala Bayer"  
-  
-#: src/gtk/window.ui:323  
-msgid "Interpolation, use accurate rounding"  
-msgstr "Interpolazione, usa arrotondamento accurato"  
-  
-#: src/gtk/window.ui:324  
-msgid "Accurate rounding"  
-msgstr "Arrotondamento accurato"  
-  
-#: src/window.py:60  
-msgid "Saved:"  
-msgstr "Salvato:"  
-  
-#: src/window.py:61  
-msgid "Done, image size in MB:"  
-msgstr "Fatto, dimensione immagine in MB:"  
-  
-#: src/window.py:62  
-msgid "Source"  
-msgstr "Sorgente"  
-  
-#: src/window.py:63  
-msgid ""  
-"Application for converting video files into high-quality animated images."  
-msgstr ""  
-"Applicazione per convertire file video in immagini animate di alta qualità."  
+# Golodnikov Sergey <nn19051990@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-09 01:36+0300\n"
+"PO-Revision-Date: 2026-01-09 01:52+0300\n"
+"Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 49.0\n"
+
+#: data/tech.digiroad.ImageFlow.desktop.in:2
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:267
+msgid "ImageFlow"
+msgstr "ImageFlow"
+
+#: data/tech.digiroad.ImageFlow.desktop.in:8
+msgid "video;converter;image;gif;webp"
+msgstr "video;convertitore;immagine;gif;webp"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
+msgid "Converting video files into animated images"
+msgstr "Conversione di file video in immagini animate"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:10
+msgid "Golodnikov Sergey"
+msgstr "Golodnikov Sergey"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
+msgid ""
+"This application is designed for converting videos into animated GIF and "
+"WebP images using the FFmpeg library. It allows you to configure basic "
+"parameters, such as the resulting image resolution, frame rate, applied "
+"filters (interpolation method, dithering mode), and palette generation "
+"method."
+msgstr ""
+"Questa applicazione è progettata per convertire video in immagini GIF e WebP "
+"animate utilizzando la libreria FFmpeg. Permette di configurare parametri di "
+"base, come la risoluzione dell'immagine risultante, il frame rate, i filtri "
+"applicati (metodo di interpolazione, modalità di dithering) e il metodo di "
+"generazione della palette."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:15
+msgid "Features:"
+msgstr "Caratteristiche:"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:17
+msgid "All conversion parameters can be configured."
+msgstr "Tutti i parametri di conversione possono essere configurati."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:18
+msgid "Preview of the result."
+msgstr "Anteprima del risultato."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:19
+msgid "Support for many formats."
+msgstr "Supporto per molti formati."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:20
+msgid "Intuitive and user-friendly interface."
+msgstr "Interfaccia intuitiva e facile da usare."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:43
+msgid "ImageFlow in light mode"
+msgstr "ImageFlow in modalità chiara"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:47
+msgid "ImageFlow in dark mode"
+msgstr "ImageFlow in modalità scura"
+
+#: src/gtk/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Generale"
+
+#: src/gtk/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostra scorciatoie"
+
+#: src/gtk/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Esci"
+
+#: src/gtk/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: src/gtk/window.ui:31
+msgid "Open"
+msgstr "Apri"
+
+#: src/gtk/window.ui:34
+msgid "Open video file"
+msgstr "Apri file video"
+
+#: src/gtk/window.ui:44
+msgid "Application menu"
+msgstr "Menu applicazione"
+
+#: src/gtk/window.ui:49
+msgid "Loop"
+msgstr "Loop"
+
+#: src/gtk/window.ui:51
+msgid "Video looping"
+msgstr "Looping video"
+
+#: src/gtk/window.ui:72
+msgid ""
+"Original\n"
+"4320p\n"
+"2160p\n"
+"1440p\n"
+"1080p\n"
+"720p\n"
+"480p\n"
+"360p\n"
+"User"
+msgstr ""
+"Originale\n"
+"4320p\n"
+"2160p\n"
+"1440p\n"
+"1080p\n"
+"720p\n"
+"480p\n"
+"360p\n"
+"Utente"
+
+#: src/gtk/window.ui:83
+msgid "Image size"
+msgstr "Dimensione immagine"
+
+#: src/gtk/window.ui:84
+msgid "Size"
+msgstr "Dimensione"
+
+#: src/gtk/window.ui:99
+msgid "Width"
+msgstr "Larghezza"
+
+#: src/gtk/window.ui:115
+msgid "Height"
+msgstr "Altezza"
+
+#: src/gtk/window.ui:143
+msgid "Interpolation"
+msgstr "Interpolazione"
+
+#: src/gtk/window.ui:144
+msgid "Scaler"
+msgstr "Ridimensionamento"
+
+#: src/gtk/window.ui:151
+msgid "Keep aspect ratio"
+msgstr "Mantieni proporzioni"
+
+#: src/gtk/window.ui:152
+msgid "Ratio"
+msgstr "Proporzioni"
+
+#: src/gtk/window.ui:168
+msgid "Frames per second"
+msgstr "Fotogrammi al secondo"
+
+#: src/gtk/window.ui:169
+msgid "FPS"
+msgstr "FPS"
+
+#: src/gtk/window.ui:190
+msgid "Statistics mode"
+msgstr "Modalità statistiche"
+
+#: src/gtk/window.ui:191
+msgid "Palette"
+msgstr "Palette"
+
+#: src/gtk/window.ui:210
+msgid "Dithering mode"
+msgstr "Modalità dithering"
+
+#: src/gtk/window.ui:211
+msgid "Dither"
+msgstr "Dithering"
+
+#: src/gtk/window.ui:223
+msgid "Format"
+msgstr "Formato"
+
+#: src/gtk/window.ui:239
+msgid "Generate"
+msgstr "Genera"
+
+#: src/gtk/window.ui:245
+msgid "Preview"
+msgstr "Anteprima"
+
+#: src/gtk/window.ui:252
+msgid "Save"
+msgstr "Salva"
+
+#: src/gtk/window.ui:273
+msgid "_Preferences"
+msgstr "_Preferenze"
+
+#: src/gtk/window.ui:277
+msgid "_Keyboard Shortcuts"
+msgstr "_Scorciatoie da tastiera"
+
+#: src/gtk/window.ui:281
+msgid "_About ImageFlow"
+msgstr "_Informazioni su ImageFlow"
+
+#: src/gtk/window.ui:298
+msgid ""
+"Light\n"
+"Dark"
+msgstr ""
+"Chiaro\n"
+"Scuro"
+
+#: src/gtk/window.ui:302
+msgid "Theme variant"
+msgstr "Variante tema"
+
+#: src/gtk/window.ui:303
+msgid "Theme"
+msgstr "Tema"
+
+#: src/gtk/window.ui:317
+msgid "Crosshatch pattern visibility level"
+msgstr "Livello di visibilità del pattern a tratteggio incrociato"
+
+#: src/gtk/window.ui:318
+msgid "Bayer scale"
+msgstr "Scala Bayer"
+
+#: src/gtk/window.ui:323
+msgid "Interpolation, use accurate rounding"
+msgstr "Interpolazione, usa arrotondamento accurato"
+
+#: src/gtk/window.ui:324
+msgid "Accurate rounding"
+msgstr "Arrotondamento accurato"
+
+#: src/window.py:59
+msgid "Done, image size in MB:"
+msgstr "Fatto, dimensione immagine in MB:"
+
+#: src/window.py:60
+msgid "Saved:"
+msgstr "Salvato:"
+
+#: src/window.py:61
+msgid "Show in files"
+msgstr "Mostra nei file"
+
+#: src/window.py:62
+msgid "Source"
+msgstr "Sorgente"
+
+#: src/window.py:63
+msgid ""
+"Application for converting video files into high-quality animated images."
+msgstr ""
+"Applicazione per convertire file video in immagini animate di alta qualità."

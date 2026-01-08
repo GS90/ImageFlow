@@ -37,7 +37,7 @@
 			<description>Keep aspect ratio</description>
 		</key>
 		<key name="fps" type="i">
-			<default>30</default>
+			<default>24</default>
 			<summary>FPS</summary>
 			<description>Frames per second</description>
 		</key>
