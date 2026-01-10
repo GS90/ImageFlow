@@ -2,9 +2,9 @@
 <schemalist gettext-domain="imageflow">
 	<schema id="tech.digiroad.ImageFlow" path="/tech/digiroad/ImageFlow/">
 		<key name="theme" type="i">
-			<default>0</default>
+			<default>1</default>
 			<summary>Theme</summary>
-			<description>Theme variant</description>
+			<description>Application color theme</description>
 		</key>
 		<key name="loop" type="b">
 			<default>false</default>
@@ -41,30 +41,55 @@
 			<summary>FPS</summary>
 			<description>Frames per second</description>
 		</key>
-		<key name="palette" type="i">
-			<default>0</default>
-			<summary>Statistics mode</summary>
-			<description>Palette, statistics mode</description>
-		</key>
 		<key name="dither" type="i">
 			<default>1</default>
 			<summary>Dither</summary>
 			<description>Dithering mode</description>
+		</key>
+		<key name="max-colors" type="i">
+			<default>256</default>
+			<summary>Colors</summary>
+			<description>Maximum number of colors in a palette</description>
 		</key>
 		<key name="format" type="i">
 			<default>0</default>
 			<summary>Format</summary>
 			<description>Output file format</description>
 		</key>
+		<key name="accurate-rnd" type="b">
+			<default>false</default>
+			<summary>Accurate rounding</summary>
+			<description>Accurate rounding in interpolation</description>
+		</key>
+		<key name="stats-mode" type="i">
+			<default>1</default>
+			<summary>Palette generation</summary>
+			<description>Statistics mode</description>
+		</key>
 		<key name="bayer-scale" type="i">
 			<default>2</default>
 			<summary>Bayer scale</summary>
 			<description>Crosshatch pattern visibility level</description>
 		</key>
-		<key name="accurate-rnd" type="b">
+		<key name="webp-lossless" type="b">
 			<default>false</default>
-			<summary>Accurate rounding</summary>
-			<description>Use accurate rounding</description>
+			<summary>WebP, lossless</summary>
+			<description>Lossless compression method</description>
+		</key>
+		<key name="webp-quality" type="i">
+			<default>75</default>
+			<summary>WebP, quality</summary>
+			<description>Quality level</description>
+		</key>
+		<key name="webp-preset" type="i">
+			<default>1</default>
+			<summary>WebP, preset</summary>
+			<description>Configuration preset</description>
+		</key>
+		<key name="webp-compression" type="i">
+			<default>4</default>
+			<summary>WebP, compression level</summary>
+			<description>Adjusts quality and speed tradeoff</description>
 		</key>
 	</schema>
 </schemalist>

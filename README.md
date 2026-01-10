@@ -24,7 +24,8 @@ This application is designed for converting videos into animated GIF and WebP im
 ### ToDo
 
 - [x] Initial release.
-- [ ] Improved preview (WebP display is currently unavailable).
+- [x] WebP encoding options.
+- [ ] Improved viewing and previewing.
 - [ ] The ability to select a time segment of a video file for conversion.
 
 

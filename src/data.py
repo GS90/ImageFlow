@@ -18,7 +18,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
-# .set_model(StringList(items=['A', 'B']))
+# .set_model(StringList(items=['a', 'b']))
 
 
 # image size
@@ -72,4 +72,14 @@ dither = (
 format = (
     '.gif',
     '.webp',
+)
+
+webp_presets = (
+    'none',
+    'default',
+    'picture',
+    'photo',
+    'drawing',
+    'icon',
+    'text',
 )

@@ -6,6 +6,7 @@
     "command" : "imageflow",
     "finish-args" : [
         "--device=dri",
+        "--filesystem=/tmp",
         "--share=ipc",
         "--socket=fallback-x11",
         "--socket=wayland"

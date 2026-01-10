@@ -12,7 +12,30 @@
         <property name="content">
           <object class="AdwToastOverlay" id="overlay">
             <property name="child">
-              <object class="GtkVideo" id="display"/>
+              <object class="GtkStack" id="stack">
+                <child>
+                  <object class="GtkVideo" id="display"/>
+                </child>
+                <child>
+                  <object class="AdwSpinner" id="spinner"/>
+                </child>
+                <child>
+                  <object class="GtkButton" id="external">
+                    <property name="child">
+                      <object class="AdwButtonContent">
+                        <property name="icon-name">view-reveal-symbolic</property>
+                        <property name="label" translatable="yes">View a file externally</property>
+                      </object>
+                    </property>
+                    <property name="halign">center</property>
+                    <property name="height-request">40</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="success"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
             </property>
           </object>
         </property>
@@ -80,8 +103,10 @@
 User</property>
                       </object>
                     </property>
+                    <property name="selected">5</property>
                     <property name="subtitle" translatable="yes">Image size</property>
                     <property name="title" translatable="yes">Size</property>
+                    <property name="width-request">220</property>
                   </object>
                 </child>
                 <child>
@@ -140,6 +165,7 @@ Sinc
 Spline</property>
                       </object>
                     </property>
+                    <property name="selected">6</property>
                     <property name="subtitle" translatable="yes">Interpolation</property>
                     <property name="title" translatable="yes">Scaler</property>
                     <property name="width-request">260</property>
@@ -150,7 +176,7 @@ Spline</property>
                     <property name="active">True</property>
                     <property name="subtitle" translatable="yes">Keep aspect ratio</property>
                     <property name="title" translatable="yes">Ratio</property>
-                    <property name="width-request">220</property>
+                    <property name="width-request">260</property>
                   </object>
                 </child>
                 <child>
@@ -161,13 +187,13 @@ Spline</property>
                         <property name="page-increment">1.0</property>
                         <property name="step-increment">1.0</property>
                         <property name="upper">360.0</property>
-                        <property name="value">30.0</property>
+                        <property name="value">24.0</property>
                       </object>
                     </property>
                     <property name="numeric">True</property>
                     <property name="subtitle" translatable="yes">Frames per second</property>
                     <property name="title" translatable="yes">FPS</property>
-                    <property name="width-request">220</property>
+                    <property name="width-request">260</property>
                   </object>
                 </child>
                 <layout>
@@ -178,20 +204,6 @@ Spline</property>
             </child>
             <child>
               <object class="AdwPreferencesGroup">
-                <child>
-                  <object class="AdwComboRow" id="palette">
-                    <property name="model">
-                      <object class="GtkStringList">
-                        <property name="strings">Diff
-Full
-Single</property>
-                      </object>
-                    </property>
-                    <property name="subtitle" translatable="yes">Statistics mode</property>
-                    <property name="title" translatable="yes">Palette</property>
-                    <property name="width-request">260</property>
-                  </object>
-                </child>
                 <child>
                   <object class="AdwComboRow" id="dither">
                     <property name="model">
@@ -207,8 +219,25 @@ Sierra 2 (4a)
 Sierra 3</property>
                       </object>
                     </property>
+                    <property name="selected">1</property>
                     <property name="subtitle" translatable="yes">Dithering mode</property>
                     <property name="title" translatable="yes">Dither</property>
+                    <property name="width-request">260</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSpinRow" id="max-colors">
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="lower">2.0</property>
+                        <property name="page-increment">1.0</property>
+                        <property name="step-increment">1.0</property>
+                        <property name="upper">256.0</property>
+                        <property name="value">256.0</property>
+                      </object>
+                    </property>
+                    <property name="subtitle" translatable="yes">Max colors</property>
+                    <property name="title" translatable="yes">Palette</property>
                     <property name="width-request">260</property>
                   </object>
                 </child>
@@ -220,8 +249,9 @@ Sierra 3</property>
 WebP</property>
                       </object>
                     </property>
+                    <property name="selected">0</property>
                     <property name="title" translatable="yes">Format</property>
-                    <property name="width-request">160</property>
+                    <property name="width-request">260</property>
                   </object>
                 </child>
                 <layout>
@@ -237,6 +267,7 @@ WebP</property>
                   <object class="AdwButtonRow" id="generate">
                     <property name="sensitive">False</property>
                     <property name="title" translatable="yes">Generate</property>
+                    <property name="width-request">160</property>
                   </object>
                 </child>
                 <child>
@@ -250,6 +281,7 @@ WebP</property>
                   <object class="AdwButtonRow" id="save-file">
                     <property name="sensitive">False</property>
                     <property name="title" translatable="yes">Save</property>
+                    <property name="width-request">160</property>
                   </object>
                 </child>
                 <layout>
@@ -286,42 +318,138 @@ WebP</property>
     <property name="child">
       <object class="AdwToolbarView">
         <property name="content">
-          <object class="AdwPreferencesGroup">
+          <object class="GtkBox">
             <property name="margin-bottom">20</property>
             <property name="margin-end">20</property>
             <property name="margin-start">20</property>
             <property name="margin-top">20</property>
-            <child>
-              <object class="AdwComboRow" id="pref-theme">
-                <property name="model">
-                  <object class="GtkStringList">
-                    <property name="strings" translatable="yes">Light
+            <property name="orientation">vertical</property>
+            <child type="bottom">
+              <object class="AdwPreferencesGroup">
+                <property name="title" translatable="yes">Application</property>
+                <child>
+                  <object class="AdwComboRow" id="pref-theme">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <property name="strings" translatable="yes">Light
 Dark</property>
+                      </object>
+                    </property>
+                    <property name="subtitle" translatable="yes">Application color theme</property>
+                    <property name="title" translatable="yes">Theme</property>
                   </object>
-                </property>
-                <property name="subtitle" translatable="yes">Theme variant</property>
-                <property name="title" translatable="yes">Theme</property>
+                </child>
+              </object>
+            </child>
+            <child type="bottom">
+              <object class="AdwPreferencesGroup">
+                <property name="margin-bottom">10</property>
+                <property name="margin-top">10</property>
+                <property name="title" translatable="yes">Generation</property>
+                <child>
+                  <object class="AdwSwitchRow" id="accurate-rnd">
+                    <property name="subtitle" translatable="yes">Accurate rounding in interpolation</property>
+                    <property name="title" translatable="yes">Accurate rounding</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwComboRow" id="stats-mode">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <property name="strings">Full
+Diff
+Single</property>
+                      </object>
+                    </property>
+                    <property name="selected">1</property>
+                    <property name="subtitle" translatable="yes">Statistics mode</property>
+                    <property name="title" translatable="yes">Palette generation</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSpinRow" id="bayer-scale">
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="page-increment">1.0</property>
+                        <property name="step-increment">1.0</property>
+                        <property name="upper">5.0</property>
+                        <property name="value">2.0</property>
+                      </object>
+                    </property>
+                    <property name="numeric">True</property>
+                    <property name="subtitle" translatable="yes">Crosshatch pattern visibility level</property>
+                    <property name="title" translatable="yes">Bayer scale</property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="AdwSpinRow" id="bayer-scale">
-                <property name="adjustment">
-                  <object class="GtkAdjustment">
-                    <property name="page-increment">1.0</property>
-                    <property name="step-increment">1.0</property>
-                    <property name="upper">5.0</property>
-                    <property name="value">2.0</property>
+              <object class="AdwPreferencesGroup">
+                <property name="title">WebP</property>
+                <child>
+                  <object class="AdwSwitchRow" id="webp-lossless">
+                    <property name="subtitle" translatable="yes">Lossless compression method</property>
+                    <property name="title" translatable="yes">Lossless</property>
                   </object>
-                </property>
-                <property name="numeric">True</property>
-                <property name="subtitle" translatable="yes">Crosshatch pattern visibility level</property>
-                <property name="title" translatable="yes">Bayer scale</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwSwitchRow" id="accurate-rnd">
-                <property name="subtitle" translatable="yes">Interpolation, use accurate rounding</property>
-                <property name="title" translatable="yes">Accurate rounding</property>
+                </child>
+                <child>
+                  <object class="AdwSpinRow" id="webp-quality">
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="page-increment">1.0</property>
+                        <property name="step-increment">1.0</property>
+                        <property name="upper">100.0</property>
+                        <property name="value">75.0</property>
+                      </object>
+                    </property>
+                    <property name="numeric">True</property>
+                    <property name="subtitle" translatable="yes">Quality level</property>
+                    <property name="title" translatable="yes">Quality</property>
+                    <property name="tooltip-text" translatable="yes">For lossy encoding, this controls image quality. For lossless encoding, this controls the effort and time spent in compression. Range is 0 to 100. Default is 75.</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwComboRow" id="webp-preset">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <property name="strings">None
+Default
+Picture
+Photo
+Drawing
+Icon
+Text</property>
+                      </object>
+                    </property>
+                    <property name="selected">1</property>
+                    <property name="subtitle" translatable="yes">Configuration preset</property>
+                    <property name="title" translatable="yes">Preset</property>
+                    <property name="tooltip-text" translatable="yes">This does some automatic settings based on the general type of the image.
+None: Do not use a preset.
+Default: Use the encoder default.
+Picture: Digital picture, like portrait, inner shot.
+Photo: Outdoor photograph, with natural lighting.
+Drawing: Hand or line drawing, with high-contrast details.
+Icon: Small-sized colorful images.
+Text: Text-like.</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSpinRow" id="webp-compression">
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="page-increment">1.0</property>
+                        <property name="step-increment">1.0</property>
+                        <property name="upper">6.0</property>
+                        <property name="value">4.0</property>
+                      </object>
+                    </property>
+                    <property name="numeric">True</property>
+                    <property name="subtitle" translatable="yes">Adjusts quality and speed tradeoff</property>
+                    <property name="title" translatable="yes">Compression level</property>
+                    <property name="tooltip-text" translatable="yes">For lossy, this is a quality/speed tradeoff. Higher values give better quality for a given size at the cost of increased encoding time. For lossless, this is a size/speed tradeoff. Higher values give smaller size at the cost of increased encoding time. More specifically, it controls the number of extra algorithms and compression tools used, and varies the combination of these tools. This maps to the method option in libwebp. The valid range is 0 to 6. Default is 4.</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

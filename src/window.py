@@ -27,7 +27,12 @@ class WindowIF(Adw.ApplicationWindow):
     __gtype_name__ = 'ImageFlow'
 
     title = Gtk.Template.Child('title')
+    loop = Gtk.Template.Child('loop')
     overlay = Gtk.Template.Child('overlay')
+    stack = Gtk.Template.Child('stack')
+    display = Gtk.Template.Child('display')
+    spinner = Gtk.Template.Child('spinner')
+    external = Gtk.Template.Child('external')
 
     open_file = Gtk.Template.Child('open-file')
     save_file = Gtk.Template.Child('save-file')
@@ -43,17 +48,22 @@ class WindowIF(Adw.ApplicationWindow):
     keep_aspect_ratio = Gtk.Template.Child('keep-aspect-ratio')
     framerate = Gtk.Template.Child('framerate')
 
-    palette = Gtk.Template.Child('palette')
     dither = Gtk.Template.Child('dither')
+    max_colors = Gtk.Template.Child('max-colors')
     format = Gtk.Template.Child('format')
 
-    display = Gtk.Template.Child('display')
-    loop = Gtk.Template.Child('loop')
-
     pref_dialog = Gtk.Template.Child('pref-dialog')
+
     pref_theme = Gtk.Template.Child('pref-theme')
-    bayer_scale = Gtk.Template.Child('bayer-scale')
+
     accurate_rnd = Gtk.Template.Child('accurate-rnd')
+    stats_mode = Gtk.Template.Child('stats-mode')
+    bayer_scale = Gtk.Template.Child('bayer-scale')
+
+    webp_lossless = Gtk.Template.Child('webp-lossless')
+    webp_quality = Gtk.Template.Child('webp-quality')
+    webp_preset = Gtk.Template.Child('webp-preset')
+    webp_compression = Gtk.Template.Child('webp-compression')
 
     # variables for translation
     ts_size = _('Done, image size in MB:')

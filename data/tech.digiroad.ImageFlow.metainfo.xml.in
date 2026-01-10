@@ -46,9 +46,23 @@
       <image>https://raw.githubusercontent.com/GS90/ImageFlow/refs/heads/main/data/screenshots/dark.png</image>
       <caption>ImageFlow in dark mode</caption>
     </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/GS90/ImageFlow/refs/heads/main/data/screenshots/preferences.png</image>
+      <caption>ImageFlow, preferences</caption>
+    </screenshot>
   </screenshots>
 
   <releases>
+
+    <release version="0.9.5" date="2026-01-10">
+      <description translate="no">
+        <ul>
+          <li>User interface improvements.</li>
+          <li>Added the ability to select the maximum number of colors in the palette.</li>
+          <li>Added the ability to configure WebP encoding parameters.</li>
+        </ul>
+      </description>
+    </release>
 
     <release version="0.9.2" date="2026-01-09">
       <description translate="no">

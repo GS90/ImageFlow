@@ -18,8 +18,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
-# todo:
-#   palettegen: max_colors
+# todo: spinner: doesn't work, one thread
 
 
 import os
@@ -27,6 +26,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import webbrowser
 
 import gi
 gi.require_version('Gtk', '4.0')
@@ -50,13 +50,25 @@ class ImageFlowApplication(Adw.Application):
 
     def do_activate(self):
         self.settings = Gio.Settings.new('tech.digiroad.ImageFlow')
+
         self.options = {}
+        self.options_exceptions = (
+            'theme',
+            'loop',
+            'accurate-rnd',
+            'stats-mode',
+            'bayer-scale',
+            'webp-lossless',
+            'webp-quality',
+            'webp-preset',
+        )
         self.options_load()
 
         self.w = self.props.active_window
         if not self.w:
             self.w = WindowIF(application=self)
         self.w.present()
+
         self.update_theme()
 
         loop_state = self.settings.get_boolean('loop')
@@ -67,21 +79,26 @@ class ImageFlowApplication(Adw.Application):
 
         self.source, self.result, self.current = '', '', ''
 
-        self.name = ''
+        self.name, self.file_format = '', ''
+
         self.dir = tempfile.mkdtemp(prefix='if_')
         self.palette = os.path.join(self.dir, 'palette.png')
         self.sources_size = None
 
         self.freeze = False
 
+        self.w.external.connect('clicked', self.browser_preview)
+        self.w.generate.connect('activated', self.generate_wrapper)
+        self.w.image_height.connect('notify::value', self.size_change)
         self.w.image_size.connect('notify::selected-item', self.size_switch)
         self.w.image_width.connect('notify::value', self.size_change)
-        self.w.image_height.connect('notify::value', self.size_change)
-        self.w.preview.connect('notify::active', self.preview_switch)
-        self.w.generate.connect('activated', self.generate)
-        self.w.open_file.connect('clicked', self.open_file)
-        self.w.save_file.connect('activated', self.save_file)
+        self.w.keep_aspect_ratio.connect('notify::active', self.ratio_state)
         self.w.loop.connect('toggled', self.loop_state)
+        self.w.open_file.connect('clicked', self.open_file)
+        self.w.preview.connect('notify::active', self.preview_switch)
+        self.w.save_file.connect('activated', self.save_file)
+
+    # --------------------------------------------------------------------------
 
     def size_original(self):
         result = subprocess.run([
@@ -108,6 +125,8 @@ class ImageFlowApplication(Adw.Application):
             except ValueError as err:
                 print('Analysis error:', str(err))
                 self.message_show('Analysis error', str(err))
+
+    # --------------------------------------------------------------------------
 
     def open_file(self, button):
         dialog = Gtk.FileChooserNative.new(
@@ -151,7 +170,7 @@ class ImageFlowApplication(Adw.Application):
             filter.add_pattern(e)
 
         dialog.add_filter(filter)
-        dialog.set_filter(filter)  # set as default
+        dialog.set_filter(filter)
 
         def open_file_response(dialog, response_id):
             if response_id == Gtk.ResponseType.ACCEPT:
@@ -204,10 +223,22 @@ class ImageFlowApplication(Adw.Application):
         dialog.set_initial_name(self.name)
         dialog.save(self.w, None, save_file_finish)
 
-    def toast_button_show(self, _, fp):
-        fd = os.path.dirname(fp)
-        if os.path.isdir(fd):
-            subprocess.run(['xdg-open', fd])
+    # --------------------------------------------------------------------------
+
+    def stack_adjust_visibility(self, obj):
+        match obj:
+            case 'display':
+                self.w.display.set_visible(True)
+                self.w.spinner.set_visible(False)
+                self.w.external.set_visible(False)
+            case 'spinner':
+                self.w.display.set_visible(False)
+                self.w.spinner.set_visible(True)
+                self.w.external.set_visible(False)
+            case 'external':
+                self.w.display.set_visible(False)
+                self.w.spinner.set_visible(False)
+                self.w.external.set_visible(True)
 
     def size_switch(self, widget, _):
         self.freeze = True
@@ -227,16 +258,9 @@ class ImageFlowApplication(Adw.Application):
         if not self.freeze:
             self.w.image_size.set_selected(len(data.size) - 1)
 
-    def preview_switch(self, widget, _):
-        if self.result != '':
-            if widget.get_active():
-                self.w.display.set_filename(self.result)
-                self.current = self.result
-                self.w.preview.add_css_class('success')
-            else:
-                self.w.display.set_filename(self.source)
-                self.current = self.source
-                self.w.preview.remove_css_class('success')
+    def ratio_state(self, widget, _):
+        state = widget.get_active()
+        self.w.image_height.set_sensitive(False if state else True)
 
     def loop_state(self, toggle_button):
         state = toggle_button.get_active()
@@ -245,11 +269,34 @@ class ImageFlowApplication(Adw.Application):
         if self.current != '':
             self.w.display.set_filename(self.current)
 
+    def preview_switch(self, widget, _):
+        if self.result != '':
+            if widget.get_active():
+                if self.file_format == '.webp':
+                    self.stack_adjust_visibility('external')
+                else:
+                    self.w.display.set_filename(self.result)
+                self.current = self.result
+                self.w.preview.add_css_class('success')
+            else:
+                self.stack_adjust_visibility('display')
+                self.w.display.set_filename(self.source)
+                self.current = self.source
+                self.w.preview.remove_css_class('success')
+
+    def toast_button_show(self, _, fp):
+        fd = os.path.dirname(fp)
+        if os.path.isdir(fd):
+            subprocess.run(['xdg-open', fd])
+
+    def browser_preview(self, _):
+        webbrowser.open(url=self.result, new=2)
+
     # --------------------------------------------------------------------------
 
     def options_load(self):
         for k in self.settings.keys():
-            if k in ('accurate-rnd', 'bayer-scale', 'loop', 'theme'):  # pref
+            if k in self.options_exceptions:
                 continue
             elif k == 'ratio':
                 self.options[k] = self.settings.get_boolean(k)
@@ -271,9 +318,10 @@ class ImageFlowApplication(Adw.Application):
         self.w.scaler.set_selected(self.options['scaler'])
         self.w.keep_aspect_ratio.set_active(self.options['ratio'])
         self.w.framerate.set_value(self.options['fps'])
-        self.w.palette.set_selected(self.options['palette'])
         self.w.dither.set_selected(self.options['dither'])
+        self.w.max_colors.set_value(self.options['max-colors'])
         self.w.format.set_selected(self.options['format'])
+        self.ratio_state(self.w.keep_aspect_ratio, None)
 
     def options_get(self):
         self.options = {
@@ -283,16 +331,16 @@ class ImageFlowApplication(Adw.Application):
             'scaler': self.w.scaler.get_selected(),
             'ratio': self.w.keep_aspect_ratio.get_active(),
             'fps': int(self.w.framerate.get_value()),
-            'palette': self.w.palette.get_selected(),
+            'max-colors': self.w.max_colors.get_value(),
             'dither': self.w.dither.get_selected(),
             'format': self.w.format.get_selected(),
         }
 
     # --------------------------------------------------------------------------
 
-    def preparation(self) -> tuple[str, str, str]:
-        fn = 'result' + data.format[self.options['format']]
-        self.result = os.path.join(self.dir, fn)
+    def preparation(self) -> tuple[str, str, str, list[str]]:
+        self.file_format = data.format[self.options['format']]
+        self.result = os.path.join(self.dir, 'result' + self.file_format)
 
         width = self.options['image-width']
         height = self.options['image-height']
@@ -310,18 +358,32 @@ class ImageFlowApplication(Adw.Application):
         if self.settings.get_boolean('accurate-rnd'):
             scaler += '+accurate_rnd'
 
-        palette = data.palette[self.options['palette']]
+        palette = data.palette[self.settings.get_int('stats-mode')]
+        palette += f":max_colors={self.options['max-colors']}"
 
         uno = f"fps={self.options['fps']},{scale}:flags={scaler}"
         dos = f"{uno},palettegen=stats_mode={palette}"
         tres = f"paletteuse=dither={dither}"
 
-        return (uno, dos, tres)
+        if self.file_format == '.webp':
+            cuatro = [
+                '-lossless',
+                '1' if self.settings.get_boolean('webp-lossless') else '0',
+                '-q:v',
+                str(self.settings.get_int('webp-quality')),
+                '-preset',
+                data.webp_presets[self.settings.get_int('webp-preset')],
+                '-compression_level',
+                str(self.settings.get_int('webp-compression')),
+                '-loop', '0', '-y',
+            ]
+        else:
+            cuatro = ['-y',]
 
-    def generate(self, action):
-        self.options_save()
-        uno, dos, tres = self.preparation()
+        return (uno, dos, tres, cuatro)
 
+    def generate(self, uno, dos, tres, cuatro):
+        # palette
         result = subprocess.run([
             'ffmpeg', '-v', 'error', '-i', self.source,
             '-vf', dos, '-y', self.palette,
@@ -332,12 +394,12 @@ class ImageFlowApplication(Adw.Application):
             self.message_show('Palette error', err)
             self.result = ''
             return
-
+        # conversion
         result = subprocess.run([
             'ffmpeg', '-v', 'error',
             '-i', self.source, '-i', self.palette,
             '-lavfi', f'{uno} [x]; [x][1:v] {tres}',
-            '-y', self.result,
+            *cuatro, self.result,
         ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if result.returncode != 0:
             err = result.stderr.decode('utf-8').strip()
@@ -346,14 +408,22 @@ class ImageFlowApplication(Adw.Application):
             self.result = ''
             return
 
-        bn = os.path.splitext(os.path.basename(self.source))[0]
-        self.name = bn + data.format[self.options['format']]
+    def generate_wrapper(self, _):
+        # self.stack_adjust_visibility('spinner')
+
+        self.w.preview.set_active(False)
+
+        self.options_save()
+        self.generate(*self.preparation())
+
+        basename = os.path.splitext(os.path.basename(self.source))[0]
+        self.name = basename + self.file_format
 
         file_size = round(os.path.getsize(self.result) / (1024 ** 2), 1)
         file_size = str(file_size).replace('.', ',')
         self.w.overlay.add_toast(Adw.Toast(
             title=f'{self.w.ts_size} {file_size}',
-            timeout=8,
+            timeout=4,
         ))
 
         self.w.display.set_filename(self.result)
@@ -366,14 +436,16 @@ class ImageFlowApplication(Adw.Application):
         self.w.save_file.add_css_class('suggested-action')
         self.w.save_file.set_sensitive(True)
 
-# ------------------------------------------------------------------------------
+        # self.stack_adjust_visibility('display')
+
+    # --------------------------------------------------------------------------
 
     def about_action(self, *args):
         about = Adw.AboutDialog(
             application_name='ImageFlow',
             application_icon='tech.digiroad.ImageFlow',
             developer_name='Golodnikov Sergey',
-            version='0.9.2',
+            version='0.9.5',
             comments=(self.w.ts_comment),
             website='https://digiroad.tech',
             developers=['Golodnikov Sergey <nn19051990@gmail.com>'],
@@ -390,20 +462,40 @@ class ImageFlowApplication(Adw.Application):
     def preferences_action(self, widget, _):
         self.w.pref_theme.set_selected(
             self.settings.get_int('theme'))
-        self.w.bayer_scale.set_value(
-            self.settings.get_int('bayer-scale'))
         self.w.accurate_rnd.set_active(
             self.settings.get_boolean('accurate-rnd'))
+        self.w.stats_mode.set_selected(
+            self.settings.get_int('stats-mode'))
+        self.w.bayer_scale.set_value(
+            self.settings.get_int('bayer-scale'))
+        self.w.webp_lossless.set_active(
+            self.settings.get_boolean('webp-lossless'))
+        self.w.webp_quality.set_value(
+            self.settings.get_int('webp-quality'))
+        self.w.webp_preset.set_selected(
+            self.settings.get_int('webp-preset'))
+        self.w.webp_compression.set_value(
+            self.settings.get_int('webp-compression'))
         self.w.pref_dialog.connect('closed', self.preferences_save)
         self.w.pref_dialog.present(self.props.active_window)
 
     def preferences_save(self, _):
         self.settings.set_int(
             'theme', self.w.pref_theme.get_selected())
+        self.settings.set_boolean(
+            'accurate-rnd', self.w.accurate_rnd.get_active())
+        self.settings.set_int(
+            'stats-mode', int(self.w.stats_mode.get_selected()))
         self.settings.set_int(
             'bayer-scale', int(self.w.bayer_scale.get_value()))
         self.settings.set_boolean(
-            'accurate-rnd', self.w.accurate_rnd.get_active())
+            'webp-lossless', self.w.webp_lossless.get_active())
+        self.settings.set_int(
+            'webp-quality', int(self.w.webp_quality.get_value()))
+        self.settings.set_int(
+            'webp-preset', int(self.w.webp_preset.get_selected()))
+        self.settings.set_int(
+            'webp-compression', int(self.w.webp_compression.get_value()))
         self.update_theme()
 
     def update_theme(self):
@@ -424,13 +516,13 @@ class ImageFlowApplication(Adw.Application):
         dialog = Gtk.AlertDialog(
             message=message,
             detail=detail,
-            buttons=('Cancel',)
+            buttons=('Cancel',),
         )
         dialog.choose(
             parent=self.w,
             cancellable=None,
             callback=None,
-            user_data=None
+            user_data=None,
         )
 
 

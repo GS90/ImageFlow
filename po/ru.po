@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-09 01:36+0300\n"
-"PO-Revision-Date: 2026-01-09 01:51+0300\n"
+"POT-Creation-Date: 2026-01-10 21:57+0300\n"
+"PO-Revision-Date: 2026-01-10 21:44+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-DL-Domain: \n"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:2
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:267
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:299
 msgid "ImageFlow"
 msgstr "ImageFlow"
 
@@ -80,6 +80,11 @@ msgstr "ImageFlow, светлая тема"
 msgid "ImageFlow in dark mode"
 msgstr "ImageFlow, тёмная тема"
 
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:51
+#, fuzzy
+msgid "ImageFlow, preferences"
+msgstr "Настройки"
+
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"
 msgid "General"
@@ -100,27 +105,31 @@ msgctxt "shortcut window"
 msgid "Preferences"
 msgstr "Настройки"
 
-#: src/gtk/window.ui:31
+#: src/gtk/window.ui:27
+msgid "View a file externally"
+msgstr "Просмотр во внешнем приложении"
+
+#: src/gtk/window.ui:54
 msgid "Open"
 msgstr "Открыть"
 
-#: src/gtk/window.ui:34
+#: src/gtk/window.ui:57
 msgid "Open video file"
 msgstr "Открыть видеофайл"
 
-#: src/gtk/window.ui:44
+#: src/gtk/window.ui:67
 msgid "Application menu"
 msgstr "Меню приложения"
 
-#: src/gtk/window.ui:49
+#: src/gtk/window.ui:72
 msgid "Loop"
 msgstr "Повтор"
 
-#: src/gtk/window.ui:51
+#: src/gtk/window.ui:74
 msgid "Video looping"
 msgstr "Зацикливание видео"
 
-#: src/gtk/window.ui:72
+#: src/gtk/window.ui:95
 msgid ""
 "Original\n"
 "4320p\n"
@@ -142,91 +151,95 @@ msgstr ""
 "360p\n"
 "Другое"
 
-#: src/gtk/window.ui:83
+#: src/gtk/window.ui:107
 msgid "Image size"
 msgstr "изображения"
 
-#: src/gtk/window.ui:84
+#: src/gtk/window.ui:108
 msgid "Size"
 msgstr "Размер"
 
-#: src/gtk/window.ui:99
+#: src/gtk/window.ui:124
 msgid "Width"
 msgstr "Ширина"
 
-#: src/gtk/window.ui:115
+#: src/gtk/window.ui:140
 msgid "Height"
 msgstr "Высота"
 
-#: src/gtk/window.ui:143
+#: src/gtk/window.ui:169
 msgid "Interpolation"
 msgstr "интерполяции"
 
-#: src/gtk/window.ui:144
+#: src/gtk/window.ui:170
 msgid "Scaler"
 msgstr "Метод"
 
-#: src/gtk/window.ui:151
+#: src/gtk/window.ui:177
 msgid "Keep aspect ratio"
 msgstr "соотношение сторон"
 
-#: src/gtk/window.ui:152
+#: src/gtk/window.ui:178
 msgid "Ratio"
 msgstr "Сохранить"
 
-#: src/gtk/window.ui:168
+#: src/gtk/window.ui:194
 msgid "Frames per second"
 msgstr "кадров"
 
-#: src/gtk/window.ui:169
+#: src/gtk/window.ui:195
 msgid "FPS"
 msgstr "Частота"
 
-#: src/gtk/window.ui:190
-msgid "Statistics mode"
-msgstr "видеопотока"
-
-#: src/gtk/window.ui:191
-msgid "Palette"
-msgstr "Палитра"
-
-#: src/gtk/window.ui:210
+#: src/gtk/window.ui:223
 msgid "Dithering mode"
 msgstr "дизеринга"
 
-#: src/gtk/window.ui:211
+#: src/gtk/window.ui:224
 msgid "Dither"
 msgstr "Режим"
 
-#: src/gtk/window.ui:223
+#: src/gtk/window.ui:239
+msgid "Max colors"
+msgstr "цветов в палитре"
+
+#: src/gtk/window.ui:240
+msgid "Palette"
+msgstr "Количество"
+
+#: src/gtk/window.ui:253
 msgid "Format"
 msgstr "Формат"
 
-#: src/gtk/window.ui:239
+#: src/gtk/window.ui:269
 msgid "Generate"
 msgstr "Генерировать"
 
-#: src/gtk/window.ui:245
+#: src/gtk/window.ui:276
 msgid "Preview"
 msgstr "Просмотр"
 
-#: src/gtk/window.ui:252
+#: src/gtk/window.ui:283
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/gtk/window.ui:273
+#: src/gtk/window.ui:305
 msgid "_Preferences"
 msgstr "_Настройки"
 
-#: src/gtk/window.ui:277
+#: src/gtk/window.ui:309
 msgid "_Keyboard Shortcuts"
 msgstr "_Сочетания клавиш"
 
-#: src/gtk/window.ui:281
+#: src/gtk/window.ui:313
 msgid "_About ImageFlow"
 msgstr "_О программе"
 
-#: src/gtk/window.ui:298
+#: src/gtk/window.ui:329
+msgid "Application"
+msgstr "Приложение"
+
+#: src/gtk/window.ui:334
 msgid ""
 "Light\n"
 "Dark"
@@ -234,52 +247,158 @@ msgstr ""
 "Светлая\n"
 "Тёмная"
 
-#: src/gtk/window.ui:302
-msgid "Theme variant"
-msgstr "Выбор темы приложения"
+#: src/gtk/window.ui:338
+msgid "Application color theme"
+msgstr "Цветовая тема приложения"
 
-#: src/gtk/window.ui:303
+#: src/gtk/window.ui:339
 msgid "Theme"
 msgstr "Тема"
 
-#: src/gtk/window.ui:317
-msgid "Crosshatch pattern visibility level"
-msgstr "Уровень видимости перекрестной штриховки"
+#: src/gtk/window.ui:348
+msgid "Generation"
+msgstr "Обработка"
 
-#: src/gtk/window.ui:318
-msgid "Bayer scale"
-msgstr "Bayer, размер шаблона"
+#: src/gtk/window.ui:351
+msgid "Accurate rounding in interpolation"
+msgstr "Точное округление при интерполяции"
 
-#: src/gtk/window.ui:323
-msgid "Interpolation, use accurate rounding"
-msgstr "Интерполяция, использовать точное округление"
-
-#: src/gtk/window.ui:324
+#: src/gtk/window.ui:352
 msgid "Accurate rounding"
 msgstr "Точное округление"
 
-#: src/window.py:59
+#: src/gtk/window.ui:365
+msgid "Statistics mode"
+msgstr "Режим статистики"
+
+#: src/gtk/window.ui:366
+msgid "Palette generation"
+msgstr "Генерация палитры"
+
+#: src/gtk/window.ui:380
+msgid "Crosshatch pattern visibility level"
+msgstr "Уровень видимости перекрестной штриховки"
+
+#: src/gtk/window.ui:381
+msgid "Bayer scale"
+msgstr "Bayer, размер шаблона"
+
+#: src/gtk/window.ui:391
+msgid "Lossless compression method"
+msgstr "Метод сжатия без потерь"
+
+#: src/gtk/window.ui:392
+msgid "Lossless"
+msgstr "Сжатие без потерь"
+
+#: src/gtk/window.ui:406
+msgid "Quality level"
+msgstr "Уровень качества"
+
+#: src/gtk/window.ui:407
+msgid "Quality"
+msgstr "Качество"
+
+#: src/gtk/window.ui:408
+msgid ""
+"For lossy encoding, this controls image quality. For lossless encoding, this "
+"controls the effort and time spent in compression. Range is 0 to 100. "
+"Default is 75."
+msgstr ""
+"Для сжатия с потерями этот параметр управляет качеством изображения. При "
+"кодировании без потерь управляет трудозатратами и временем, затраченными на "
+"сжатие. Диапазон от 0 до 100. Значение по умолчанию 75."
+
+#: src/gtk/window.ui:425
+msgid "Configuration preset"
+msgstr "Предустановленная конфигурация"
+
+#: src/gtk/window.ui:426
+msgid "Preset"
+msgstr "Предустановка"
+
+#: src/gtk/window.ui:427
+msgid ""
+"This does some automatic settings based on the general type of the image.\n"
+"None: Do not use a preset.\n"
+"Default: Use the encoder default.\n"
+"Picture: Digital picture, like portrait, inner shot.\n"
+"Photo: Outdoor photograph, with natural lighting.\n"
+"Drawing: Hand or line drawing, with high-contrast details.\n"
+"Icon: Small-sized colorful images.\n"
+"Text: Text-like."
+msgstr ""
+"Некоторые автоматические настройки в зависимости от общего типа "
+"изображения.\n"
+"None: Не использовать предустановку.\n"
+"Default: Использовать значение по умолчанию кодировщика.\n"
+"Picture: Цифровое изображение, например портрет или внутренний снимок.\n"
+"Photo: Уличная фотография с естественным освещением.\n"
+"Drawing: Ручной или контурный рисунок с высококонтрастными деталями.\n"
+"Icon: Небольшие цветные изображения.\n"
+"Text: Текстовые элементы."
+
+#: src/gtk/window.ui:448
+msgid "Adjusts quality and speed tradeoff"
+msgstr "Регулирует соотношение качества и скорости"
+
+#: src/gtk/window.ui:449
+msgid "Compression level"
+msgstr "Уровень сжатия"
+
+#: src/gtk/window.ui:450
+msgid ""
+"For lossy, this is a quality/speed tradeoff. Higher values give better "
+"quality for a given size at the cost of increased encoding time. For "
+"lossless, this is a size/speed tradeoff. Higher values give smaller size at "
+"the cost of increased encoding time. More specifically, it controls the "
+"number of extra algorithms and compression tools used, and varies the "
+"combination of these tools. This maps to the method option in libwebp. The "
+"valid range is 0 to 6. Default is 4."
+msgstr ""
+"Для сжатия с потерями это соотношение качества и скорости. Высокие значения "
+"обеспечивают лучшее качество при заданном размере, но увеличивают время "
+"кодирования. Для сжатия без потерь это соотношение размера и скорости. "
+"Высокие значения обеспечивают меньший размер за счет увеличенного времени "
+"кодирования. Более конкретно, это регулирует количество дополнительных "
+"алгоритмов и инструментов сжатия, а также изменяет комбинацию этих "
+"инструментов. Это соответствует параметру метода в libwebp. Диапазон от 0 до "
+"6. Значение по умолчанию 4."
+
+#: src/window.py:69
 msgid "Done, image size in MB:"
 msgstr "Завершено, размер изображения (Мб):"
 
-#: src/window.py:60
+#: src/window.py:70
 msgid "Saved:"
 msgstr "Сохранено:"
 
-#: src/window.py:61
+#: src/window.py:71
 msgid "Show in files"
 msgstr "Показать в файлах"
 
-#: src/window.py:62
+#: src/window.py:72
 msgid "Source"
 msgstr "Исходный код"
 
-#: src/window.py:63
+#: src/window.py:73
 msgid ""
 "Application for converting video files into high-quality animated images."
 msgstr ""
 "Приложение для преобразования видеофайлов в высококачественные анимированные "
 "изображения."
+
+#~ msgid "Theme variant"
+#~ msgstr "Выбор темы приложения"
+
+#~ msgid "Interpolation, use accurate rounding"
+#~ msgstr "Интерполяция, использовать точное округление"
+
+#~ msgid "Quality level for lossy compression"
+#~ msgstr "Уровень качества"
+
+#~ msgid "Preview in browser"
+#~ msgstr "Открыть в браузере"
 
 #~ msgid "Resolution"
 #~ msgstr "Разрешение"
