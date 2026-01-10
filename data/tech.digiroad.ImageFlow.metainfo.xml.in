@@ -54,6 +54,15 @@
 
   <releases>
 
+    <release version="0.9.6" date="2026-01-10">
+      <description translate="no">
+        <ul>
+          <li>Improved handling of temporary files.</li>
+          <li>Update Italian translation.</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="0.9.5" date="2026-01-10">
       <description translate="no">
         <ul>

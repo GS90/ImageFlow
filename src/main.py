@@ -25,16 +25,18 @@ import os
 import shutil
 import subprocess
 import sys
-import tempfile
 import webbrowser
 
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
-from gi.repository import Adw, Gio, Gtk
+from gi.repository import Adw, Gio, Gtk, GLib
 
 from . import data
 from .window import WindowIF
+
+
+TMP_NAME = 'result'
 
 
 class ImageFlowApplication(Adw.Application):
@@ -81,7 +83,7 @@ class ImageFlowApplication(Adw.Application):
 
         self.name, self.file_format = '', ''
 
-        self.dir = tempfile.mkdtemp(prefix='if_')
+        self.dir = GLib.get_user_cache_dir()
         self.palette = os.path.join(self.dir, 'palette.png')
         self.sources_size = None
 
@@ -340,7 +342,7 @@ class ImageFlowApplication(Adw.Application):
 
     def preparation(self) -> tuple[str, str, str, list[str]]:
         self.file_format = data.format[self.options['format']]
-        self.result = os.path.join(self.dir, 'result' + self.file_format)
+        self.result = os.path.join(self.dir, TMP_NAME + self.file_format)
 
         width = self.options['image-width']
         height = self.options['image-height']
@@ -524,6 +526,18 @@ class ImageFlowApplication(Adw.Application):
             callback=None,
             user_data=None,
         )
+
+    def do_shutdown(self):
+        # clearing
+        if self.palette != '' and os.path.exists(self.palette):
+            os.remove(self.palette)
+        for i in data.format:
+            file = os.path.join(self.dir, TMP_NAME + i)
+            print(file)
+            if os.path.exists(file):
+                os.remove(file)
+
+        Gio.Application.do_shutdown(self)
 
 
 def main(version):
