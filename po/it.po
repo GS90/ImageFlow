@@ -81,9 +81,8 @@ msgid "ImageFlow in dark mode"
 msgstr "ImageFlow in modalità scura"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:51
-#, fuzzy
 msgid "ImageFlow, preferences"
-msgstr "Preferenze"
+msgstr "ImageFlow, preferenze"
 
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -249,7 +248,7 @@ msgstr ""
 
 #: src/gtk/window.ui:338
 msgid "Application color theme"
-msgstr "Tema de color de la aplicación"
+msgstr "Colore tema dell'applicazione"
 
 #: src/gtk/window.ui:339
 msgid "Theme"
@@ -269,11 +268,11 @@ msgstr "Arrotondamento accurato"
 
 #: src/gtk/window.ui:365
 msgid "Statistics mode"
-msgstr "Modo de estadísticas"
+msgstr "Modalità statistica"
 
 #: src/gtk/window.ui:366
 msgid "Palette generation"
-msgstr "Generación de paletas"
+msgstr "Generazione di palette"
 
 #: src/gtk/window.ui:380
 msgid "Crosshatch pattern visibility level"
@@ -305,6 +304,9 @@ msgid ""
 "controls the effort and time spent in compression. Range is 0 to 100. "
 "Default is 75."
 msgstr ""
+"Per la codifica con perdita di dati, controlla la qualità dell'immagine. Per la codifica "
+"senza perdita di dati, controlla lo sforzo e il tempo impiegati nella compressione. L'intervallo è compreso tra 0 e 100."
+"Il valore predefinito è 75."
 
 #: src/gtk/window.ui:425
 msgid "Configuration preset"
@@ -325,6 +327,14 @@ msgid ""
 "Icon: Small-sized colorful images.\n"
 "Text: Text-like."
 msgstr ""
+"Questa opzione esegue alcune impostazioni automatiche in base al tipo generale dell'immagine.\n"
+"Nessuno: non utilizzare un preset.\n"
+"Predefinito: utilizza l'impostazione predefinita del codificatore.\n"
+"Immagine: immagine digitale, come ritratto, scatto interno.\n"
+"Foto: fotografia in esterni, con luce naturale.\n"
+"Disegno: disegno a mano libera o a linee, con dettagli ad alto contrasto.\n"
+"Icona: immagini colorate di piccole dimensioni.\n"
+"Testo: simile al testo."
 
 #: src/gtk/window.ui:448
 msgid "Adjusts quality and speed tradeoff"
@@ -344,6 +354,14 @@ msgid ""
 "combination of these tools. This maps to the method option in libwebp. The "
 "valid range is 0 to 6. Default is 4."
 msgstr ""
+Per la compressione lossy, si tratta di un compromesso tra qualità e velocità. " 
+"Valori più alti offrono una migliore qualità per una determinata dimensione, a "
+"scapito di un maggiore tempo di codifica.La compressione lossless, si tratta di un "
+"compromesso tra dimensione e velocità. Valori più alti offrono una dimensione inferiore,"
+"a scapito di un maggiore tempo di codifica. Più specificamente, controlla il numero di algoritmi "
+"e strumenti di compressione aggiuntivi utilizzati e varia la combinazione di questi strumenti. Questo "
+"corrisponde all'opzione del metodo in libwebp. L'intervallo valido è compreso tra 0 e 6. Il valore predefinito è 4."
+
 
 #: src/window.py:69
 msgid "Done, image size in MB:"
