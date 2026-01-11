@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-10 21:57+0300\n"
-"PO-Revision-Date: 2026-01-10 21:44+0300\n"
+"PO-Revision-Date: 2026-01-11 14:23+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -81,9 +81,8 @@ msgid "ImageFlow in dark mode"
 msgstr "ImageFlow, тёмная тема"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:51
-#, fuzzy
 msgid "ImageFlow, preferences"
-msgstr "Настройки"
+msgstr "ImageFlow, настройки"
 
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"
