@@ -533,7 +533,6 @@ class ImageFlowApplication(Adw.Application):
             os.remove(self.palette)
         for i in data.format:
             file = os.path.join(self.dir, TMP_NAME + i)
-            print(file)
             if os.path.exists(file):
                 os.remove(file)
 

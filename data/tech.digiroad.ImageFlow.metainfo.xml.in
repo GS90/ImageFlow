@@ -5,7 +5,7 @@
   <name>ImageFlow</name>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <summary>Converting video files into animated images</summary>
+  <summary>Creates animated images from video</summary>
   <developer id="tech.digiroad">
     <name>Golodnikov Sergey</name>
   </developer>
@@ -33,8 +33,8 @@
   <content_rating type="oars-1.1"/>
 
   <branding>
-    <color type="primary" scheme_preference="light">#fafafb</color>
-    <color type="primary" scheme_preference="dark">#222226</color>
+    <color type="primary" scheme_preference="light">8ff0a4</color>
+    <color type="primary" scheme_preference="dark">#99c1f1</color>
   </branding>
 
   <screenshots>
