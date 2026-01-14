@@ -70,7 +70,7 @@ class WindowIF(Adw.ApplicationWindow):
     ts_save = _('Saved:')
     ts_save_show = _('Show in Files')
     ts_src = _('Source')
-    ts_comment = _('Application for converting video files into '
+    ts_comment = _('Application for converting video files to '
                    'high-quality animated images.')
 
     def __init__(self, **kwargs):

@@ -3,7 +3,7 @@
   <img src="./data/icons/hicolor/scalable/apps/tech.digiroad.ImageFlow.svg" alt="Icon" width="128" height="128"/>
 </div>
 <h1 align="center">ImageFlow</h1>
-<p align="center">Application for converting video files into high-quality animated images.</p>
+<p align="center">Application for converting video files to high‑quality animated images.</p>
 <p align="center">
   <img src="data/screenshots/dark.png" alt="ImageFlow"/>
 </p>
@@ -12,7 +12,7 @@
 
 ## Description
 
-This application is designed for converting videos into animated GIF and WebP images using the FFmpeg library.You can configure key parameters, such as the output image size, frame rate, applied filters (interpolation method, dithering mode), palette generation method, and the maximum number of colors.
+This application is designed for converting videos into animated GIF and WebP images using the FFmpeg library. You can configure key parameters, such as the output image size, frame rate, applied filters (interpolation method, dithering mode), palette generation method, and the maximum number of colors.
 
 ### Features
 
