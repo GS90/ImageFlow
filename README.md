@@ -12,7 +12,7 @@
 
 ## Description
 
-This application is designed for converting videos into animated GIF and WebP images using the FFmpeg library. It allows you to configure basic parameters, such as the resulting image resolution, frame rate, applied filters (interpolation method, dithering mode), and palette generation method.
+This application is designed for converting videos into animated GIF and WebP images using the FFmpeg library.You can configure key parameters, such as the output image size, frame rate, applied filters (interpolation method, dithering mode), palette generation method, and the maximum number of colors.
 
 ### Features
 
