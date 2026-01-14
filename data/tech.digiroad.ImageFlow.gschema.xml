@@ -82,7 +82,7 @@
 			<description>Quality level</description>
 		</key>
 		<key name="webp-preset" type="i">
-			<default>1</default>
+			<default>0</default>
 			<summary>WebP, preset</summary>
 			<description>Configuration preset</description>
 		</key>

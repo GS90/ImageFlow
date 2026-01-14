@@ -68,7 +68,7 @@ class WindowIF(Adw.ApplicationWindow):
     # variables for translation
     ts_size = _('Done, image size in MB:')
     ts_save = _('Saved:')
-    ts_save_show = _('Show in files')
+    ts_save_show = _('Show in Files')
     ts_src = _('Source')
     ts_comment = _('Application for converting video files into '
                    'high-quality animated images.')

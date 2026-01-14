@@ -30,7 +30,7 @@ import webbrowser
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
-from gi.repository import Adw, Gio, Gtk, GLib
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 from . import data
 from .window import WindowIF
@@ -100,7 +100,42 @@ class ImageFlowApplication(Adw.Application):
         self.w.preview.connect('notify::active', self.preview_switch)
         self.w.save_file.connect('activated', self.save_file)
 
+        # format check
+        self.w.format.connect('notify::selected-item', self.format_switch)
+        self.format_switch(self.w.format, None)
+
+        # drag and drop
+        drop_target = Gtk.DropTarget.new(Gio.File, Gdk.DragAction.COPY)
+        drop_target.connect('drop', self.on_drop)
+        self.w.display.add_controller(drop_target)
+
     # --------------------------------------------------------------------------
+
+    def accept_file(self, path):
+        self.result, self.name = '', ''
+        self.source = path
+        self.w.display.set_filename(self.source)
+        self.current = self.source
+        self.w.open_file.remove_css_class('suggested-action')  # open-file
+        self.w.title.set_subtitle(os.path.basename(self.source))
+        # generate: on
+        self.w.generate.add_css_class('warning')
+        self.w.generate.set_sensitive(True)
+        # preview: off
+        self.w.preview.remove_css_class('success')
+        self.w.preview.set_sensitive(False)
+        self.w.preview.set_active(False)
+        # save: off
+        self.w.save_file.remove_css_class('suggested-action')
+        self.w.save_file.set_sensitive(False)
+        # analysis
+        self.size_original()
+
+    def on_drop(self, _drop, value, _x, _y):
+        if not value:
+            return False
+        self.accept_file(value.get_path())
+        return True
 
     def size_original(self):
         result = subprocess.run([
@@ -178,24 +213,7 @@ class ImageFlowApplication(Adw.Application):
             if response_id == Gtk.ResponseType.ACCEPT:
                 file = dialog.get_file()
                 if file:
-                    self.result, self.name = '', ''
-                    self.source = file.get_path()
-                    self.w.display.set_filename(self.source)
-                    self.current = self.source
-                    button.remove_css_class('suggested-action')  # open-file
-                    self.w.title.set_subtitle(os.path.basename(self.source))
-                    # generate: on
-                    self.w.generate.add_css_class('warning')
-                    self.w.generate.set_sensitive(True)
-                    # preview: off
-                    self.w.preview.remove_css_class('success')
-                    self.w.preview.set_sensitive(False)
-                    self.w.preview.set_active(False)
-                    # save: off
-                    self.w.save_file.remove_css_class('suggested-action')
-                    self.w.save_file.set_sensitive(False)
-                    # analysis
-                    self.size_original()
+                    self.accept_file(file.get_path())
             dialog.destroy()
 
         dialog.connect('response', open_file_response)
@@ -242,6 +260,12 @@ class ImageFlowApplication(Adw.Application):
                 self.w.spinner.set_visible(False)
                 self.w.external.set_visible(True)
 
+    def format_switch(self, widget, _):
+        self.file_format = data.format[widget.get_selected()]
+        v = True if self.file_format == '.gif' else False
+        self.w.max_colors.set_sensitive(v)
+        self.w.dither.set_sensitive(v)
+
     def size_switch(self, widget, _):
         self.freeze = True
         size = data.size[widget.get_selected()]
@@ -256,7 +280,7 @@ class ImageFlowApplication(Adw.Application):
             self.w.image_height.set_value(size[1])
         self.freeze = False
 
-    def size_change(self, widget, _):
+    def size_change(self, _widget, _):
         if not self.freeze:
             self.w.image_size.set_selected(len(data.size) - 1)
 
@@ -340,8 +364,7 @@ class ImageFlowApplication(Adw.Application):
 
     # --------------------------------------------------------------------------
 
-    def preparation(self) -> tuple[str, str, str, list[str]]:
-        self.file_format = data.format[self.options['format']]
+    def preparation(self):
         self.result = os.path.join(self.dir, TMP_NAME + self.file_format)
 
         width = self.options['image-width']
@@ -352,23 +375,30 @@ class ImageFlowApplication(Adw.Application):
         else:
             scale = f'scale={width}:{height}'
 
-        dither = data.dither[self.options['dither']]
-        if dither == 'bayer':
-            dither += f":bayer_scale={self.settings.get_int('bayer-scale')}"
-
         scaler = data.scaler[self.options['scaler']]
         if self.settings.get_boolean('accurate-rnd'):
             scaler += '+accurate_rnd'
 
-        palette = data.palette[self.settings.get_int('stats-mode')]
-        palette += f":max_colors={self.options['max-colors']}"
-
         uno = f"fps={self.options['fps']},{scale}:flags={scaler}"
-        dos = f"{uno},palettegen=stats_mode={palette}"
-        tres = f"paletteuse=dither={dither}"
+
+        if self.file_format == '.gif':
+            # palette generation
+            dither = data.dither[self.options['dither']]
+            if dither == 'bayer':
+                bs = self.settings.get_int('bayer-scale')
+                dither += ':bayer_scale=' + str(bs)
+
+            palette = data.palette[self.settings.get_int('stats-mode')]
+            palette += f":max_colors={self.options['max-colors']}"
+
+            dos = f"{uno},palettegen=stats_mode={palette}"
+            tres = f"paletteuse=dither={dither}"
+        else:
+            dos, tres = None, None  # for palette only
 
         if self.file_format == '.webp':
             cuatro = [
+                '-c:v', 'libwebp',
                 '-lossless',
                 '1' if self.settings.get_boolean('webp-lossless') else '0',
                 '-q:v',
@@ -377,32 +407,39 @@ class ImageFlowApplication(Adw.Application):
                 data.webp_presets[self.settings.get_int('webp-preset')],
                 '-compression_level',
                 str(self.settings.get_int('webp-compression')),
-                '-loop', '0', '-y',
+                '-loop', '0', '-vsync', '0', '-y',
             ]
         else:
-            cuatro = ['-y',]
+            cuatro = ['-vsync', '0', '-y']
 
         return (uno, dos, tres, cuatro)
 
     def generate(self, uno, dos, tres, cuatro):
-        # palette
-        result = subprocess.run([
-            'ffmpeg', '-v', 'error', '-i', self.source,
-            '-vf', dos, '-y', self.palette,
-        ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        if result.returncode != 0:
-            err = result.stderr.decode('utf-8').strip()
-            print('Palette error:', err)
-            self.message_show('Palette error', err)
-            self.result = ''
-            return
+        cmd = ['ffmpeg', '-v', 'error', '-i', self.source, '-an']
+
+        if self.file_format == '.gif':
+            # palette
+            result = subprocess.run([
+                'ffmpeg', '-v', 'error', '-i', self.source,
+                '-vf', dos, '-y', self.palette,
+            ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if result.returncode != 0:
+                err = result.stderr.decode('utf-8').strip()
+                print('Palette error:', err)
+                self.message_show('Palette error', err)
+                self.result = ''
+                return
+            cmd.extend((
+                '-i', self.palette,
+                '-filter_complex', f'{uno} [x]; [x][1:v] {tres}',
+                *cuatro, self.result,
+            ))
+        else:
+            cmd.extend(('-vf', uno, *cuatro, self.result))
+
         # conversion
-        result = subprocess.run([
-            'ffmpeg', '-v', 'error',
-            '-i', self.source, '-i', self.palette,
-            '-lavfi', f'{uno} [x]; [x][1:v] {tres}',
-            *cuatro, self.result,
-        ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        result = subprocess.run(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if result.returncode != 0:
             err = result.stderr.decode('utf-8').strip()
             print('Generation error:', err)
@@ -442,12 +479,12 @@ class ImageFlowApplication(Adw.Application):
 
     # --------------------------------------------------------------------------
 
-    def about_action(self, *args):
+    def about_action(self, *_args):
         about = Adw.AboutDialog(
             application_name='ImageFlow',
             application_icon='tech.digiroad.ImageFlow',
             developer_name='Golodnikov Sergey',
-            version='0.9.5',
+            version='0.9.7',
             comments=(self.w.ts_comment),
             website='https://digiroad.tech',
             developers=['Golodnikov Sergey <nn19051990@gmail.com>'],
@@ -461,7 +498,7 @@ class ImageFlowApplication(Adw.Application):
         about.add_link((self.w.ts_src), 'https://github.com/GS90/ImageFlow')
         about.present(self.props.active_window)
 
-    def preferences_action(self, widget, _):
+    def preferences_action(self, _widget, _):
         self.w.pref_theme.set_selected(
             self.settings.get_int('theme'))
         self.w.accurate_rnd.set_active(

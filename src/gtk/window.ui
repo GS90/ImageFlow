@@ -168,7 +168,7 @@ Spline</property>
                     <property name="selected">6</property>
                     <property name="subtitle" translatable="yes">Interpolation</property>
                     <property name="title" translatable="yes">Scaler</property>
-                    <property name="width-request">260</property>
+                    <property name="width-request">270</property>
                   </object>
                 </child>
                 <child>
@@ -176,7 +176,7 @@ Spline</property>
                     <property name="active">True</property>
                     <property name="subtitle" translatable="yes">Keep aspect ratio</property>
                     <property name="title" translatable="yes">Ratio</property>
-                    <property name="width-request">260</property>
+                    <property name="width-request">270</property>
                   </object>
                 </child>
                 <child>
@@ -193,7 +193,7 @@ Spline</property>
                     <property name="numeric">True</property>
                     <property name="subtitle" translatable="yes">Frames per second</property>
                     <property name="title" translatable="yes">FPS</property>
-                    <property name="width-request">260</property>
+                    <property name="width-request">270</property>
                   </object>
                 </child>
                 <layout>
@@ -422,7 +422,8 @@ Text</property>
                       </object>
                     </property>
                     <property name="selected">1</property>
-                    <property name="subtitle" translatable="yes">Configuration preset</property>
+                    <property name="subtitle" translatable="yes">Warning!
+This value overrides other settings.</property>
                     <property name="title" translatable="yes">Preset</property>
                     <property name="tooltip-text" translatable="yes">This does some automatic settings based on the general type of the image.
 None: Do not use a preset.

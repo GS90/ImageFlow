@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 00:41+0300\n"
+"POT-Creation-Date: 2026-01-14 23:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid "video;converter;image;gif;webp"
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
-msgid "Converting video files into animated images"
+msgid "Video to animated images"
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:10
@@ -37,10 +37,9 @@ msgstr ""
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
 msgid ""
 "This application is designed for converting videos into animated GIF and "
-"WebP images using the FFmpeg library. It allows you to configure basic "
-"parameters, such as the resulting image resolution, frame rate, applied "
-"filters (interpolation method, dithering mode), and palette generation "
-"method."
+"WebP images using the FFmpeg library.You can configure key parameters, such "
+"as the output image size, frame rate, applied filters (interpolation method, "
+"dithering mode), palette generation method, and the maximum number of colors."
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:15
@@ -286,14 +285,16 @@ msgid ""
 msgstr ""
 
 #: src/gtk/window.ui:425
-msgid "Configuration preset"
-msgstr ""
-
-#: src/gtk/window.ui:426
-msgid "Preset"
+msgid ""
+"Warning!\n"
+"This value overrides other settings."
 msgstr ""
 
 #: src/gtk/window.ui:427
+msgid "Preset"
+msgstr ""
+
+#: src/gtk/window.ui:428
 msgid ""
 "This does some automatic settings based on the general type of the image.\n"
 "None: Do not use a preset.\n"
@@ -305,15 +306,15 @@ msgid ""
 "Text: Text-like."
 msgstr ""
 
-#: src/gtk/window.ui:448
+#: src/gtk/window.ui:449
 msgid "Adjusts quality and speed tradeoff"
 msgstr ""
 
-#: src/gtk/window.ui:449
+#: src/gtk/window.ui:450
 msgid "Compression level"
 msgstr ""
 
-#: src/gtk/window.ui:450
+#: src/gtk/window.ui:451
 msgid ""
 "For lossy, this is a quality/speed tradeoff. Higher values give better "
 "quality for a given size at the cost of increased encoding time. For "
@@ -333,7 +334,7 @@ msgid "Saved:"
 msgstr ""
 
 #: src/window.py:71
-msgid "Show in files"
+msgid "Show in Files"
 msgstr ""
 
 #: src/window.py:72

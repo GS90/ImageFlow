@@ -5,13 +5,13 @@
   <name>ImageFlow</name>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <summary>Creates animated images from video</summary>
+  <summary>Video to animated images</summary>
   <developer id="tech.digiroad">
     <name>Golodnikov Sergey</name>
   </developer>
 
   <description>
-    <p>This application is designed for converting videos into animated GIF and WebP images using the FFmpeg library. It allows you to configure basic parameters, such as the resulting image resolution, frame rate, applied filters (interpolation method, dithering mode), and palette generation method.</p>
+    <p>This application is designed for converting videos into animated GIF and WebP images using the FFmpeg library.You can configure key parameters, such as the output image size, frame rate, applied filters (interpolation method, dithering mode), palette generation method, and the maximum number of colors.</p>
     <p>Features:</p>
     <ul>
       <li>All conversion parameters can be configured.</li>
@@ -53,6 +53,17 @@
   </screenshots>
 
   <releases>
+
+    <release version="0.9.7" date="2026-01-15">
+      <description translate="no">
+        <ul>
+          <li>Increased generation performance.</li>
+          <li>Fixed and improved WebP creation.</li>
+          <li>Added drag and drop functionality.</li>
+          <li>Improving default settings.</li>
+        </ul>
+      </description>
+    </release>
 
     <release version="0.9.6" date="2026-01-10">
       <description translate="no">

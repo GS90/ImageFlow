@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-10 21:57+0300\n"
-"PO-Revision-Date: 2026-01-11 14:23+0300\n"
+"POT-Creation-Date: 2026-01-14 23:43+0300\n"
+"PO-Revision-Date: 2026-01-14 23:44+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -31,8 +31,8 @@ msgid "video;converter;image;gif;webp"
 msgstr "video;converter;image;gif;webp"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
-msgid "Converting video files into animated images"
-msgstr "Преобразование видеофайлов в анимированные изображения"
+msgid "Video to animated images"
+msgstr "Преобразование видео в анимацию"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:10
 msgid "Golodnikov Sergey"
@@ -41,16 +41,15 @@ msgstr "Голодников Сергей"
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
 msgid ""
 "This application is designed for converting videos into animated GIF and "
-"WebP images using the FFmpeg library. It allows you to configure basic "
-"parameters, such as the resulting image resolution, frame rate, applied "
-"filters (interpolation method, dithering mode), and palette generation "
-"method."
+"WebP images using the FFmpeg library.You can configure key parameters, such "
+"as the output image size, frame rate, applied filters (interpolation method, "
+"dithering mode), palette generation method, and the maximum number of colors."
 msgstr ""
 "Приложение предназначено для конвертации видео в анимированные изображения "
-"форматов GIF и WebP с использованием библиотеки FFmpeg. Оно позволяет "
-"настроить основные параметры, такие как разрешение итогового изображения, "
-"частоту кадров, применяемые фильтры (метод интерполяции, режим дизеринга) и "
-"способ создания палитры."
+"форматов GIF и WebP с использованием библиотеки FFmpeg. Оно предоставляет "
+"возможность настройки основных параметров, таких как разрешение конечного "
+"изображения, частота кадров, применяемые фильтры (метод интерполяции и режим "
+"дизеринга), способ создания палитры и максимальное количество её цветов."
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:15
 msgid "Features:"
@@ -309,14 +308,18 @@ msgstr ""
 "сжатие. Диапазон от 0 до 100. Значение по умолчанию 75."
 
 #: src/gtk/window.ui:425
-msgid "Configuration preset"
-msgstr "Предустановленная конфигурация"
+msgid ""
+"Warning!\n"
+"This value overrides other settings."
+msgstr ""
+"Внимание!\n"
+"Это значение переопределяет другие настройки."
 
-#: src/gtk/window.ui:426
+#: src/gtk/window.ui:427
 msgid "Preset"
 msgstr "Предустановка"
 
-#: src/gtk/window.ui:427
+#: src/gtk/window.ui:428
 msgid ""
 "This does some automatic settings based on the general type of the image.\n"
 "None: Do not use a preset.\n"
@@ -337,15 +340,15 @@ msgstr ""
 "Icon: Небольшие цветные изображения.\n"
 "Text: Текстовые элементы."
 
-#: src/gtk/window.ui:448
+#: src/gtk/window.ui:449
 msgid "Adjusts quality and speed tradeoff"
 msgstr "Регулирует соотношение качества и скорости"
 
-#: src/gtk/window.ui:449
+#: src/gtk/window.ui:450
 msgid "Compression level"
 msgstr "Уровень сжатия"
 
-#: src/gtk/window.ui:450
+#: src/gtk/window.ui:451
 msgid ""
 "For lossy, this is a quality/speed tradeoff. Higher values give better "
 "quality for a given size at the cost of increased encoding time. For "
@@ -373,7 +376,7 @@ msgid "Saved:"
 msgstr "Сохранено:"
 
 #: src/window.py:71
-msgid "Show in files"
+msgid "Show in Files"
 msgstr "Показать в файлах"
 
 #: src/window.py:72
@@ -386,6 +389,9 @@ msgid ""
 msgstr ""
 "Приложение для преобразования видеофайлов в высококачественные анимированные "
 "изображения."
+
+#~ msgid "Configuration preset"
+#~ msgstr "Предустановленная конфигурация"
 
 #~ msgid "Theme variant"
 #~ msgstr "Выбор темы приложения"
