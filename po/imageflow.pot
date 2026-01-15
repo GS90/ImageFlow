@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 00:58+0300\n"
+"POT-Creation-Date: 2026-01-15 22:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:2
@@ -287,7 +287,7 @@ msgstr ""
 #: src/gtk/window.ui:425
 msgid ""
 "Warning!\n"
-"This value overrides other settings."
+"This value overrides other settings"
 msgstr ""
 
 #: src/gtk/window.ui:427
@@ -343,4 +343,12 @@ msgstr ""
 
 #: src/window.py:73
 msgid "Application for converting video files to high-quality animated images."
+msgstr ""
+
+#: src/window.py:76
+msgid "File not accessible"
+msgstr ""
+
+#: src/window.py:77
+msgid "If you’re using Flatpak, verify file access permissions"
 msgstr ""

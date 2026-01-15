@@ -72,6 +72,10 @@ class WindowIF(Adw.ApplicationWindow):
     ts_src = _('Source')
     ts_comment = _('Application for converting video files to '
                    'high-quality animated images.')
+    ts_error_permissions = (
+        _('File not accessible'),
+        _('If you’re using Flatpak, verify file access permissions'),
+    )
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

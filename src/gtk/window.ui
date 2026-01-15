@@ -423,7 +423,7 @@ Text</property>
                     </property>
                     <property name="selected">1</property>
                     <property name="subtitle" translatable="yes">Warning!
-This value overrides other settings.</property>
+This value overrides other settings</property>
                     <property name="title" translatable="yes">Preset</property>
                     <property name="tooltip-text" translatable="yes">This does some automatic settings based on the general type of the image.
 None: Do not use a preset.

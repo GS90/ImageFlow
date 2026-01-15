@@ -18,13 +18,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
-# todo: spinner: doesn't work, one thread
-
-
 import os
 import shutil
 import subprocess
 import sys
+import threading
 import webbrowser
 
 import gi
@@ -44,11 +42,12 @@ class ImageFlowApplication(Adw.Application):
         super().__init__(application_id='tech.digiroad.ImageFlow',
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
                          resource_base_path='/tech/digiroad/ImageFlow')
-        self.create_action('quit', lambda *_: self.quit(), ['<control>q'])
-        self.create_action('about', self.about_action, None)
+        self.create_action('open', self.open_file, ['<primary>o'])
         self.create_action('preferences',
                            self.preferences_action,
                            ['<primary>p'])
+        self.create_action('about', self.about_action, None)
+        self.create_action('quit', lambda *_: self.quit(), ['<control>q'])
 
     def do_activate(self):
         self.settings = Gio.Settings.new('tech.digiroad.ImageFlow')
@@ -71,7 +70,7 @@ class ImageFlowApplication(Adw.Application):
             self.w = WindowIF(application=self)
         self.w.present()
 
-        self.update_theme()
+        self.update_theme(self.settings.get_int('theme'))
 
         loop_state = self.settings.get_boolean('loop')
         self.w.loop.set_active(loop_state)
@@ -89,6 +88,8 @@ class ImageFlowApplication(Adw.Application):
 
         self.freeze = False
 
+        self.w.pref_theme.connect('notify::selected-item', self.theme_change)
+
         self.w.external.connect('clicked', self.browser_preview)
         self.w.generate.connect('activated', self.generate_wrapper)
         self.w.image_height.connect('notify::value', self.size_change)
@@ -103,7 +104,6 @@ class ImageFlowApplication(Adw.Application):
         # format check
         self.w.format.connect('notify::selected-item', self.format_switch)
         self.format_switch(self.w.format, None)
-
         # drag and drop
         drop_target = Gtk.DropTarget.new(Gio.File, Gdk.DragAction.COPY)
         drop_target.connect('drop', self.on_drop)
@@ -134,8 +134,13 @@ class ImageFlowApplication(Adw.Application):
     def on_drop(self, _drop, value, _x, _y):
         if not value:
             return False
-        self.accept_file(value.get_path())
-        return True
+        path = value.get_path()
+        if not os.path.exists(path):
+            self.message_show(*self.w.ts_error_permissions)
+            return False
+        else:
+            self.accept_file(path)
+            return True
 
     def size_original(self):
         result = subprocess.run([
@@ -165,7 +170,7 @@ class ImageFlowApplication(Adw.Application):
 
     # --------------------------------------------------------------------------
 
-    def open_file(self, button):
+    def open_file(self, _button, _=None):
         dialog = Gtk.FileChooserNative.new(
             title='Select a video file',
             parent=self.w.get_native(),
@@ -447,14 +452,9 @@ class ImageFlowApplication(Adw.Application):
             self.result = ''
             return
 
-    def generate_wrapper(self, _):
-        # self.stack_adjust_visibility('spinner')
+        GLib.idle_add(self.generation_complete)
 
-        self.w.preview.set_active(False)
-
-        self.options_save()
-        self.generate(*self.preparation())
-
+    def generation_complete(self):
         basename = os.path.splitext(os.path.basename(self.source))[0]
         self.name = basename + self.file_format
 
@@ -475,7 +475,19 @@ class ImageFlowApplication(Adw.Application):
         self.w.save_file.add_css_class('suggested-action')
         self.w.save_file.set_sensitive(True)
 
-        # self.stack_adjust_visibility('display')
+        self.stack_adjust_visibility('display')
+
+    def generate_wrapper(self, _):
+        self.stack_adjust_visibility('spinner')
+        self.w.preview.set_active(False)
+        self.options_save()
+        args = self.preparation()
+        thread = threading.Thread(
+            target=self.generate,
+            args=args,
+            daemon=True,
+        )
+        thread.start()
 
     # --------------------------------------------------------------------------
 
@@ -484,7 +496,7 @@ class ImageFlowApplication(Adw.Application):
             application_name='ImageFlow',
             application_icon='tech.digiroad.ImageFlow',
             developer_name='Golodnikov Sergey',
-            version='0.9.7',
+            version='0.9.8',
             comments=(self.w.ts_comment),
             website='https://digiroad.tech',
             developers=['Golodnikov Sergey <nn19051990@gmail.com>'],
@@ -535,11 +547,13 @@ class ImageFlowApplication(Adw.Application):
             'webp-preset', int(self.w.webp_preset.get_selected()))
         self.settings.set_int(
             'webp-compression', int(self.w.webp_compression.get_value()))
-        self.update_theme()
 
-    def update_theme(self):
+    def theme_change(self, widget, _):
+        self.update_theme(widget.get_selected())
+
+    def update_theme(self, value):
         style_manager = Adw.StyleManager.get_default()
-        if self.settings.get_int('theme') == 0:
+        if value == 0:
             style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
         else:
             style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
@@ -565,14 +579,14 @@ class ImageFlowApplication(Adw.Application):
         )
 
     def do_shutdown(self):
-        # clearing
+        # deleting temporary files
         if self.palette != '' and os.path.exists(self.palette):
             os.remove(self.palette)
         for i in data.format:
             file = os.path.join(self.dir, TMP_NAME + i)
             if os.path.exists(file):
                 os.remove(file)
-
+        # shutdown
         Gio.Application.do_shutdown(self)
 
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 00:58+0300\n"
+"POT-Creation-Date: 2026-01-15 22:41+0300\n"
 "PO-Revision-Date: 2026-01-11 21:48+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -313,7 +313,7 @@ msgstr ""
 #: src/gtk/window.ui:425
 msgid ""
 "Warning!\n"
-"This value overrides other settings."
+"This value overrides other settings"
 msgstr ""
 
 #: src/gtk/window.ui:427
@@ -391,6 +391,14 @@ msgstr "Sorgente"
 msgid "Application for converting video files to high-quality animated images."
 msgstr ""
 "Applicazione per convertire file video in immagini animate di alta qualità."
+
+#: src/window.py:76
+msgid "File not accessible"
+msgstr ""
+
+#: src/window.py:77
+msgid "If you’re using Flatpak, verify file access permissions"
+msgstr ""
 
 #~ msgid "Configuration preset"
 #~ msgstr "Preimpostazione di configurazione"
