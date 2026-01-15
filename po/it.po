@@ -11,9 +11,9 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-15 00:58+0300\n"
 "PO-Revision-Date: 2026-01-11 21:48+0300\n"
-"Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
-"Language-Team: Russian\n"
-"Language: ru\n"
+"Last-Translator: Albano Battistella <albanobattistellaògmail.com>\n"
+"Language-Team: Italian\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,29 +31,25 @@ msgid "video;converter;image;gif;webp"
 msgstr "video;convertitore;immagine;gif;webp"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
-#, fuzzy
 msgid "Video to animated images"
-msgstr "Conversione di file video in immagini animate"
+msgstr "Video in immagini animate"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:10
 msgid "Golodnikov Sergey"
 msgstr "Golodnikov Sergey"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
-#, fuzzy
 msgid ""
 "This application is designed for converting videos into animated GIF and "
 "WebP images using the FFmpeg library.You can configure key parameters, such "
 "as the output image size, frame rate, applied filters (interpolation method, "
 "dithering mode), palette generation method, and the maximum number of colors."
 msgstr ""
-"Questa applicazione è progettata per convertire video in immagini GIF e WebP "
-"animate utilizzando la libreria FFmpeg. Permette di configurare parametri di "
-"base, come la risoluzione dell'immagine risultante, il frame rate, i filtri "
-"applicati (metodo di interpolazione, modalità di dithering) e il metodo di "
-"generazione della palette."
+"Questa applicazione è progettata per convertire i video in GIF animate e immagini WebP "
+"utilizzando la libreria FFmpeg. È possibile configurare parametri chiave,come la dimensione "
+"dell'immagine di output, la frequenza dei fotogrammi, i filtri applicati (metodo di interpolazione, "
+"modalità di dithering), metodo di generazione della tavolozza e numero massimo di colori."
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:15
 msgid "Features:"
 msgstr "Caratteristiche:"
 
@@ -315,6 +311,8 @@ msgid ""
 "Warning!\n"
 "This value overrides other settings."
 msgstr ""
+"Attenzione!\n"
+"Questo valore sovrascrive le altre impostazioni."
 
 #: src/gtk/window.ui:427
 msgid "Preset"
@@ -378,19 +376,16 @@ msgid "Saved:"
 msgstr "Salvato:"
 
 #: src/window.py:71
-#, fuzzy
 msgid "Show in Files"
-msgstr "Mostra nei file"
+msgstr "Mostra nei File"
 
 #: src/window.py:72
 msgid "Source"
 msgstr "Sorgente"
 
 #: src/window.py:73
-#, fuzzy
 msgid "Application for converting video files to high-quality animated images."
-msgstr ""
-"Applicazione per convertire file video in immagini animate di alta qualità."
+msgstr "Applicazione per convertire file video in immagini animate di alta qualità."
 
 #~ msgid "Configuration preset"
 #~ msgstr "Preimpostazione di configurazione"
