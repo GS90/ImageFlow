@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 22:41+0300\n"
+"POT-Creation-Date: 2026-01-15 23:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,17 +81,22 @@ msgstr ""
 
 #: src/gtk/help-overlay.ui:14
 msgctxt "shortcut window"
-msgid "Show Shortcuts"
+msgid "Open video file"
 msgstr ""
 
 #: src/gtk/help-overlay.ui:20
 msgctxt "shortcut window"
-msgid "Quit"
+msgid "Preferences"
 msgstr ""
 
 #: src/gtk/help-overlay.ui:26
 msgctxt "shortcut window"
-msgid "Preferences"
+msgid "Show Shortcuts"
+msgstr ""
+
+#: src/gtk/help-overlay.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
 msgstr ""
 
 #: src/gtk/window.ui:27

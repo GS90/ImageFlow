@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 22:41+0300\n"
+"POT-Creation-Date: 2026-01-15 23:24+0300\n"
 "PO-Revision-Date: 2026-01-11 21:48+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -91,19 +91,25 @@ msgid "General"
 msgstr "Generale"
 
 #: src/gtk/help-overlay.ui:14
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Open video file"
+msgstr "Apri file video"
+
+#: src/gtk/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: src/gtk/help-overlay.ui:26
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Mostra scorciatoie"
 
-#: src/gtk/help-overlay.ui:20
+#: src/gtk/help-overlay.ui:32
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Esci"
-
-#: src/gtk/help-overlay.ui:26
-msgctxt "shortcut window"
-msgid "Preferences"
-msgstr "Preferenze"
 
 #: src/gtk/window.ui:27
 msgid "View a file externally"
