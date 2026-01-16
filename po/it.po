@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-15 23:24+0300\n"
 "PO-Revision-Date: 2026-01-11 21:48+0300\n"
-"Last-Translator: Albano Battistella <albanobattistellaògmail.com>\n"
+"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,6 @@ msgid "General"
 msgstr "Generale"
 
 #: src/gtk/help-overlay.ui:14
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Open video file"
 msgstr "Apri file video"
@@ -395,11 +394,11 @@ msgstr "Applicazione per convertire file video in immagini animate di alta quali
 
 #: src/window.py:76
 msgid "File not accessible"
-msgstr ""
+msgstr "File non accessibile"
 
 #: src/window.py:77
 msgid "If you’re using Flatpak, verify file access permissions"
-msgstr ""
+msgstr "Se stai utilizzando Flatpak, verifica i permessi di accesso ai file"
 
 #~ msgid "Configuration preset"
 #~ msgstr "Preimpostazione di configurazione"
