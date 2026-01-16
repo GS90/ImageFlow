@@ -54,7 +54,7 @@
 
   <releases>
 
-    <release version="0.9.9" date="2026-01-16">
+    <release version="0.9.91" date="2026-01-16">
       <description translate="no">
         <ul>
           <li>Minor fixes.</li>
