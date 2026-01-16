@@ -54,11 +54,18 @@
 
   <releases>
 
-    <release version="0.9.8" date="2026-01-15">
+    <release version="0.9.9" date="2026-01-16">
       <description translate="no">
         <ul>
-          <li>Improving interface usability.</li>
+          <li>Minor fixes.</li>
+          <li>Add Italian translation.</li>
         </ul>
+      </description>
+    </release>
+
+    <release version="0.9.8" date="2026-01-15">
+      <description translate="no">
+        <p>Improving interface usability.</p>
       </description>
     </release>
 

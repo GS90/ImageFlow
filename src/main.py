@@ -111,6 +111,27 @@ class ImageFlowApplication(Adw.Application):
 
     # --------------------------------------------------------------------------
 
+    def switch_control(self, generate, preview, save):
+        # generate
+        self.w.generate.set_sensitive(generate)
+        if generate:
+            self.w.generate.add_css_class('warning')
+        else:
+            self.w.generate.remove_css_class('warning')
+        # preview
+        self.w.preview.set_sensitive(preview)
+        if preview:
+            self.w.preview.add_css_class('success')
+        else:
+            self.w.preview.remove_css_class('success')
+        self.w.preview.set_active(preview)
+        # save
+        self.w.save_file.set_sensitive(save)
+        if save:
+            self.w.save_file.add_css_class('suggested-action')
+        else:
+            self.w.save_file.remove_css_class('suggested-action')
+
     def accept_file(self, path):
         self.result, self.name = '', ''
         self.source = path
@@ -118,17 +139,7 @@ class ImageFlowApplication(Adw.Application):
         self.current = self.source
         self.w.open_file.remove_css_class('suggested-action')  # open-file
         self.w.title.set_subtitle(os.path.basename(self.source))
-        # generate: on
-        self.w.generate.add_css_class('warning')
-        self.w.generate.set_sensitive(True)
-        # preview: off
-        self.w.preview.remove_css_class('success')
-        self.w.preview.set_sensitive(False)
-        self.w.preview.set_active(False)
-        # save: off
-        self.w.save_file.remove_css_class('suggested-action')
-        self.w.save_file.set_sensitive(False)
-        # analysis
+        self.switch_control(generate=True, preview=False, save=False)
         self.size_original()
 
     def on_drop(self, _drop, value, _x, _y):
@@ -307,6 +318,7 @@ class ImageFlowApplication(Adw.Application):
                     self.stack_adjust_visibility('external')
                 else:
                     self.w.display.set_filename(self.result)
+                    self.stack_adjust_visibility('display')
                 self.current = self.result
                 self.w.preview.add_css_class('success')
             else:
@@ -467,19 +479,11 @@ class ImageFlowApplication(Adw.Application):
 
         self.w.display.set_filename(self.result)
         self.current = self.result
-        # preview: on
-        self.w.preview.add_css_class('success')
-        self.w.preview.set_sensitive(True)
-        self.w.preview.set_active(True)
-        # save: on
-        self.w.save_file.add_css_class('suggested-action')
-        self.w.save_file.set_sensitive(True)
-
-        self.stack_adjust_visibility('display')
+        self.switch_control(generate=True, preview=True, save=True)
 
     def generate_wrapper(self, _):
+        self.switch_control(False, False, False)
         self.stack_adjust_visibility('spinner')
-        self.w.preview.set_active(False)
         self.options_save()
         args = self.preparation()
         thread = threading.Thread(
@@ -496,7 +500,7 @@ class ImageFlowApplication(Adw.Application):
             application_name='ImageFlow',
             application_icon='tech.digiroad.ImageFlow',
             developer_name='Golodnikov Sergey',
-            version='0.9.8',
+            version='0.9.9',
             comments=(self.w.ts_comment),
             website='https://digiroad.tech',
             developers=['Golodnikov Sergey <nn19051990@gmail.com>'],
