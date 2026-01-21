@@ -7,12 +7,11 @@ project('imageflow',
 i18n = import('i18n')
 gnome = import('gnome')
 
-
 subdir('data')
 subdir('src')
 subdir('po')
 
-run_command('./update_l10n.sh', check: true)
+# run_command('./update_l10n.sh', check: true)
 
 gnome.post_install(
      glib_compile_schemas: true,
