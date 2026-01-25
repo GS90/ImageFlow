@@ -36,6 +36,8 @@ from . import data
 from .window import WindowIF
 
 
+APP_VERSION = '1.0.1'
+
 TMP_NAME = 'result'
 
 
@@ -718,7 +720,7 @@ class ImageFlowApplication(Adw.Application):
             application_name='ImageFlow',
             application_icon='tech.digiroad.ImageFlow',
             developer_name='Golodnikov Sergey',
-            version='1.0.0',
+            version=APP_VERSION,
             comments=(self.w.ts_comment),
             website='https://digiroad.tech',
             developers=['Golodnikov Sergey <nn19051990@gmail.com>'],

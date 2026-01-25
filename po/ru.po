@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 13:07+0300\n"
-"PO-Revision-Date: 2026-01-25 12:52+0300\n"
+"POT-Creation-Date: 2026-01-25 17:46+0300\n"
+"PO-Revision-Date: 2026-01-25 17:48+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -61,7 +61,7 @@ msgstr "Все параметры конвертации могут быть н�
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:18
 msgid "Time range selection option."
-msgstr ""
+msgstr "Возможность выбора временного диапазона."
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:19
 msgid "Preview of the result."
@@ -76,12 +76,12 @@ msgid "Intuitive and user-friendly interface."
 msgstr "Интуитивно понятный и удобный интерфейс."
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:44
-msgid "ImageFlow in light mode"
-msgstr "ImageFlow, светлая тема"
-
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:48
 msgid "ImageFlow in dark mode"
 msgstr "ImageFlow, тёмная тема"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:48
+msgid "ImageFlow in light mode"
+msgstr "ImageFlow, светлая тема"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:52
 msgid "ImageFlow, preferences"

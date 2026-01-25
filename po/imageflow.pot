@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 13:07+0300\n"
+"POT-Creation-Date: 2026-01-25 17:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,11 +67,11 @@ msgid "Intuitive and user-friendly interface."
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:44
-msgid "ImageFlow in light mode"
+msgid "ImageFlow in dark mode"
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:48
-msgid "ImageFlow in dark mode"
+msgid "ImageFlow in light mode"
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:52

@@ -40,12 +40,12 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/GS90/ImageFlow/refs/heads/main/data/screenshots/light.png</image>
-      <caption>ImageFlow in light mode</caption>
-    </screenshot>
-    <screenshot>
       <image>https://raw.githubusercontent.com/GS90/ImageFlow/refs/heads/main/data/screenshots/dark.png</image>
       <caption>ImageFlow in dark mode</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/GS90/ImageFlow/refs/heads/main/data/screenshots/light.png</image>
+      <caption>ImageFlow in light mode</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/GS90/ImageFlow/refs/heads/main/data/screenshots/preferences.png</image>
@@ -55,9 +55,13 @@
 
   <releases>
 
-    <release version="1.0.0" date="2026-01-25">
+    <release version="1.0.1" date="2026-01-25">
       <description translate="no">
-        <p>Added: time range selection for conversion.</p>
+        <ul>
+          <li>Added: time range selection for conversion.</li>
+          <li>Minor improvements.</li>
+          <li>Update Italian translation.</li>
+        </ul>
       </description>
     </release>
 

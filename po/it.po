@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 13:07+0300\n"
+"POT-Creation-Date: 2026-01-25 17:46+0300\n"
 "PO-Revision-Date: 2026-01-25 13:22+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian\n"
@@ -76,12 +76,12 @@ msgid "Intuitive and user-friendly interface."
 msgstr "Interfaccia intuitiva e facile da usare."
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:44
-msgid "ImageFlow in light mode"
-msgstr "ImageFlow in modalità chiara"
-
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:48
 msgid "ImageFlow in dark mode"
 msgstr "ImageFlow in modalità scura"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:48
+msgid "ImageFlow in light mode"
+msgstr "ImageFlow in modalità chiara"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:52
 msgid "ImageFlow, preferences"
@@ -92,8 +92,8 @@ msgid ""
 "Select «Start» or «End» and rewind the video to the desired frame, or enter "
 "the time in the corresponding field."
 msgstr ""
-"Seleziona «Inizio» o «Fine» e riavvolgi il video fino al fotogramma desiderato, oppure inserisci "
-"l'ora nel campo corrispondente."
+"Seleziona «Inizio» o «Fine» e riavvolgi il video fino al fotogramma "
+"desiderato, oppure inserisci l'ora nel campo corrispondente."
 
 #: src/data.py:99
 msgid "Time format - hours:minutes:seconds.milliseconds (00:00:00.000)"
