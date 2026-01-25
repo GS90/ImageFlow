@@ -55,7 +55,7 @@
 
   <releases>
 
-    <release version="1.0.1" date="2026-01-25">
+    <release version="1.1.0" date="2026-01-25">
       <description translate="no">
         <ul>
           <li>Added: time range selection for conversion.</li>

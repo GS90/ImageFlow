@@ -36,7 +36,7 @@ from . import data
 from .window import WindowIF
 
 
-APP_VERSION = '1.0.1'
+APP_VERSION = '1.1.0'
 
 TMP_NAME = 'result'
 
@@ -387,9 +387,11 @@ class ImageFlowApplication(Adw.Application):
         if self.segment_point != 0:
             self.segment_range_set(self.stream.get_timestamp())
 
-    def segment_button_start(self, _):
+    def segment_button_start(self, _, entry=False):
         self.enable_trim = True
-        if self.segment_point == 1:
+        if self.segment_point == 1:  # start
+            if entry:
+                return
             self.segment_point = 0
             self.w.segment_box_start.remove_css_class('success')
         else:
@@ -397,9 +399,11 @@ class ImageFlowApplication(Adw.Application):
             self.w.segment_box_start.add_css_class('success')
             self.w.segment_box_end.remove_css_class('success')
 
-    def segment_button_end(self, _):
+    def segment_button_end(self, _, entry=False):
         self.enable_trim = True
-        if self.segment_point == 2:
+        if self.segment_point == 2:  # end
+            if entry:
+                return
             self.segment_point = 0
             self.w.segment_box_end.remove_css_class('success')
         else:
@@ -414,7 +418,7 @@ class ImageFlowApplication(Adw.Application):
             microseconds = self.text_to_microseconds(text)
             self.stream.seek(microseconds)
             self.segment_value_start = microseconds
-            self.segment_button_start(None)
+            self.segment_button_start(None, True)
         else:
             entry.add_css_class('error')
 
@@ -425,7 +429,7 @@ class ImageFlowApplication(Adw.Application):
             microseconds = self.text_to_microseconds(text)
             self.stream.seek(microseconds)
             self.segment_value_end = microseconds
-            self.segment_button_end(None)
+            self.segment_button_end(None, True)
         else:
             entry.add_css_class('error')
 
