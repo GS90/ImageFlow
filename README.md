@@ -26,7 +26,7 @@ This application is designed for converting videos into animated **GIF** and **W
 
 - [x] Initial release.
 - [x] WebP encoding options.
-- [x] Option to select a time segment of a video file for conversion.
+- [x] Time range selection.
 - [ ] WebP preview.
 
 
