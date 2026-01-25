@@ -2,6 +2,7 @@
 # please keep this file sorted alphabetically.
 data/tech.digiroad.ImageFlow.desktop.in
 data/tech.digiroad.ImageFlow.metainfo.xml.in
+src/data.py
 src/gtk/help-overlay.ui
 src/gtk/window.ui
 src/main.py

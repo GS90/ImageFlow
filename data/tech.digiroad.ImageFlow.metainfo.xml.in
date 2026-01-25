@@ -15,6 +15,7 @@
     <p>Features:</p>
     <ul>
       <li>All conversion parameters can be configured.</li>
+      <li>Time range selection option.</li>
       <li>Preview of the result.</li>
       <li>Support for many formats.</li>
       <li>Intuitive and user-friendly interface.</li>
@@ -53,6 +54,12 @@
   </screenshots>
 
   <releases>
+
+    <release version="1.0.0" date="2026-01-25">
+      <description translate="no">
+        <p>Added: time range selection for conversion.</p>
+      </description>
+    </release>
 
     <release version="0.9.91" date="2026-01-16">
       <description translate="no">

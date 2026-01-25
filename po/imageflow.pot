@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 23:29+0300\n"
+"POT-Creation-Date: 2026-01-25 13:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:2
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:299
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:369
 msgid "ImageFlow"
 msgstr ""
 
@@ -51,27 +51,49 @@ msgid "All conversion parameters can be configured."
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:18
-msgid "Preview of the result."
+msgid "Time range selection option."
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:19
-msgid "Support for many formats."
+msgid "Preview of the result."
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:20
+msgid "Support for many formats."
+msgstr ""
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:21
 msgid "Intuitive and user-friendly interface."
 msgstr ""
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:43
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:44
 msgid "ImageFlow in light mode"
 msgstr ""
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:47
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:48
 msgid "ImageFlow in dark mode"
 msgstr ""
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:51
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:52
 msgid "ImageFlow, preferences"
+msgstr ""
+
+#: src/data.py:91
+msgid ""
+"Select «Start» or «End» and rewind the video to the desired frame, or enter "
+"the time in the corresponding field."
+msgstr ""
+
+#: src/data.py:99
+msgid "Time format - hours:minutes:seconds.milliseconds (00:00:00.000)"
+msgstr ""
+
+#: src/data.py:104
+msgid "Time format - minutes:seconds.milliseconds (00:00.000)"
+msgstr ""
+
+#: src/data.py:109
+msgid "Time format - seconds.milliseconds (00.000)"
 msgstr ""
 
 #: src/gtk/help-overlay.ui:11
@@ -99,31 +121,47 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr ""
 
-#: src/gtk/window.ui:27
-msgid "View a file externally"
+#: src/gtk/window.ui:31
+msgid "Start"
 msgstr ""
 
 #: src/gtk/window.ui:54
+msgid "End"
+msgstr ""
+
+#: src/gtk/window.ui:89
+msgid "View a file externally"
+msgstr ""
+
+#: src/gtk/window.ui:116
 msgid "Open"
 msgstr ""
 
-#: src/gtk/window.ui:57
+#: src/gtk/window.ui:119
 msgid "Open video file"
 msgstr ""
 
-#: src/gtk/window.ui:67
+#: src/gtk/window.ui:129
 msgid "Application menu"
 msgstr ""
 
-#: src/gtk/window.ui:72
+#: src/gtk/window.ui:134
 msgid "Loop"
 msgstr ""
 
-#: src/gtk/window.ui:74
+#: src/gtk/window.ui:136
 msgid "Video looping"
 msgstr ""
 
-#: src/gtk/window.ui:95
+#: src/gtk/window.ui:141
+msgid "Trim"
+msgstr ""
+
+#: src/gtk/window.ui:143
+msgid "Select a time segment"
+msgstr ""
+
+#: src/gtk/window.ui:165
 msgid ""
 "Original\n"
 "4320p\n"
@@ -136,170 +174,178 @@ msgid ""
 "User"
 msgstr ""
 
-#: src/gtk/window.ui:107
+#: src/gtk/window.ui:177
 msgid "Image size"
 msgstr ""
 
-#: src/gtk/window.ui:108
+#: src/gtk/window.ui:178
 msgid "Size"
 msgstr ""
 
-#: src/gtk/window.ui:124
+#: src/gtk/window.ui:194
 msgid "Width"
 msgstr ""
 
-#: src/gtk/window.ui:140
+#: src/gtk/window.ui:210
 msgid "Height"
 msgstr ""
 
-#: src/gtk/window.ui:169
+#: src/gtk/window.ui:239
 msgid "Interpolation"
 msgstr ""
 
-#: src/gtk/window.ui:170
+#: src/gtk/window.ui:240
 msgid "Scaler"
 msgstr ""
 
-#: src/gtk/window.ui:177
+#: src/gtk/window.ui:247
 msgid "Keep aspect ratio"
 msgstr ""
 
-#: src/gtk/window.ui:178
+#: src/gtk/window.ui:248
 msgid "Ratio"
 msgstr ""
 
-#: src/gtk/window.ui:194
+#: src/gtk/window.ui:264
 msgid "Frames per second"
 msgstr ""
 
-#: src/gtk/window.ui:195
+#: src/gtk/window.ui:265
 msgid "FPS"
 msgstr ""
 
-#: src/gtk/window.ui:223
+#: src/gtk/window.ui:293
 msgid "Dithering mode"
 msgstr ""
 
-#: src/gtk/window.ui:224
+#: src/gtk/window.ui:294
 msgid "Dither"
 msgstr ""
 
-#: src/gtk/window.ui:239
+#: src/gtk/window.ui:309
 msgid "Max colors"
 msgstr ""
 
-#: src/gtk/window.ui:240
+#: src/gtk/window.ui:310
 msgid "Palette"
 msgstr ""
 
-#: src/gtk/window.ui:253
+#: src/gtk/window.ui:323
 msgid "Format"
 msgstr ""
 
-#: src/gtk/window.ui:269
+#: src/gtk/window.ui:339
 msgid "Generate"
 msgstr ""
 
-#: src/gtk/window.ui:276
+#: src/gtk/window.ui:346
 msgid "Preview"
 msgstr ""
 
-#: src/gtk/window.ui:283
+#: src/gtk/window.ui:353
 msgid "Save"
 msgstr ""
 
-#: src/gtk/window.ui:305
+#: src/gtk/window.ui:375
 msgid "_Preferences"
 msgstr ""
 
-#: src/gtk/window.ui:309
+#: src/gtk/window.ui:379
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: src/gtk/window.ui:313
+#: src/gtk/window.ui:383
 msgid "_About ImageFlow"
 msgstr ""
 
-#: src/gtk/window.ui:329
+#: src/gtk/window.ui:399
 msgid "Application"
 msgstr ""
 
-#: src/gtk/window.ui:334
+#: src/gtk/window.ui:404
 msgid ""
 "Light\n"
 "Dark"
 msgstr ""
 
-#: src/gtk/window.ui:338
+#: src/gtk/window.ui:408
 msgid "Application color theme"
 msgstr ""
 
-#: src/gtk/window.ui:339
+#: src/gtk/window.ui:409
 msgid "Theme"
 msgstr ""
 
-#: src/gtk/window.ui:348
+#: src/gtk/window.ui:414
+msgid "Detect original file resolution"
+msgstr ""
+
+#: src/gtk/window.ui:415
+msgid "Detect size"
+msgstr ""
+
+#: src/gtk/window.ui:424
 msgid "Generation"
 msgstr ""
 
-#: src/gtk/window.ui:351
+#: src/gtk/window.ui:427
 msgid "Accurate rounding in interpolation"
 msgstr ""
 
-#: src/gtk/window.ui:352
+#: src/gtk/window.ui:428
 msgid "Accurate rounding"
 msgstr ""
 
-#: src/gtk/window.ui:365
+#: src/gtk/window.ui:441
 msgid "Statistics mode"
 msgstr ""
 
-#: src/gtk/window.ui:366
+#: src/gtk/window.ui:442
 msgid "Palette generation"
 msgstr ""
 
-#: src/gtk/window.ui:380
+#: src/gtk/window.ui:456
 msgid "Crosshatch pattern visibility level"
 msgstr ""
 
-#: src/gtk/window.ui:381
+#: src/gtk/window.ui:457
 msgid "Bayer scale"
 msgstr ""
 
-#: src/gtk/window.ui:391
+#: src/gtk/window.ui:467
 msgid "Lossless compression method"
 msgstr ""
 
-#: src/gtk/window.ui:392
+#: src/gtk/window.ui:468
 msgid "Lossless"
 msgstr ""
 
-#: src/gtk/window.ui:406
+#: src/gtk/window.ui:482
 msgid "Quality level"
 msgstr ""
 
-#: src/gtk/window.ui:407
+#: src/gtk/window.ui:483
 msgid "Quality"
 msgstr ""
 
-#: src/gtk/window.ui:408
+#: src/gtk/window.ui:484
 msgid ""
 "For lossy encoding, this controls image quality. For lossless encoding, this "
 "controls the effort and time spent in compression. Range is 0 to 100. "
 "Default is 75."
 msgstr ""
 
-#: src/gtk/window.ui:425
+#: src/gtk/window.ui:501
 msgid ""
 "Warning!\n"
 "This value overrides other settings"
 msgstr ""
 
-#: src/gtk/window.ui:427
+#: src/gtk/window.ui:503
 msgid "Preset"
 msgstr ""
 
-#: src/gtk/window.ui:428
+#: src/gtk/window.ui:504
 msgid ""
 "This does some automatic settings based on the general type of the image.\n"
 "None: Do not use a preset.\n"
@@ -311,15 +357,15 @@ msgid ""
 "Text: Text-like."
 msgstr ""
 
-#: src/gtk/window.ui:449
+#: src/gtk/window.ui:525
 msgid "Adjusts quality and speed tradeoff"
 msgstr ""
 
-#: src/gtk/window.ui:450
+#: src/gtk/window.ui:526
 msgid "Compression level"
 msgstr ""
 
-#: src/gtk/window.ui:451
+#: src/gtk/window.ui:527
 msgid ""
 "For lossy, this is a quality/speed tradeoff. Higher values give better "
 "quality for a given size at the cost of increased encoding time. For "
@@ -330,30 +376,30 @@ msgid ""
 "valid range is 0 to 6. Default is 4."
 msgstr ""
 
-#: src/window.py:69
+#: src/window.py:82
 msgid "Done, image size in MB:"
 msgstr ""
 
-#: src/window.py:70
+#: src/window.py:83
 msgid "Saved:"
 msgstr ""
 
-#: src/window.py:71
+#: src/window.py:84
 msgid "Show in Files"
 msgstr ""
 
-#: src/window.py:72
+#: src/window.py:85
 msgid "Source"
 msgstr ""
 
-#: src/window.py:73
+#: src/window.py:86
 msgid "Application for converting video files to high-quality animated images."
 msgstr ""
 
-#: src/window.py:76
+#: src/window.py:89
 msgid "File not accessible"
 msgstr ""
 
-#: src/window.py:77
+#: src/window.py:90
 msgid "If you’re using Flatpak, verify file access permissions"
 msgstr ""

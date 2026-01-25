@@ -6,6 +6,11 @@
 			<summary>Theme</summary>
 			<description>Application color theme</description>
 		</key>
+		<key name="detect-size" type="b">
+			<default>false</default>
+			<summary>Detect size</summary>
+			<description>Detect original file resolution</description>
+		</key>
 		<key name="loop" type="b">
 			<default>false</default>
 			<summary>Loop</summary>

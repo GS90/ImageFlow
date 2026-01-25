@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 23:24+0300\n"
+"POT-Creation-Date: 2026-01-25 13:07+0300\n"
 "PO-Revision-Date: 2026-01-11 21:48+0300\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Gtranslator 49.0\n"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:2
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:299
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:369
 msgid "ImageFlow"
 msgstr "ImageFlow"
 
@@ -45,11 +45,13 @@ msgid ""
 "as the output image size, frame rate, applied filters (interpolation method, "
 "dithering mode), palette generation method, and the maximum number of colors."
 msgstr ""
-"Questa applicazione è progettata per convertire i video in GIF animate e immagini WebP "
-"utilizzando la libreria FFmpeg. È possibile configurare parametri chiave,come la dimensione "
-"dell'immagine di output, la frequenza dei fotogrammi, i filtri applicati (metodo di interpolazione, "
-"modalità di dithering), metodo di generazione della tavolozza e numero massimo di colori."
+"Questa applicazione è progettata per convertire i video in GIF animate e "
+"immagini WebP utilizzando la libreria FFmpeg. È possibile configurare "
+"parametri chiave,come la dimensione dell'immagine di output, la frequenza "
+"dei fotogrammi, i filtri applicati (metodo di interpolazione, modalità di "
+"dithering), metodo di generazione della tavolozza e numero massimo di colori."
 
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:15
 msgid "Features:"
 msgstr "Caratteristiche:"
 
@@ -58,28 +60,50 @@ msgid "All conversion parameters can be configured."
 msgstr "Tutti i parametri di conversione possono essere configurati."
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:18
+msgid "Time range selection option."
+msgstr ""
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:19
 msgid "Preview of the result."
 msgstr "Anteprima del risultato."
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:19
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:20
 msgid "Support for many formats."
 msgstr "Supporto per molti formati."
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:20
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:21
 msgid "Intuitive and user-friendly interface."
 msgstr "Interfaccia intuitiva e facile da usare."
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:43
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:44
 msgid "ImageFlow in light mode"
 msgstr "ImageFlow in modalità chiara"
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:47
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:48
 msgid "ImageFlow in dark mode"
 msgstr "ImageFlow in modalità scura"
 
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:51
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:52
 msgid "ImageFlow, preferences"
 msgstr "ImageFlow, preferenze"
+
+#: src/data.py:91
+msgid ""
+"Select «Start» or «End» and rewind the video to the desired frame, or enter "
+"the time in the corresponding field."
+msgstr ""
+
+#: src/data.py:99
+msgid "Time format - hours:minutes:seconds.milliseconds (00:00:00.000)"
+msgstr ""
+
+#: src/data.py:104
+msgid "Time format - minutes:seconds.milliseconds (00:00.000)"
+msgstr ""
+
+#: src/data.py:109
+msgid "Time format - seconds.milliseconds (00.000)"
+msgstr ""
 
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -106,31 +130,47 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Esci"
 
-#: src/gtk/window.ui:27
+#: src/gtk/window.ui:31
+msgid "Start"
+msgstr ""
+
+#: src/gtk/window.ui:54
+msgid "End"
+msgstr ""
+
+#: src/gtk/window.ui:89
 msgid "View a file externally"
 msgstr "Ver un archivo externamente"
 
-#: src/gtk/window.ui:54
+#: src/gtk/window.ui:116
 msgid "Open"
 msgstr "Apri"
 
-#: src/gtk/window.ui:57
+#: src/gtk/window.ui:119
 msgid "Open video file"
 msgstr "Apri file video"
 
-#: src/gtk/window.ui:67
+#: src/gtk/window.ui:129
 msgid "Application menu"
 msgstr "Menu applicazione"
 
-#: src/gtk/window.ui:72
+#: src/gtk/window.ui:134
 msgid "Loop"
 msgstr "Loop"
 
-#: src/gtk/window.ui:74
+#: src/gtk/window.ui:136
 msgid "Video looping"
 msgstr "Looping video"
 
-#: src/gtk/window.ui:95
+#: src/gtk/window.ui:141
+msgid "Trim"
+msgstr ""
+
+#: src/gtk/window.ui:143
+msgid "Select a time segment"
+msgstr ""
+
+#: src/gtk/window.ui:165
 msgid ""
 "Original\n"
 "4320p\n"
@@ -152,95 +192,95 @@ msgstr ""
 "360p\n"
 "Utente"
 
-#: src/gtk/window.ui:107
+#: src/gtk/window.ui:177
 msgid "Image size"
 msgstr "Dimensione immagine"
 
-#: src/gtk/window.ui:108
+#: src/gtk/window.ui:178
 msgid "Size"
 msgstr "Dimensione"
 
-#: src/gtk/window.ui:124
+#: src/gtk/window.ui:194
 msgid "Width"
 msgstr "Larghezza"
 
-#: src/gtk/window.ui:140
+#: src/gtk/window.ui:210
 msgid "Height"
 msgstr "Altezza"
 
-#: src/gtk/window.ui:169
+#: src/gtk/window.ui:239
 msgid "Interpolation"
 msgstr "Interpolazione"
 
-#: src/gtk/window.ui:170
+#: src/gtk/window.ui:240
 msgid "Scaler"
 msgstr "Ridimensionamento"
 
-#: src/gtk/window.ui:177
+#: src/gtk/window.ui:247
 msgid "Keep aspect ratio"
 msgstr "Mantieni proporzioni"
 
-#: src/gtk/window.ui:178
+#: src/gtk/window.ui:248
 msgid "Ratio"
 msgstr "Proporzioni"
 
-#: src/gtk/window.ui:194
+#: src/gtk/window.ui:264
 msgid "Frames per second"
 msgstr "Fotogrammi al secondo"
 
-#: src/gtk/window.ui:195
+#: src/gtk/window.ui:265
 msgid "FPS"
 msgstr "FPS"
 
-#: src/gtk/window.ui:223
+#: src/gtk/window.ui:293
 msgid "Dithering mode"
 msgstr "Modalità dithering"
 
-#: src/gtk/window.ui:224
+#: src/gtk/window.ui:294
 msgid "Dither"
 msgstr "Dithering"
 
-#: src/gtk/window.ui:239
+#: src/gtk/window.ui:309
 msgid "Max colors"
 msgstr "Colori massimi"
 
-#: src/gtk/window.ui:240
+#: src/gtk/window.ui:310
 msgid "Palette"
 msgstr "Palette"
 
-#: src/gtk/window.ui:253
+#: src/gtk/window.ui:323
 msgid "Format"
 msgstr "Formato"
 
-#: src/gtk/window.ui:269
+#: src/gtk/window.ui:339
 msgid "Generate"
 msgstr "Genera"
 
-#: src/gtk/window.ui:276
+#: src/gtk/window.ui:346
 msgid "Preview"
 msgstr "Anteprima"
 
-#: src/gtk/window.ui:283
+#: src/gtk/window.ui:353
 msgid "Save"
 msgstr "Salva"
 
-#: src/gtk/window.ui:305
+#: src/gtk/window.ui:375
 msgid "_Preferences"
 msgstr "_Preferenze"
 
-#: src/gtk/window.ui:309
+#: src/gtk/window.ui:379
 msgid "_Keyboard Shortcuts"
 msgstr "_Scorciatoie da tastiera"
 
-#: src/gtk/window.ui:313
+#: src/gtk/window.ui:383
 msgid "_About ImageFlow"
 msgstr "_Informazioni su ImageFlow"
 
-#: src/gtk/window.ui:329
+#: src/gtk/window.ui:399
 msgid "Application"
 msgstr "Applicazione"
 
-#: src/gtk/window.ui:334
+#: src/gtk/window.ui:404
 msgid ""
 "Light\n"
 "Dark"
@@ -248,59 +288,67 @@ msgstr ""
 "Chiaro\n"
 "Scuro"
 
-#: src/gtk/window.ui:338
+#: src/gtk/window.ui:408
 msgid "Application color theme"
 msgstr "Colore tema dell'applicazione"
 
-#: src/gtk/window.ui:339
+#: src/gtk/window.ui:409
 msgid "Theme"
 msgstr "Tema"
 
-#: src/gtk/window.ui:348
+#: src/gtk/window.ui:414
+msgid "Detect original file resolution"
+msgstr ""
+
+#: src/gtk/window.ui:415
+msgid "Detect size"
+msgstr ""
+
+#: src/gtk/window.ui:424
 msgid "Generation"
 msgstr "Elaborazione"
 
-#: src/gtk/window.ui:351
+#: src/gtk/window.ui:427
 msgid "Accurate rounding in interpolation"
 msgstr "Arrotondamento preciso nell'interpolazione"
 
-#: src/gtk/window.ui:352
+#: src/gtk/window.ui:428
 msgid "Accurate rounding"
 msgstr "Arrotondamento accurato"
 
-#: src/gtk/window.ui:365
+#: src/gtk/window.ui:441
 msgid "Statistics mode"
 msgstr "Modalità statistica"
 
-#: src/gtk/window.ui:366
+#: src/gtk/window.ui:442
 msgid "Palette generation"
 msgstr "Generazione di palette"
 
-#: src/gtk/window.ui:380
+#: src/gtk/window.ui:456
 msgid "Crosshatch pattern visibility level"
 msgstr "Livello di visibilità del pattern a tratteggio incrociato"
 
-#: src/gtk/window.ui:381
+#: src/gtk/window.ui:457
 msgid "Bayer scale"
 msgstr "Scala Bayer"
 
-#: src/gtk/window.ui:391
+#: src/gtk/window.ui:467
 msgid "Lossless compression method"
 msgstr "Metodo di compressione senza perdita di dati"
 
-#: src/gtk/window.ui:392
+#: src/gtk/window.ui:468
 msgid "Lossless"
 msgstr "Compressione dati senza perdita"
 
-#: src/gtk/window.ui:406
+#: src/gtk/window.ui:482
 msgid "Quality level"
 msgstr "Livello di qualità"
 
-#: src/gtk/window.ui:407
+#: src/gtk/window.ui:483
 msgid "Quality"
 msgstr "Qualità"
 
-#: src/gtk/window.ui:408
+#: src/gtk/window.ui:484
 msgid ""
 "For lossy encoding, this controls image quality. For lossless encoding, this "
 "controls the effort and time spent in compression. Range is 0 to 100. "
@@ -311,7 +359,7 @@ msgstr ""
 "nella compressione. L'intervallo è compreso tra 0 e 100.Il valore "
 "predefinito è 75."
 
-#: src/gtk/window.ui:425
+#: src/gtk/window.ui:501
 msgid ""
 "Warning!\n"
 "This value overrides other settings"
@@ -319,11 +367,11 @@ msgstr ""
 "Attenzione!\n"
 "Questo valore sovrascrive le altre impostazioni."
 
-#: src/gtk/window.ui:427
+#: src/gtk/window.ui:503
 msgid "Preset"
 msgstr "Preimpostato"
 
-#: src/gtk/window.ui:428
+#: src/gtk/window.ui:504
 msgid ""
 "This does some automatic settings based on the general type of the image.\n"
 "None: Do not use a preset.\n"
@@ -344,15 +392,15 @@ msgstr ""
 "Icona: immagini colorate di piccole dimensioni.\n"
 "Testo: simile al testo."
 
-#: src/gtk/window.ui:449
+#: src/gtk/window.ui:525
 msgid "Adjusts quality and speed tradeoff"
 msgstr "Regola il compromesso tra qualità e velocità"
 
-#: src/gtk/window.ui:450
+#: src/gtk/window.ui:526
 msgid "Compression level"
 msgstr "Livello di compressione"
 
-#: src/gtk/window.ui:451
+#: src/gtk/window.ui:527
 msgid ""
 "For lossy, this is a quality/speed tradeoff. Higher values give better "
 "quality for a given size at the cost of increased encoding time. For "
@@ -372,31 +420,32 @@ msgstr ""
 "strumenti. Questo corrisponde all'opzione del metodo in libwebp. "
 "L'intervallo valido è compreso tra 0 e 6. Il valore predefinito è 4."
 
-#: src/window.py:69
+#: src/window.py:82
 msgid "Done, image size in MB:"
 msgstr "Fatto, dimensione immagine in MB:"
 
-#: src/window.py:70
+#: src/window.py:83
 msgid "Saved:"
 msgstr "Salvato:"
 
-#: src/window.py:71
+#: src/window.py:84
 msgid "Show in Files"
 msgstr "Mostra nei File"
 
-#: src/window.py:72
+#: src/window.py:85
 msgid "Source"
 msgstr "Sorgente"
 
-#: src/window.py:73
+#: src/window.py:86
 msgid "Application for converting video files to high-quality animated images."
-msgstr "Applicazione per convertire file video in immagini animate di alta qualità."
+msgstr ""
+"Applicazione per convertire file video in immagini animate di alta qualità."
 
-#: src/window.py:76
+#: src/window.py:89
 msgid "File not accessible"
 msgstr "File non accessibile"
 
-#: src/window.py:77
+#: src/window.py:90
 msgid "If you’re using Flatpak, verify file access permissions"
 msgstr "Se stai utilizzando Flatpak, verifica i permessi di accesso ai file"
 

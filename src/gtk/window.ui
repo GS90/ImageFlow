@@ -12,9 +12,71 @@
         <property name="content">
           <object class="AdwToastOverlay" id="overlay">
             <property name="child">
-              <object class="GtkStack" id="stack">
+              <object class="GtkStack">
                 <child>
-                  <object class="GtkVideo" id="display"/>
+                  <object class="GtkOverlay" id="display">
+                    <child>
+                      <object class="GtkVideo" id="video"/>
+                    </child>
+                    <child type="overlay">
+                      <object class="GtkGrid" id="segment">
+                        <property name="halign">center</property>
+                        <property name="margin-top">10</property>
+                        <property name="valign">start</property>
+                        <property name="visible">False</property>
+                        <child>
+                          <object class="GtkBox" id="s-box-start">
+                            <child>
+                              <object class="GtkButton" id="s-button-start">
+                                <property name="label" translatable="yes">Start</property>
+                                <style/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="s-entry-start">
+                                <property name="max-width-chars">12</property>
+                                <style/>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="linked"/>
+                            </style>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="row">0</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="s-box-end">
+                            <child>
+                              <object class="GtkButton" id="s-button-end">
+                                <property name="label" translatable="yes">End</property>
+                                <property name="margin-start">20</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="s-entry-end">
+                                <property name="max-width-chars">12</property>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="linked"/>
+                            </style>
+                            <layout>
+                              <property name="column">1</property>
+                              <property name="row">0</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="toolbar"/>
+                          <class name="darken"/>
+                          <class name="osd"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
                 </child>
                 <child>
                   <object class="AdwSpinner" id="spinner"/>
@@ -72,6 +134,14 @@
                 <property name="label" translatable="yes">Loop</property>
                 <property name="margin-end">10</property>
                 <property name="tooltip-text" translatable="yes">Video looping</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkCheckButton" id="trim">
+                <property name="label" translatable="yes">Trim</property>
+                <property name="sensitive">False</property>
+                <property name="tooltip-text" translatable="yes">Select a time segment</property>
+                <style/>
               </object>
             </child>
           </object>
@@ -337,6 +407,12 @@ Dark</property>
                     </property>
                     <property name="subtitle" translatable="yes">Application color theme</property>
                     <property name="title" translatable="yes">Theme</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSwitchRow" id="detect-size">
+                    <property name="subtitle" translatable="yes">Detect original file resolution</property>
+                    <property name="title" translatable="yes">Detect size</property>
                   </object>
                 </child>
               </object>

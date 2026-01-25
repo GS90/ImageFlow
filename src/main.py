@@ -18,7 +18,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
+from datetime import timedelta
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -43,11 +45,11 @@ class ImageFlowApplication(Adw.Application):
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
                          resource_base_path='/tech/digiroad/ImageFlow')
         self.create_action('open', self.open_file, ['<primary>o'])
+        self.create_action('about', self.about_action, None)
+        self.create_action('quit', lambda *_: self.quit(), ['<control>q'])
         self.create_action('preferences',
                            self.preferences_action,
                            ['<primary>p'])
-        self.create_action('about', self.about_action, None)
-        self.create_action('quit', lambda *_: self.quit(), ['<control>q'])
 
     def do_activate(self):
         self.settings = Gio.Settings.new('tech.digiroad.ImageFlow')
@@ -55,6 +57,7 @@ class ImageFlowApplication(Adw.Application):
         self.options = {}
         self.options_exceptions = (
             'theme',
+            'detect-size',
             'loop',
             'accurate-rnd',
             'stats-mode',
@@ -74,7 +77,7 @@ class ImageFlowApplication(Adw.Application):
 
         loop_state = self.settings.get_boolean('loop')
         self.w.loop.set_active(loop_state)
-        self.w.display.set_loop(loop_state)
+        self.w.video.set_loop(loop_state)
 
         self.options_set()
 
@@ -85,6 +88,14 @@ class ImageFlowApplication(Adw.Application):
         self.dir = GLib.get_user_cache_dir()
         self.palette = os.path.join(self.dir, 'palette.png')
         self.sources_size = None
+
+        self.stream = None
+        self.enable_trim = False
+        self.segment_point = 0  # 1:start, 2:end
+        self.segment_format = 'h'
+        self.segment_format_options = data.time_format_options['h']
+        self.segment_value_start = 0
+        self.segment_value_end = 0
 
         self.freeze = False
 
@@ -100,7 +111,17 @@ class ImageFlowApplication(Adw.Application):
         self.w.open_file.connect('clicked', self.open_file)
         self.w.preview.connect('notify::active', self.preview_switch)
         self.w.save_file.connect('activated', self.save_file)
+        self.w.trim.connect('toggled', self.trim_state)
 
+        # trim, segment
+        self.w.segment_button_start.connect(
+            'clicked', self.segment_button_start)
+        self.w.segment_button_end.connect(
+            'clicked', self.segment_button_end)
+        self.w.segment_entry_start.connect(
+            'activate', self.segment_entry_start)
+        self.w.segment_entry_end.connect(
+            'activate', self.segment_entry_end)
         # format check
         self.w.format.connect('notify::selected-item', self.format_switch)
         self.format_switch(self.w.format, None)
@@ -111,7 +132,7 @@ class ImageFlowApplication(Adw.Application):
 
     # --------------------------------------------------------------------------
 
-    def switch_control(self, generate, preview, save):
+    def switch_control(self, generate: bool, preview: bool, save: bool):
         # generate
         self.w.generate.set_sensitive(generate)
         if generate:
@@ -132,15 +153,21 @@ class ImageFlowApplication(Adw.Application):
         else:
             self.w.save_file.remove_css_class('suggested-action')
 
-    def accept_file(self, path):
+    # --------------------------------------------------------------------------
+
+    def accept_file(self, path: str):
         self.result, self.name = '', ''
         self.source = path
-        self.w.display.set_filename(self.source)
+        self.w.video.set_filename(self.source)
         self.current = self.source
-        self.w.open_file.remove_css_class('suggested-action')  # open-file
+        self.w.open_file.remove_css_class('suggested-action')
         self.w.title.set_subtitle(os.path.basename(self.source))
         self.switch_control(generate=True, preview=False, save=False)
-        self.size_original()
+        self.file_parsing()
+        # stream & trim
+        self.stream = self.w.video.get_media_stream()
+        self.stream.connect("notify::timestamp", self.get_timestamp)
+        self.trim_access(True)
 
     def on_drop(self, _drop, value, _x, _y):
         if not value:
@@ -153,30 +180,41 @@ class ImageFlowApplication(Adw.Application):
             self.accept_file(path)
             return True
 
-    def size_original(self):
+    def file_parsing(self):
         result = subprocess.run([
             'ffprobe', '-v', 'error',
-            '-select_streams', 'v', '-show_entries',
-            'stream=width,height', '-of', 'csv=p=0', self.source
+            '-select_streams', 'v',
+            '-show_entries', 'stream=width,height',
+            '-show_entries', 'format=duration',
+            '-of', 'csv=p=0', self.source
         ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if result.returncode != 0:
             err = result.stderr.decode('utf-8').strip()
-            print('Analysis error:', err)
             self.message_show('Analysis error', err)
             return
-        size = result.stdout.decode('utf-8').strip()
+        lines = result.stdout.decode('utf-8').strip().split('\n')
+        if len(lines) < 2:
+            return
+        size, duration = lines[0], lines[1]
+        # duration
+        try:
+            duration = int(float(duration) * 1000000)
+            self.segment_range_set(duration, init=True)
+        except ValueError as err:
+            self.message_show('Analysis error', str(err))
+        # size
         split = size.split(',')
         if len(split) == 2:
             try:
                 width, height = int(split[0]), int(split[1])
                 self.sources_size = (width, height)
-                self.freeze = True
-                self.w.image_width.set_value(width)
-                self.w.image_height.set_value(height)
-                self.freeze = False
-                self.w.image_size.set_selected(0)
+                if self.settings.get_boolean('detect-size'):
+                    self.freeze = True
+                    self.w.image_width.set_value(width)
+                    self.w.image_height.set_value(height)
+                    self.freeze = False
+                    self.w.image_size.set_selected(0)
             except ValueError as err:
-                print('Analysis error:', str(err))
                 self.message_show('Analysis error', str(err))
 
     # --------------------------------------------------------------------------
@@ -251,7 +289,6 @@ class ImageFlowApplication(Adw.Application):
             except Exception as err:
                 err = str(err)
                 if 'dismissed by user' not in err.lower():
-                    print('Saving error:', err)
                     self.message_show('Saving error', err)
 
         dialog = Gtk.FileDialog.new()
@@ -261,7 +298,7 @@ class ImageFlowApplication(Adw.Application):
 
     # --------------------------------------------------------------------------
 
-    def stack_adjust_visibility(self, obj):
+    def stack_adjust_visibility(self, obj: str):
         match obj:
             case 'display':
                 self.w.display.set_visible(True)
@@ -307,9 +344,182 @@ class ImageFlowApplication(Adw.Application):
     def loop_state(self, toggle_button):
         state = toggle_button.get_active()
         self.settings.set_boolean('loop', state)
-        self.w.display.set_loop(state)
+        self.w.video.set_loop(state)
         if self.current != '':
-            self.w.display.set_filename(self.current)
+            self.w.video.set_filename(self.current)
+
+    # --------------------------------------------------------------------------
+
+    def trim_state(self, toggle_button):
+        if self.freeze:
+            return
+        self.segment_point = 0
+        if self.source == '':
+            return
+        if self.source != self.current:
+            return
+        state = toggle_button.get_active()
+        self.enable_trim = state
+        self.w.segment.set_visible(state)
+        if state:
+            duration = self.stream.get_duration()
+            if duration != 0:
+                self.segment_range_set(self.stream.get_duration())
+
+    def trim_access(self, access: bool):
+        self.freeze = True
+        if access:
+            self.w.trim.set_sensitive(True)
+        else:
+            self.segment_point = 0
+            self.w.segment.set_visible(False)
+            self.w.segment_box_start.remove_css_class('success')
+            self.w.segment_box_end.remove_css_class('success')
+            self.w.trim.set_active(False)
+            self.w.trim.set_sensitive(False)
+        self.freeze = False
+
+    # --------------------------------------------------------------------------
+
+    def get_timestamp(self, _f, _p):
+        if self.segment_point != 0:
+            self.segment_range_set(self.stream.get_timestamp())
+
+    def segment_button_start(self, _):
+        self.enable_trim = True
+        if self.segment_point == 1:
+            self.segment_point = 0
+            self.w.segment_box_start.remove_css_class('success')
+        else:
+            self.segment_point = 1
+            self.w.segment_box_start.add_css_class('success')
+            self.w.segment_box_end.remove_css_class('success')
+
+    def segment_button_end(self, _):
+        self.enable_trim = True
+        if self.segment_point == 2:
+            self.segment_point = 0
+            self.w.segment_box_end.remove_css_class('success')
+        else:
+            self.segment_point = 2
+            self.w.segment_box_start.remove_css_class('success')
+            self.w.segment_box_end.add_css_class('success')
+
+    def segment_entry_start(self, entry):
+        text = entry.get_text()
+        if re.fullmatch(self.segment_format_options[1], text):
+            entry.remove_css_class('error')
+            microseconds = self.text_to_microseconds(text)
+            self.stream.seek(microseconds)
+            self.segment_value_start = microseconds
+            self.segment_button_start(None)
+        else:
+            entry.add_css_class('error')
+
+    def segment_entry_end(self, entry):
+        text = entry.get_text()
+        if re.fullmatch(self.segment_format_options[1], text):
+            entry.remove_css_class('error')
+            microseconds = self.text_to_microseconds(text)
+            self.stream.seek(microseconds)
+            self.segment_value_end = microseconds
+            self.segment_button_end(None)
+        else:
+            entry.add_css_class('error')
+
+    def segment_range_set(self, microseconds, init=False):
+        delta = timedelta(microseconds=microseconds)
+        total_seconds = delta.total_seconds()
+
+        hours = int(total_seconds // 3600)
+        minutes = int((total_seconds % 3600) // 60)
+        seconds = total_seconds % 60
+        seconds_str = f'{seconds:06.3f}'
+
+        if init:
+            if hours > 0:
+                self.segment_format = 'h'
+                self.segment_format_options = data.time_format_options['h']
+            elif minutes > 0:
+                self.segment_format = 'm'
+                self.segment_format_options = data.time_format_options['m']
+            else:
+                self.segment_format = 's'
+                self.segment_format_options = data.time_format_options['s']
+            self.w.segment.set_tooltip_text(
+                f'{self.segment_format_options[2]}\n\n{data.timestamp_help}'
+            )
+
+        match self.segment_format:
+            case 'h': value = f'{hours:02d}:{minutes:02d}:{seconds_str}'
+            case 'm': value = f'{minutes:02d}:{seconds_str}'
+            case 's': value = seconds_str
+
+        match self.segment_point:
+            case 0:
+                self.segment_value_start = 0
+                self.segment_value_end = microseconds
+                self.w.segment_entry_start.set_text(
+                    self.segment_format_options[0])
+                self.w.segment_entry_end.set_text(value)
+            case 1:  # start
+                if microseconds > self.segment_value_end:
+                    return
+                self.w.segment_entry_start.remove_css_class('error')
+                self.segment_value_start = microseconds
+                self.w.segment_entry_start.set_text(value)
+            case 2:  # end
+                if microseconds < self.segment_value_start:
+                    return
+                self.w.segment_entry_end.remove_css_class('error')
+                self.segment_value_end = microseconds
+                self.w.segment_entry_end.set_text(value)
+
+    def segment_range_get(self):
+        return [
+            '-ss', self.microseconds_to_hms(self.segment_value_start),
+            '-to', self.microseconds_to_hms(self.segment_value_end),
+        ]
+
+    def microseconds_to_hms(self, microseconds):
+        delta = timedelta(microseconds=microseconds)
+        total_seconds = int(delta.total_seconds())
+        hours, remainder = divmod(total_seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        milliseconds = delta.microseconds // 1000
+        return f'{hours:02}:{minutes:02}:{seconds:02}.{milliseconds:03}'
+
+    def text_to_microseconds(self, text: str):
+        text = text.strip()
+
+        parts = text.split(':')
+        if len(parts) == 3:
+            hours = int(parts[0])
+            minutes = int(parts[1])
+            split = parts[2].split('.')
+            seconds = int(split[0])
+            milliseconds = int(split[1]) if len(split) > 1 else 0
+        elif len(parts) == 2:
+            hours = 0
+            minutes = int(parts[0])
+            split = parts[1].split('.')
+            seconds = int(split[0])
+            milliseconds = int(split[1]) if len(split) > 1 else 0
+        elif len(parts) == 1:
+            hours = 0
+            minutes = 0
+            split = parts[0].split('.')
+            seconds = int(split[0])
+            milliseconds = int(split[1]) if len(split) > 1 else 0
+        else:
+            err = f'Format parsing error: option "{text}" is invalid'
+            self.message_show('Timestamp', err)
+            return
+
+        return (hours * 3600 + minutes * 60 + seconds) * 1000000 \
+            + milliseconds * 1000
+
+    # --------------------------------------------------------------------------
 
     def preview_switch(self, widget, _):
         if self.result != '':
@@ -317,17 +527,23 @@ class ImageFlowApplication(Adw.Application):
                 if self.file_format == '.webp':
                     self.stack_adjust_visibility('external')
                 else:
-                    self.w.display.set_filename(self.result)
+                    self.w.video.set_filename(self.result)
                     self.stack_adjust_visibility('display')
                 self.current = self.result
                 self.w.preview.add_css_class('success')
+                # trim
+                self.trim_access(False)
             else:
                 self.stack_adjust_visibility('display')
-                self.w.display.set_filename(self.source)
+                self.w.video.set_filename(self.source)
                 self.current = self.source
                 self.w.preview.remove_css_class('success')
+                # trim & stream
+                self.trim_access(True)
+                self.stream = self.w.video.get_media_stream()
+                self.stream.connect("notify::timestamp", self.get_timestamp)
 
-    def toast_button_show(self, _, fp):
+    def toast_button_show(self, _, fp: str):
         fd = os.path.dirname(fp)
         if os.path.isdir(fd):
             subprocess.run(['xdg-open', fd])
@@ -368,7 +584,6 @@ class ImageFlowApplication(Adw.Application):
 
     def options_get(self):
         self.options = {
-            'image-size': self.w.image_size.get_selected(),
             'image-width': int(self.w.image_width.get_value()),
             'image-height': int(self.w.image_height.get_value()),
             'scaler': self.w.scaler.get_selected(),
@@ -378,6 +593,9 @@ class ImageFlowApplication(Adw.Application):
             'dither': self.w.dither.get_selected(),
             'format': self.w.format.get_selected(),
         }
+        size = self.w.image_size.get_selected()
+        if size != 0:  # 0 == original
+            self.options['image-size'] = size
 
     # --------------------------------------------------------------------------
 
@@ -432,17 +650,21 @@ class ImageFlowApplication(Adw.Application):
         return (uno, dos, tres, cuatro)
 
     def generate(self, uno, dos, tres, cuatro):
-        cmd = ['ffmpeg', '-v', 'error', '-i', self.source, '-an']
+        if self.enable_trim:
+            src = [*self.segment_range_get(), '-i', self.source]
+        else:
+            src = ['-i', self.source,]
+
+        cmd = ['ffmpeg', '-v', 'error', *src, '-an']
 
         if self.file_format == '.gif':
             # palette
             result = subprocess.run([
-                'ffmpeg', '-v', 'error', '-i', self.source,
+                'ffmpeg', '-v', 'error', *src,
                 '-vf', dos, '-y', self.palette,
             ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             if result.returncode != 0:
                 err = result.stderr.decode('utf-8').strip()
-                print('Palette error:', err)
                 self.message_show('Palette error', err)
                 self.result = ''
                 return
@@ -459,7 +681,6 @@ class ImageFlowApplication(Adw.Application):
             cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if result.returncode != 0:
             err = result.stderr.decode('utf-8').strip()
-            print('Generation error:', err)
             self.message_show('Generation error', err)
             self.result = ''
             return
@@ -477,20 +698,17 @@ class ImageFlowApplication(Adw.Application):
             timeout=4,
         ))
 
-        self.w.display.set_filename(self.result)
+        self.w.video.set_filename(self.result)
         self.current = self.result
         self.switch_control(generate=True, preview=True, save=True)
 
     def generate_wrapper(self, _):
-        self.switch_control(False, False, False)
+        self.switch_control(generate=False, preview=False, save=False)
+        self.trim_access(False)
         self.stack_adjust_visibility('spinner')
         self.options_save()
         args = self.preparation()
-        thread = threading.Thread(
-            target=self.generate,
-            args=args,
-            daemon=True,
-        )
+        thread = threading.Thread(target=self.generate, args=args, daemon=True)
         thread.start()
 
     # --------------------------------------------------------------------------
@@ -500,7 +718,7 @@ class ImageFlowApplication(Adw.Application):
             application_name='ImageFlow',
             application_icon='tech.digiroad.ImageFlow',
             developer_name='Golodnikov Sergey',
-            version='0.9.91',
+            version='1.0.0',
             comments=(self.w.ts_comment),
             website='https://digiroad.tech',
             developers=['Golodnikov Sergey <nn19051990@gmail.com>'],
@@ -517,6 +735,8 @@ class ImageFlowApplication(Adw.Application):
     def preferences_action(self, _widget, _):
         self.w.pref_theme.set_selected(
             self.settings.get_int('theme'))
+        self.w.detect_size.set_active(
+            self.settings.get_boolean('detect-size'))
         self.w.accurate_rnd.set_active(
             self.settings.get_boolean('accurate-rnd'))
         self.w.stats_mode.set_selected(
@@ -538,6 +758,8 @@ class ImageFlowApplication(Adw.Application):
         self.settings.set_int(
             'theme', self.w.pref_theme.get_selected())
         self.settings.set_boolean(
+            'detect-size', self.w.detect_size.get_active())
+        self.settings.set_boolean(
             'accurate-rnd', self.w.accurate_rnd.get_active())
         self.settings.set_int(
             'stats-mode', int(self.w.stats_mode.get_selected()))
@@ -555,7 +777,7 @@ class ImageFlowApplication(Adw.Application):
     def theme_change(self, widget, _):
         self.update_theme(widget.get_selected())
 
-    def update_theme(self, value):
+    def update_theme(self, value: int):
         style_manager = Adw.StyleManager.get_default()
         if value == 0:
             style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
@@ -569,7 +791,7 @@ class ImageFlowApplication(Adw.Application):
         if shortcuts:
             self.set_accels_for_action(f'app.{name}', shortcuts)
 
-    def message_show(self, message, detail):
+    def message_show(self, message: str, detail: str):
         dialog = Gtk.AlertDialog(
             message=message,
             detail=detail,

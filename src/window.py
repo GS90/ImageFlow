@@ -27,12 +27,24 @@ class WindowIF(Adw.ApplicationWindow):
     __gtype_name__ = 'ImageFlow'
 
     title = Gtk.Template.Child('title')
+
     loop = Gtk.Template.Child('loop')
+    trim = Gtk.Template.Child('trim')
+
     overlay = Gtk.Template.Child('overlay')
-    stack = Gtk.Template.Child('stack')
     display = Gtk.Template.Child('display')
     spinner = Gtk.Template.Child('spinner')
     external = Gtk.Template.Child('external')
+
+    video = Gtk.Template.Child('video')
+
+    segment = Gtk.Template.Child('segment')
+    segment_box_start = Gtk.Template.Child('s-box-start')
+    segment_box_end = Gtk.Template.Child('s-box-end')
+    segment_button_start = Gtk.Template.Child('s-button-start')
+    segment_button_end = Gtk.Template.Child('s-button-end')
+    segment_entry_start = Gtk.Template.Child('s-entry-start')
+    segment_entry_end = Gtk.Template.Child('s-entry-end')
 
     open_file = Gtk.Template.Child('open-file')
     save_file = Gtk.Template.Child('save-file')
@@ -55,6 +67,7 @@ class WindowIF(Adw.ApplicationWindow):
     pref_dialog = Gtk.Template.Child('pref-dialog')
 
     pref_theme = Gtk.Template.Child('pref-theme')
+    detect_size = Gtk.Template.Child('detect-size')
 
     accurate_rnd = Gtk.Template.Child('accurate-rnd')
     stats_mode = Gtk.Template.Child('stats-mode')

@@ -18,7 +18,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
-# .set_model(StringList(items=['a', 'b']))
+from gettext import gettext as _
+import re
 
 
 # image size
@@ -83,3 +84,28 @@ webp_presets = (
     'icon',
     'text',
 )
+
+# ------------------------------------------------------------------------------
+
+timestamp_help = _(
+    'Select «Start» or «End» and rewind the video to the desired frame, '
+    'or enter the time in the corresponding field.'
+)
+
+time_format_options = {
+    'h': (
+        '00:00:00.000',
+        re.compile(r'^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)\.(\d{1,3})$'),
+        _('Time format - hours:minutes:seconds.milliseconds (00:00:00.000)'),
+    ),
+    'm': (
+        '00:00.000',
+        re.compile(r'^([0-5]\d):([0-5]\d)\.(\d{1,3})$'),
+        _('Time format - minutes:seconds.milliseconds (00:00.000)'),
+    ),
+    's': (
+        '00.000',
+        re.compile(r'^([0-5]\d)\.(\d{1,3})$'),
+        _('Time format - seconds.milliseconds (00.000)'),
+    ),
+}

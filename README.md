@@ -17,6 +17,7 @@ This application is designed for converting videos into animated **GIF** and **W
 ### Features
 
 - All conversion parameters can be configured.
+- Time range selection option.
 - Preview of the result.
 - Support for many formats.
 - Intuitive and user-friendly interface.
@@ -25,8 +26,8 @@ This application is designed for converting videos into animated **GIF** and **W
 
 - [x] Initial release.
 - [x] WebP encoding options.
-- [ ] The ability to select a time segment of a video file for conversion.
-- [ ] Improved viewing and previewing.
+- [x] Option to select a time segment of a video file for conversion.
+- [ ] WebP preview.
 
 
 ## Installation
