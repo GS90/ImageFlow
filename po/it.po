@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-25 13:07+0300\n"
-"PO-Revision-Date: 2026-01-11 21:48+0300\n"
+"PO-Revision-Date: 2026-01-25 13:22+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -61,7 +61,7 @@ msgstr "Tutti i parametri di conversione possono essere configurati."
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:18
 msgid "Time range selection option."
-msgstr ""
+msgstr "Opzione di selezione dell'intervallo di tempo."
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:19
 msgid "Preview of the result."
@@ -92,18 +92,20 @@ msgid ""
 "Select «Start» or «End» and rewind the video to the desired frame, or enter "
 "the time in the corresponding field."
 msgstr ""
+"Seleziona «Inizio» o «Fine» e riavvolgi il video fino al fotogramma desiderato, oppure inserisci "
+"l'ora nel campo corrispondente."
 
 #: src/data.py:99
 msgid "Time format - hours:minutes:seconds.milliseconds (00:00:00.000)"
-msgstr ""
+msgstr "Formato ora: ore:minuti:secondi.millisecondi (00:00:00.000)"
 
 #: src/data.py:104
 msgid "Time format - minutes:seconds.milliseconds (00:00.000)"
-msgstr ""
+msgstr "Formato ora: minuti:secondi.millisecondi (00:00.000)"
 
 #: src/data.py:109
 msgid "Time format - seconds.milliseconds (00.000)"
-msgstr ""
+msgstr "Formato ora - secondi.millisecondi (00.000)"
 
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -132,11 +134,11 @@ msgstr "Esci"
 
 #: src/gtk/window.ui:31
 msgid "Start"
-msgstr ""
+msgstr "Inizio"
 
 #: src/gtk/window.ui:54
 msgid "End"
-msgstr ""
+msgstr "Fine"
 
 #: src/gtk/window.ui:89
 msgid "View a file externally"
@@ -164,11 +166,11 @@ msgstr "Looping video"
 
 #: src/gtk/window.ui:141
 msgid "Trim"
-msgstr ""
+msgstr "Taglia"
 
 #: src/gtk/window.ui:143
 msgid "Select a time segment"
-msgstr ""
+msgstr "Seleziona un segmento di tempo"
 
 #: src/gtk/window.ui:165
 msgid ""
@@ -298,11 +300,11 @@ msgstr "Tema"
 
 #: src/gtk/window.ui:414
 msgid "Detect original file resolution"
-msgstr ""
+msgstr "Rileva la risoluzione del file originale"
 
 #: src/gtk/window.ui:415
 msgid "Detect size"
-msgstr ""
+msgstr "Rileva dimensione"
 
 #: src/gtk/window.ui:424
 msgid "Generation"
