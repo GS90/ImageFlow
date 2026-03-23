@@ -331,7 +331,7 @@ class ImageFlowApplication(Adw.Application):
     def size_switch(self, widget, _):
         self.freeze = True
         size = data.size[widget.get_selected()]
-        if size == 'Оriginal':
+        if size == 'Original':
             if self.sources_size is not None:
                 self.w.image_width.set_value(self.sources_size[0])
                 self.w.image_height.set_value(self.sources_size[1])

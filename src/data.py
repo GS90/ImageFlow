@@ -24,7 +24,7 @@ import re
 
 # image size
 size = (
-    'Оriginal',
+    'Original',
     (7680, 4320),
     (3840, 2160),
     (2560, 1440),
