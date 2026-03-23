@@ -619,7 +619,7 @@ class ImageFlowApplication(Adw.Application):
         height = self.options['image-height']
 
         if self.options['ratio']:
-            scale = f"scale={width}:-1"
+            scale = f"scale={width}:-2"
         else:
             scale = f'scale={width}:{height}'
 
@@ -640,7 +640,7 @@ class ImageFlowApplication(Adw.Application):
             palette += f":max_colors={self.options['max-colors']}"
 
             dos = f"{uno},palettegen=stats_mode={palette}"
-            tres = f"paletteuse=dither={dither}"
+            tres = f"paletteuse=dither={dither}:diff_mode=rectangle"
         else:
             dos, tres = None, None  # for palette only
 
@@ -655,10 +655,10 @@ class ImageFlowApplication(Adw.Application):
                 data.webp_presets[self.settings.get_int('webp-preset')],
                 '-compression_level',
                 str(self.settings.get_int('webp-compression')),
-                '-loop', '0', '-vsync', '0', '-y',
+                '-loop', '0', '-fps_mode', 'passthrough', '-y',
             ]
         else:
-            cuatro = ['-vsync', '0', '-y']
+            cuatro = ['-fps_mode', 'passthrough', '-y']
 
         return (uno, dos, tres, cuatro)
 
@@ -668,7 +668,13 @@ class ImageFlowApplication(Adw.Application):
         else:
             src = ['-i', self.source,]
 
-        cmd = ['ffmpeg', '-v', 'error', *src, '-an']
+        cmd = [
+            'ffmpeg',
+            '-v', 'error',
+            '-threads', '0',
+            '-filter_threads', '0',
+            *src, '-an',
+        ]
 
         if self.file_format == '.gif':
             # palette
