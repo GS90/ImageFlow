@@ -36,7 +36,7 @@ from . import data
 from .window import WindowIF
 
 
-APP_VERSION = '1.1.1'
+APP_VERSION = '1.1.2'
 
 TMP_NAME = 'result'
 

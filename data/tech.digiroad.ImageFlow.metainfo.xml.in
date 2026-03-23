@@ -55,6 +55,16 @@
 
   <releases>
 
+    <release version="1.1.2" date="2026-03-23">
+      <description translate="no">
+        <ul>
+          <li>Improved command‑line options for FFmpeg.</li>
+          <li>Updated runtime environment.</li>
+          <li>Various bug fixes.</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="1.1.1" date="2026-03-02">
       <description translate="no">
         <p>Detect system color theme.</p>
