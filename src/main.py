@@ -511,19 +511,19 @@ class ImageFlowApplication(Adw.Application):
             minutes = int(parts[1])
             split = parts[2].split('.')
             seconds = int(split[0])
-            milliseconds = int(split[1]) if len(split) > 1 else 0
+            milliseconds = int(split[1].ljust(3, '0')[:3])
         elif len(parts) == 2:
             hours = 0
             minutes = int(parts[0])
             split = parts[1].split('.')
             seconds = int(split[0])
-            milliseconds = int(split[1]) if len(split) > 1 else 0
+            milliseconds = int(split[1].ljust(3, '0')[:3])
         elif len(parts) == 1:
             hours = 0
             minutes = 0
             split = parts[0].split('.')
             seconds = int(split[0])
-            milliseconds = int(split[1]) if len(split) > 1 else 0
+            milliseconds = int(split[1].ljust(3, '0')[:3])
         else:
             err = f'Format parsing error: option "{text}" is invalid'
             self.message_show('Timestamp', err)
