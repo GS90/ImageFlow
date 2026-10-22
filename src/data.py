@@ -51,8 +51,8 @@ scaler = (
 
 # statistics mode
 palette = (
-    'diff',
     'full',
+    'diff',
     'single',
 )
 
