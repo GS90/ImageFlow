@@ -92,3 +92,8 @@ class WindowIF(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        # builder = Gtk.Builder()
+        # builder.add_from_resource(
+        #     '/tech/digiroad/ImageFlow/gtk/help-overlay.ui')
+        # self.set_help_overlay(builder.get_object('help_overlay'))

@@ -497,7 +497,7 @@ Icon
 Text</property>
                       </object>
                     </property>
-                    <property name="selected">1</property>
+                    <property name="selected">0</property>
                     <property name="subtitle" translatable="yes">Warning!
 This value overrides other settings</property>
                     <property name="title" translatable="yes">Preset</property>

@@ -11,7 +11,11 @@ subdir('data')
 subdir('src')
 subdir('po')
 
-run_command('./update_l10n.sh', check: true)
+xgettext = find_program('xgettext', required: false)
+msgmerge = find_program('msgmerge', required: false)
+if xgettext.found() and msgmerge.found()
+  run_command('./update_l10n.sh', check: true)
+endif
 
 gnome.post_install(
      glib_compile_schemas: true,

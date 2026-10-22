@@ -25,7 +25,6 @@ import shutil
 import subprocess
 import sys
 import threading
-import webbrowser
 
 import gi
 gi.require_version('Gtk', '4.0')
@@ -36,16 +35,15 @@ from . import data
 from .window import WindowIF
 
 
-APP_VERSION = '1.1.2'
-
 TMP_NAME = 'result'
 
 
 class ImageFlowApplication(Adw.Application):
-    def __init__(self):
+    def __init__(self, version=''):
         super().__init__(application_id='tech.digiroad.ImageFlow',
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
                          resource_base_path='/tech/digiroad/ImageFlow')
+        self.version = version
         self.create_action('open', self.open_file, ['<primary>o'])
         self.create_action('about', self.about_action, None)
         self.create_action('quit', lambda *_: self.quit(), ['<control>q'])
@@ -169,6 +167,7 @@ class ImageFlowApplication(Adw.Application):
     def accept_file(self, path: str):
         self.result, self.name = '', ''
         self.source = path
+        self.sources_size = None
         self.w.video.set_filename(self.source)
         self.current = self.source
         self.w.open_file.remove_css_class('suggested-action')
@@ -235,6 +234,11 @@ class ImageFlowApplication(Adw.Application):
                     self.w.image_height.set_value(height)
                     self.freeze = False
                     self.w.image_size.set_selected(0)
+                elif self.w.image_size.get_selected() == 0:
+                    self.freeze = True
+                    self.w.image_width.set_value(width)
+                    self.w.image_height.set_value(height)
+                    self.freeze = False
             except ValueError as err:
                 self.message_show('Analysis error', str(err))
 
@@ -298,23 +302,44 @@ class ImageFlowApplication(Adw.Application):
         def save_file_finish(dialog, result):
             try:
                 file = dialog.save_finish(result)
-                if file:
-                    fp = file.get_path()
-                    shutil.copy2(self.result, fp)
-                    toast_title = f'{self.w.ts_save} {self.name}'
-                    toast = Adw.Toast.new(title=toast_title)
-                    toast.set_button_label(button_label=self.w.ts_save_show)
-                    toast.connect('button-clicked',
-                                  lambda s: self.toast_button_show(s, fp))
-                    self.w.overlay.add_toast(toast)
             except Exception as err:
                 err = str(err)
                 if 'dismissed by user' not in err.lower():
                     self.message_show('Saving error', err)
+                return
+            if not file:
+                return
+            fp = file.get_path()
+            if not fp:
+                return
+            try:
+                shutil.copy2(self.result, fp)
+            except OSError as err:
+                self.message_show('Saving error', str(err))
+                return
+            toast_title = f'{self.w.ts_save} {self.name}'
+            toast = Adw.Toast.new(title=toast_title)
+            toast.set_button_label(button_label=self.w.ts_save_show)
+            toast.connect('button-clicked',
+                          lambda s: self.toast_button_show(s, fp))
+            self.w.overlay.add_toast(toast)
 
         dialog = Gtk.FileDialog.new()
         dialog.set_title('Save result')
         dialog.set_initial_name(self.name)
+        # file type filters
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        default_filter = None
+        for title, extension in (('GIF', 'gif'), ('WebP', 'webp')):
+            f = Gtk.FileFilter()
+            f.set_name(title)
+            f.add_pattern(f'*.{extension}')
+            filters.append(f)
+            if f'.{extension}' == self.file_format:
+                default_filter = f
+        dialog.set_filters(filters)
+        if default_filter is not None:
+            dialog.set_default_filter(default_filter)
         dialog.save(self.w, None, save_file_finish)
 
     # --------------------------------------------------------------------------
@@ -395,6 +420,7 @@ class ImageFlowApplication(Adw.Application):
             self.w.trim.set_sensitive(True)
         else:
             self.segment_point = 0
+            self.enable_trim = False
             self.w.segment.set_visible(False)
             self.w.segment_box_start.remove_css_class('success')
             self.w.segment_box_end.remove_css_class('success')
@@ -575,7 +601,19 @@ class ImageFlowApplication(Adw.Application):
             subprocess.run(['xdg-open', fd])
 
     def browser_preview(self, _):
-        webbrowser.open(url=self.result, new=2)
+        file = Gio.File.new_for_path(self.result)
+        launcher = Gtk.FileLauncher(file=file)
+        launcher.launch(
+            parent=self.w,
+            cancellable=None,
+            callback=self.browser_preview_finish,
+        )
+
+    def browser_preview_finish(self, launcher, result):
+        try:
+            launcher.launch_finish(result)
+        except GLib.Error:
+            pass
 
     # --------------------------------------------------------------------------
 
@@ -726,6 +764,9 @@ class ImageFlowApplication(Adw.Application):
 
     def generation_failed(self, message: str, detail: str):
         self.result = ''
+        self.stack_adjust_visibility('display')
+        self.switch_control(generate=True, preview=False, save=False)
+        self.trim_access(True)
         self.message_show(message, detail)
 
     def generation_complete(self):
@@ -759,7 +800,7 @@ class ImageFlowApplication(Adw.Application):
             application_name='ImageFlow',
             application_icon='tech.digiroad.ImageFlow',
             developer_name='Golodnikov Sergey',
-            version=APP_VERSION,
+            version=self.version,
             comments=(self.w.ts_comment),
             website='https://digiroad.tech',
             developers=['Golodnikov Sergey <nn19051990@gmail.com>'],
@@ -858,12 +899,7 @@ class ImageFlowApplication(Adw.Application):
             detail=detail,
             buttons=('Cancel',),
         )
-        dialog.choose(
-            parent=self.w,
-            cancellable=None,
-            callback=None,
-            user_data=None,
-        )
+        dialog.show(self.w)
 
     def do_shutdown(self):
         # deleting temporary files
@@ -878,5 +914,5 @@ class ImageFlowApplication(Adw.Application):
 
 
 def main(version):
-    app = ImageFlowApplication()
+    app = ImageFlowApplication(version)
     return app.run(sys.argv)
