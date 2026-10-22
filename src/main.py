@@ -110,6 +110,7 @@ class ImageFlowApplication(Adw.Application):
         self.freeze = False
 
         self.w.pref_theme.connect('notify::selected-item', self.theme_change)
+        self.w.pref_dialog.connect('closed', self.preferences_save)
 
         self.w.external.connect('clicked', self.browser_preview)
         self.w.generate.connect('activated', self.generate_wrapper)
@@ -791,7 +792,6 @@ class ImageFlowApplication(Adw.Application):
             self.settings.get_int('webp-preset'))
         self.w.webp_compression.set_value(
             self.settings.get_int('webp-compression'))
-        self.w.pref_dialog.connect('closed', self.preferences_save)
         self.w.pref_dialog.present(self.props.active_window)
 
     def preferences_save(self, _):
