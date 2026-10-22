@@ -663,48 +663,57 @@ class ImageFlowApplication(Adw.Application):
         return (uno, dos, tres, cuatro)
 
     def generate(self, uno, dos, tres, cuatro):
-        if self.enable_trim:
-            src = [*self.segment_range_get(), '-i', self.source]
-        else:
-            src = ['-i', self.source,]
+        try:
+            if self.enable_trim:
+                src = [*self.segment_range_get(), '-i', self.source]
+            else:
+                src = ['-i', self.source,]
 
-        cmd = [
-            'ffmpeg',
-            '-v', 'error',
-            '-threads', '0',
-            '-filter_threads', '0',
-            *src, '-an',
-        ]
+            cmd = [
+                'ffmpeg',
+                '-v', 'error',
+                '-threads', '0',
+                '-filter_threads', '0',
+                *src, '-an',
+            ]
 
-        if self.file_format == '.gif':
-            # palette
-            result = subprocess.run([
-                'ffmpeg', '-v', 'error', *src,
-                '-vf', dos, '-y', self.palette,
-            ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if self.file_format == '.gif':
+                # palette
+                result = subprocess.run([
+                    'ffmpeg', '-v', 'error', *src,
+                    '-vf', dos, '-y', self.palette,
+                ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if result.returncode != 0:
+                    err = result.stderr.decode('utf-8').strip()
+                    GLib.idle_add(
+                        self.generation_failed, 'Palette error', err)
+                    return
+                cmd.extend((
+                    '-i', self.palette,
+                    '-filter_complex', f'{uno} [x]; [x][1:v] {tres}',
+                    *cuatro, self.result,
+                ))
+            else:
+                cmd.extend(('-vf', uno, *cuatro, self.result))
+
+            # conversion
+            result = subprocess.run(
+                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             if result.returncode != 0:
                 err = result.stderr.decode('utf-8').strip()
-                self.message_show('Palette error', err)
-                self.result = ''
+                GLib.idle_add(
+                    self.generation_failed, 'Generation error', err)
                 return
-            cmd.extend((
-                '-i', self.palette,
-                '-filter_complex', f'{uno} [x]; [x][1:v] {tres}',
-                *cuatro, self.result,
-            ))
-        else:
-            cmd.extend(('-vf', uno, *cuatro, self.result))
-
-        # conversion
-        result = subprocess.run(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        if result.returncode != 0:
-            err = result.stderr.decode('utf-8').strip()
-            self.message_show('Generation error', err)
-            self.result = ''
+        except Exception as err:
+            GLib.idle_add(
+                self.generation_failed, 'Generation error', str(err))
             return
 
         GLib.idle_add(self.generation_complete)
+
+    def generation_failed(self, message: str, detail: str):
+        self.result = ''
+        self.message_show(message, detail)
 
     def generation_complete(self):
         basename = os.path.splitext(os.path.basename(self.source))[0]
