@@ -99,6 +99,7 @@ class ImageFlowApplication(Adw.Application):
         self.sources_size = None
 
         self.stream = None
+        self.stream_timestamp_handler = None
         self.enable_trim = False
         self.segment_point = 0  # 1:start, 2:end
         self.segment_format = 'h'
@@ -174,9 +175,19 @@ class ImageFlowApplication(Adw.Application):
         self.switch_control(generate=True, preview=False, save=False)
         self.file_parsing()
         # stream & trim
-        self.stream = self.w.video.get_media_stream()
-        self.stream.connect("notify::timestamp", self.get_timestamp)
+        self.connect_stream()
         self.trim_access(True)
+
+    def connect_stream(self):
+        self.disconnect_stream()
+        self.stream = self.w.video.get_media_stream()
+        self.stream_timestamp_handler = self.stream.connect(
+            'notify::timestamp', self.get_timestamp)
+
+    def disconnect_stream(self):
+        if self.stream is not None and self.stream_timestamp_handler:
+            self.stream.disconnect(self.stream_timestamp_handler)
+        self.stream_timestamp_handler = None
 
     def on_drop(self, _drop, value, _x, _y):
         if not value:
@@ -356,6 +367,8 @@ class ImageFlowApplication(Adw.Application):
         self.w.video.set_loop(state)
         if self.current != '':
             self.w.video.set_filename(self.current)
+            if self.current == self.source:
+                self.connect_stream()
 
     # --------------------------------------------------------------------------
 
@@ -553,8 +566,7 @@ class ImageFlowApplication(Adw.Application):
                 self.w.preview.remove_css_class('success')
                 # trim & stream
                 self.trim_access(True)
-                self.stream = self.w.video.get_media_stream()
-                self.stream.connect("notify::timestamp", self.get_timestamp)
+                self.connect_stream()
 
     def toast_button_show(self, _, fp: str):
         fd = os.path.dirname(fp)
