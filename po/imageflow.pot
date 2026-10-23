@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 09:53+0300\n"
+"POT-Creation-Date: 2026-10-23 11:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "ImageFlow"
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.desktop.in:8
-msgid "video;converter;image;gif;webp"
+msgid "video;converter;image;gif;webp;avif"
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
@@ -36,10 +36,10 @@ msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
 msgid ""
-"This application is designed for converting videos into animated GIF and "
-"WebP images using the FFmpeg library.You can configure key parameters, such "
-"as the output image size, frame rate, applied filters (interpolation method, "
-"dithering mode), palette generation method, and the maximum number of colors."
+"This application converts videos into animated GIF, WebP, and AVIF images "
+"using the FFmpeg library. You can configure key parameters, including output "
+"size, frame rate, filters (such as interpolation and dithering), palette-"
+"generation method, and maximum number of colors."
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:15

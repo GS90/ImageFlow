@@ -11,7 +11,7 @@
   </developer>
 
   <description>
-    <p>This application is designed for converting videos into animated GIF and WebP images using the FFmpeg library.You can configure key parameters, such as the output image size, frame rate, applied filters (interpolation method, dithering mode), palette generation method, and the maximum number of colors.</p>
+  <p>This application converts videos into animated GIF, WebP, and AVIF images using the FFmpeg library. You can configure key parameters, including output size, frame rate, filters (such as interpolation and dithering), palette-generation method, and maximum number of colors.</p>
     <p>Features:</p>
     <ul>
       <li>All conversion parameters can be configured.</li>
@@ -54,6 +54,14 @@
   </screenshots>
 
   <releases>
+
+    <release version="1.2.0" date="2026-10-23">
+      <description translate="no">
+        <ul>
+          <li>Added AVIF support, bug fixes, and other improvements.</li>
+        </ul>
+      </description>
+    </release>
 
     <release version="1.1.2" date="2026-03-23">
       <description translate="no">

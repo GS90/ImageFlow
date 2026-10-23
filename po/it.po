@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 09:53+0300\n"
+"POT-Creation-Date: 2026-10-23 11:00+0300\n"
 "PO-Revision-Date: 2026-01-25 13:22+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian\n"
@@ -27,7 +27,8 @@ msgid "ImageFlow"
 msgstr "ImageFlow"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:8
-msgid "video;converter;image;gif;webp"
+#, fuzzy
+msgid "video;converter;image;gif;webp;avif"
 msgstr "video;convertitore;immagine;gif;webp"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
@@ -39,11 +40,12 @@ msgid "Golodnikov Sergey"
 msgstr "Golodnikov Sergey"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
+#, fuzzy
 msgid ""
-"This application is designed for converting videos into animated GIF and "
-"WebP images using the FFmpeg library.You can configure key parameters, such "
-"as the output image size, frame rate, applied filters (interpolation method, "
-"dithering mode), palette generation method, and the maximum number of colors."
+"This application converts videos into animated GIF, WebP, and AVIF images "
+"using the FFmpeg library. You can configure key parameters, including output "
+"size, frame rate, filters (such as interpolation and dithering), palette-"
+"generation method, and maximum number of colors."
 msgstr ""
 "Questa applicazione è progettata per convertire i video in GIF animate e "
 "immagini WebP utilizzando la libreria FFmpeg. È possibile configurare "

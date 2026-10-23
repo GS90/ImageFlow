@@ -5,6 +5,6 @@ Icon=tech.digiroad.ImageFlow
 Terminal=false
 Type=Application
 Categories=GNOME;GTK;Video;Graphics;Utility
-Keywords=video;converter;image;gif;webp
+Keywords=video;converter;image;gif;webp;avif
 StartupNotify=false
 DBusActivatable=true
