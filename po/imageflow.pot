@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 11:00+0300\n"
+"POT-Creation-Date: 2026-10-24 01:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:2
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:369
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:370
 msgid "ImageFlow"
 msgstr ""
 
@@ -121,47 +121,47 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr ""
 
-#: src/gtk/window.ui:30
+#: src/gtk/window.ui:31
 msgid "Start"
 msgstr ""
 
-#: src/gtk/window.ui:53
+#: src/gtk/window.ui:54
 msgid "End"
 msgstr ""
 
-#: src/gtk/window.ui:88
+#: src/gtk/window.ui:89
 msgid "View a file externally"
 msgstr ""
 
-#: src/gtk/window.ui:115
+#: src/gtk/window.ui:116
 msgid "Open"
 msgstr ""
 
-#: src/gtk/window.ui:118
+#: src/gtk/window.ui:119
 msgid "Open video file"
 msgstr ""
 
-#: src/gtk/window.ui:128
+#: src/gtk/window.ui:129
 msgid "Application menu"
 msgstr ""
 
-#: src/gtk/window.ui:133
+#: src/gtk/window.ui:134
 msgid "Loop"
 msgstr ""
 
-#: src/gtk/window.ui:135
+#: src/gtk/window.ui:136
 msgid "Video looping"
 msgstr ""
 
-#: src/gtk/window.ui:140
+#: src/gtk/window.ui:141
 msgid "Trim"
 msgstr ""
 
-#: src/gtk/window.ui:142
+#: src/gtk/window.ui:143
 msgid "Select a time segment"
 msgstr ""
 
-#: src/gtk/window.ui:164
+#: src/gtk/window.ui:165
 msgid ""
 "Original\n"
 "4320p\n"
@@ -174,178 +174,178 @@ msgid ""
 "User"
 msgstr ""
 
-#: src/gtk/window.ui:176
+#: src/gtk/window.ui:177
 msgid "Image size"
 msgstr ""
 
-#: src/gtk/window.ui:177
+#: src/gtk/window.ui:178
 msgid "Size"
 msgstr ""
 
-#: src/gtk/window.ui:193
+#: src/gtk/window.ui:194
 msgid "Width"
 msgstr ""
 
-#: src/gtk/window.ui:209
+#: src/gtk/window.ui:210
 msgid "Height"
 msgstr ""
 
-#: src/gtk/window.ui:238
+#: src/gtk/window.ui:239
 msgid "Interpolation"
 msgstr ""
 
-#: src/gtk/window.ui:239
+#: src/gtk/window.ui:240
 msgid "Scaler"
 msgstr ""
 
-#: src/gtk/window.ui:246
+#: src/gtk/window.ui:247
 msgid "Keep aspect ratio"
 msgstr ""
 
-#: src/gtk/window.ui:247
+#: src/gtk/window.ui:248
 msgid "Ratio"
 msgstr ""
 
-#: src/gtk/window.ui:263
+#: src/gtk/window.ui:264
 msgid "Frames per second"
 msgstr ""
 
-#: src/gtk/window.ui:264
+#: src/gtk/window.ui:265
 msgid "FPS"
 msgstr ""
 
-#: src/gtk/window.ui:292
+#: src/gtk/window.ui:293
 msgid "Dithering mode"
 msgstr ""
 
-#: src/gtk/window.ui:293
+#: src/gtk/window.ui:294
 msgid "Dither"
 msgstr ""
 
-#: src/gtk/window.ui:308
+#: src/gtk/window.ui:309
 msgid "Max colors"
 msgstr ""
 
-#: src/gtk/window.ui:309
+#: src/gtk/window.ui:310
 msgid "Palette"
 msgstr ""
 
-#: src/gtk/window.ui:323
+#: src/gtk/window.ui:324
 msgid "Format"
 msgstr ""
 
-#: src/gtk/window.ui:339
+#: src/gtk/window.ui:340
 msgid "Generate"
 msgstr ""
 
-#: src/gtk/window.ui:346
+#: src/gtk/window.ui:347
 msgid "Preview"
 msgstr ""
 
-#: src/gtk/window.ui:353
+#: src/gtk/window.ui:354
 msgid "Save"
 msgstr ""
 
-#: src/gtk/window.ui:375
+#: src/gtk/window.ui:376
 msgid "_Preferences"
 msgstr ""
 
-#: src/gtk/window.ui:379
+#: src/gtk/window.ui:380
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: src/gtk/window.ui:383
+#: src/gtk/window.ui:384
 msgid "_About ImageFlow"
 msgstr ""
 
-#: src/gtk/window.ui:392
+#: src/gtk/window.ui:396
 msgid "Application"
 msgstr ""
 
-#: src/gtk/window.ui:397
+#: src/gtk/window.ui:401
 msgid ""
 "Light\n"
 "Dark"
 msgstr ""
 
-#: src/gtk/window.ui:401
+#: src/gtk/window.ui:405
 msgid "Application color theme"
 msgstr ""
 
-#: src/gtk/window.ui:402
+#: src/gtk/window.ui:406
 msgid "Theme"
 msgstr ""
 
-#: src/gtk/window.ui:407
+#: src/gtk/window.ui:411
 msgid "Detect original file resolution"
 msgstr ""
 
-#: src/gtk/window.ui:408
+#: src/gtk/window.ui:412
 msgid "Detect size"
 msgstr ""
 
-#: src/gtk/window.ui:415
+#: src/gtk/window.ui:419
 msgid "Generation"
 msgstr ""
 
-#: src/gtk/window.ui:418
+#: src/gtk/window.ui:422
 msgid "Accurate rounding in interpolation"
 msgstr ""
 
-#: src/gtk/window.ui:419
+#: src/gtk/window.ui:423
 msgid "Accurate rounding"
 msgstr ""
 
-#: src/gtk/window.ui:432
+#: src/gtk/window.ui:447
 msgid "Statistics mode"
 msgstr ""
 
-#: src/gtk/window.ui:433
+#: src/gtk/window.ui:448
 msgid "Palette generation"
 msgstr ""
 
-#: src/gtk/window.ui:447
+#: src/gtk/window.ui:462
 msgid "Crosshatch pattern visibility level"
 msgstr ""
 
-#: src/gtk/window.ui:448
+#: src/gtk/window.ui:463
 msgid "Bayer scale"
 msgstr ""
 
-#: src/gtk/window.ui:458
+#: src/gtk/window.ui:479
 msgid "Lossless compression method"
 msgstr ""
 
-#: src/gtk/window.ui:459
+#: src/gtk/window.ui:480
 msgid "Lossless"
 msgstr ""
 
-#: src/gtk/window.ui:473
+#: src/gtk/window.ui:494
 msgid "Quality level"
 msgstr ""
 
-#: src/gtk/window.ui:474 src/gtk/window.ui:538
+#: src/gtk/window.ui:495 src/gtk/window.ui:565
 msgid "Quality"
 msgstr ""
 
-#: src/gtk/window.ui:475
+#: src/gtk/window.ui:496
 msgid ""
 "For lossy encoding, this controls image quality. For lossless encoding, this "
 "controls the effort and time spent in compression. Range is 0 to 100. "
 "Default is 75."
 msgstr ""
 
-#: src/gtk/window.ui:492
+#: src/gtk/window.ui:513
 msgid ""
 "Warning!\n"
 "This value overrides other settings"
 msgstr ""
 
-#: src/gtk/window.ui:494
+#: src/gtk/window.ui:515
 msgid "Preset"
 msgstr ""
 
-#: src/gtk/window.ui:495
+#: src/gtk/window.ui:516
 msgid ""
 "This does some automatic settings based on the general type of the image.\n"
 "None: Do not use a preset.\n"
@@ -357,15 +357,15 @@ msgid ""
 "Text: Text-like."
 msgstr ""
 
-#: src/gtk/window.ui:516
+#: src/gtk/window.ui:537
 msgid "Adjusts quality and speed tradeoff"
 msgstr ""
 
-#: src/gtk/window.ui:517
+#: src/gtk/window.ui:538
 msgid "Compression level"
 msgstr ""
 
-#: src/gtk/window.ui:518
+#: src/gtk/window.ui:539
 msgid ""
 "For lossy, this is a quality/speed tradeoff. Higher values give better "
 "quality for a given size at the cost of increased encoding time. For "
@@ -376,26 +376,26 @@ msgid ""
 "valid range is 0 to 6. Default is 4."
 msgstr ""
 
-#: src/gtk/window.ui:537
+#: src/gtk/window.ui:564
 msgid "Constant rate factor"
 msgstr ""
 
-#: src/gtk/window.ui:539
+#: src/gtk/window.ui:566
 msgid ""
 "Constant rate factor (CRF). Lower values mean better quality and a larger "
 "file, higher values mean worse quality and a smaller file. The valid range "
 "is 0 to 63. Default is 30."
 msgstr ""
 
-#: src/gtk/window.ui:553
+#: src/gtk/window.ui:580
 msgid "Quality / speed tradeoff"
 msgstr ""
 
-#: src/gtk/window.ui:554
+#: src/gtk/window.ui:581
 msgid "Speed"
 msgstr ""
 
-#: src/gtk/window.ui:555
+#: src/gtk/window.ui:582
 msgid ""
 "Quality / speed tradeoff (cpu-used). Higher values give faster encoding at "
 "the cost of quality. The valid range is 0 to 8. Default is 6."

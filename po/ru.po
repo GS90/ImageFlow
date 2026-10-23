@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 11:00+0300\n"
+"POT-Creation-Date: 2026-10-24 01:22+0300\n"
 "PO-Revision-Date: 2026-10-23 11:03+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-DL-Domain: \n"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:2
-#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:369
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:370
 msgid "ImageFlow"
 msgstr "ImageFlow"
 
@@ -132,47 +132,47 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Выход"
 
-#: src/gtk/window.ui:30
+#: src/gtk/window.ui:31
 msgid "Start"
 msgstr "Начало"
 
-#: src/gtk/window.ui:53
+#: src/gtk/window.ui:54
 msgid "End"
 msgstr "Конец"
 
-#: src/gtk/window.ui:88
+#: src/gtk/window.ui:89
 msgid "View a file externally"
 msgstr "Просмотр во внешнем приложении"
 
-#: src/gtk/window.ui:115
+#: src/gtk/window.ui:116
 msgid "Open"
 msgstr "Открыть"
 
-#: src/gtk/window.ui:118
+#: src/gtk/window.ui:119
 msgid "Open video file"
 msgstr "Открыть видеофайл"
 
-#: src/gtk/window.ui:128
+#: src/gtk/window.ui:129
 msgid "Application menu"
 msgstr "Меню приложения"
 
-#: src/gtk/window.ui:133
+#: src/gtk/window.ui:134
 msgid "Loop"
 msgstr "Повтор"
 
-#: src/gtk/window.ui:135
+#: src/gtk/window.ui:136
 msgid "Video looping"
 msgstr "Зацикливание видео"
 
-#: src/gtk/window.ui:140
+#: src/gtk/window.ui:141
 msgid "Trim"
 msgstr "Обрезать"
 
-#: src/gtk/window.ui:142
+#: src/gtk/window.ui:143
 msgid "Select a time segment"
 msgstr "Выбрать временной отрезок"
 
-#: src/gtk/window.ui:164
+#: src/gtk/window.ui:165
 msgid ""
 "Original\n"
 "4320p\n"
@@ -194,95 +194,95 @@ msgstr ""
 "360p\n"
 "Другое"
 
-#: src/gtk/window.ui:176
+#: src/gtk/window.ui:177
 msgid "Image size"
 msgstr "изображения"
 
-#: src/gtk/window.ui:177
+#: src/gtk/window.ui:178
 msgid "Size"
 msgstr "Размер"
 
-#: src/gtk/window.ui:193
+#: src/gtk/window.ui:194
 msgid "Width"
 msgstr "Ширина"
 
-#: src/gtk/window.ui:209
+#: src/gtk/window.ui:210
 msgid "Height"
 msgstr "Высота"
 
-#: src/gtk/window.ui:238
+#: src/gtk/window.ui:239
 msgid "Interpolation"
 msgstr "интерполяции"
 
-#: src/gtk/window.ui:239
+#: src/gtk/window.ui:240
 msgid "Scaler"
 msgstr "Метод"
 
-#: src/gtk/window.ui:246
+#: src/gtk/window.ui:247
 msgid "Keep aspect ratio"
 msgstr "соотношение сторон"
 
-#: src/gtk/window.ui:247
+#: src/gtk/window.ui:248
 msgid "Ratio"
 msgstr "Сохранить"
 
-#: src/gtk/window.ui:263
+#: src/gtk/window.ui:264
 msgid "Frames per second"
 msgstr "кадров"
 
-#: src/gtk/window.ui:264
+#: src/gtk/window.ui:265
 msgid "FPS"
 msgstr "Частота"
 
-#: src/gtk/window.ui:292
+#: src/gtk/window.ui:293
 msgid "Dithering mode"
 msgstr "дизеринга"
 
-#: src/gtk/window.ui:293
+#: src/gtk/window.ui:294
 msgid "Dither"
 msgstr "Режим"
 
-#: src/gtk/window.ui:308
+#: src/gtk/window.ui:309
 msgid "Max colors"
 msgstr "цветов в палитре"
 
-#: src/gtk/window.ui:309
+#: src/gtk/window.ui:310
 msgid "Palette"
 msgstr "Количество"
 
-#: src/gtk/window.ui:323
+#: src/gtk/window.ui:324
 msgid "Format"
 msgstr "Формат"
 
-#: src/gtk/window.ui:339
+#: src/gtk/window.ui:340
 msgid "Generate"
 msgstr "Генерировать"
 
-#: src/gtk/window.ui:346
+#: src/gtk/window.ui:347
 msgid "Preview"
 msgstr "Просмотр"
 
-#: src/gtk/window.ui:353
+#: src/gtk/window.ui:354
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/gtk/window.ui:375
+#: src/gtk/window.ui:376
 msgid "_Preferences"
 msgstr "_Настройки"
 
-#: src/gtk/window.ui:379
+#: src/gtk/window.ui:380
 msgid "_Keyboard Shortcuts"
 msgstr "_Сочетания клавиш"
 
-#: src/gtk/window.ui:383
+#: src/gtk/window.ui:384
 msgid "_About ImageFlow"
 msgstr "_О программе"
 
-#: src/gtk/window.ui:392
+#: src/gtk/window.ui:396
 msgid "Application"
 msgstr "Приложение"
 
-#: src/gtk/window.ui:397
+#: src/gtk/window.ui:401
 msgid ""
 "Light\n"
 "Dark"
@@ -290,67 +290,67 @@ msgstr ""
 "Светлая\n"
 "Тёмная"
 
-#: src/gtk/window.ui:401
+#: src/gtk/window.ui:405
 msgid "Application color theme"
 msgstr "Цветовая тема приложения"
 
-#: src/gtk/window.ui:402
+#: src/gtk/window.ui:406
 msgid "Theme"
 msgstr "Тема"
 
-#: src/gtk/window.ui:407
+#: src/gtk/window.ui:411
 msgid "Detect original file resolution"
 msgstr "Определить исходное разрешение файла"
 
-#: src/gtk/window.ui:408
+#: src/gtk/window.ui:412
 msgid "Detect size"
 msgstr "Определить размер"
 
-#: src/gtk/window.ui:415
+#: src/gtk/window.ui:419
 msgid "Generation"
 msgstr "Обработка"
 
-#: src/gtk/window.ui:418
+#: src/gtk/window.ui:422
 msgid "Accurate rounding in interpolation"
 msgstr "Точное округление при интерполяции"
 
-#: src/gtk/window.ui:419
+#: src/gtk/window.ui:423
 msgid "Accurate rounding"
 msgstr "Точное округление"
 
-#: src/gtk/window.ui:432
+#: src/gtk/window.ui:447
 msgid "Statistics mode"
 msgstr "Режим статистики"
 
-#: src/gtk/window.ui:433
+#: src/gtk/window.ui:448
 msgid "Palette generation"
 msgstr "Генерация палитры"
 
-#: src/gtk/window.ui:447
+#: src/gtk/window.ui:462
 msgid "Crosshatch pattern visibility level"
 msgstr "Уровень видимости перекрестной штриховки"
 
-#: src/gtk/window.ui:448
+#: src/gtk/window.ui:463
 msgid "Bayer scale"
 msgstr "Bayer, размер шаблона"
 
-#: src/gtk/window.ui:458
+#: src/gtk/window.ui:479
 msgid "Lossless compression method"
 msgstr "Метод сжатия без потерь"
 
-#: src/gtk/window.ui:459
+#: src/gtk/window.ui:480
 msgid "Lossless"
 msgstr "Сжатие без потерь"
 
-#: src/gtk/window.ui:473
+#: src/gtk/window.ui:494
 msgid "Quality level"
 msgstr "Уровень качества"
 
-#: src/gtk/window.ui:474 src/gtk/window.ui:538
+#: src/gtk/window.ui:495 src/gtk/window.ui:565
 msgid "Quality"
 msgstr "Качество"
 
-#: src/gtk/window.ui:475
+#: src/gtk/window.ui:496
 msgid ""
 "For lossy encoding, this controls image quality. For lossless encoding, this "
 "controls the effort and time spent in compression. Range is 0 to 100. "
@@ -360,7 +360,7 @@ msgstr ""
 "кодировании без потерь управляет трудозатратами и временем, затраченными на "
 "сжатие. Диапазон от 0 до 100. Значение по умолчанию 75."
 
-#: src/gtk/window.ui:492
+#: src/gtk/window.ui:513
 msgid ""
 "Warning!\n"
 "This value overrides other settings"
@@ -368,11 +368,11 @@ msgstr ""
 "Внимание!\n"
 "Это значение переопределяет другие настройки"
 
-#: src/gtk/window.ui:494
+#: src/gtk/window.ui:515
 msgid "Preset"
 msgstr "Предустановка"
 
-#: src/gtk/window.ui:495
+#: src/gtk/window.ui:516
 msgid ""
 "This does some automatic settings based on the general type of the image.\n"
 "None: Do not use a preset.\n"
@@ -393,15 +393,15 @@ msgstr ""
 "Icon: Небольшие цветные изображения.\n"
 "Text: Текстовые элементы."
 
-#: src/gtk/window.ui:516
+#: src/gtk/window.ui:537
 msgid "Adjusts quality and speed tradeoff"
 msgstr "Регулирует соотношение качества и скорости"
 
-#: src/gtk/window.ui:517
+#: src/gtk/window.ui:538
 msgid "Compression level"
 msgstr "Уровень сжатия"
 
-#: src/gtk/window.ui:518
+#: src/gtk/window.ui:539
 msgid ""
 "For lossy, this is a quality/speed tradeoff. Higher values give better "
 "quality for a given size at the cost of increased encoding time. For "
@@ -420,11 +420,11 @@ msgstr ""
 "инструментов. Это соответствует параметру метода в libwebp. Диапазон от 0 до "
 "6. Значение по умолчанию 4."
 
-#: src/gtk/window.ui:537
+#: src/gtk/window.ui:564
 msgid "Constant rate factor"
 msgstr "Постоянный коэффициент качества"
 
-#: src/gtk/window.ui:539
+#: src/gtk/window.ui:566
 msgid ""
 "Constant rate factor (CRF). Lower values mean better quality and a larger "
 "file, higher values mean worse quality and a smaller file. The valid range "
@@ -434,15 +434,15 @@ msgstr ""
 "изображения и больше размер файла; чем выше значение, тем ниже качество и "
 "меньше размер файла. Допустимый диапазон - от 0 до 63. По умолчанию - 30."
 
-#: src/gtk/window.ui:553
+#: src/gtk/window.ui:580
 msgid "Quality / speed tradeoff"
 msgstr "Баланс качества и скорости"
 
-#: src/gtk/window.ui:554
+#: src/gtk/window.ui:581
 msgid "Speed"
 msgstr "Скорость кодирования"
 
-#: src/gtk/window.ui:555
+#: src/gtk/window.ui:582
 msgid ""
 "Quality / speed tradeoff (cpu-used). Higher values give faster encoding at "
 "the cost of quality. The valid range is 0 to 8. Default is 6."
