@@ -73,6 +73,7 @@ dither = (
 format = (
     '.gif',
     '.webp',
+    '.avif',
 )
 
 webp_presets = (
@@ -85,7 +86,9 @@ webp_presets = (
     'text',
 )
 
-# ------------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
 
 timestamp_help = _(
     'Select «Start» or «End» and rewind the video to the desired frame, '

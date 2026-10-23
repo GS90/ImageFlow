@@ -66,6 +66,8 @@ class ImageFlowApplication(Adw.Application):
             'webp-lossless',
             'webp-quality',
             'webp-preset',
+            'avif-quality',
+            'avif-speed',
         )
         self.options_load()
 
@@ -139,7 +141,7 @@ class ImageFlowApplication(Adw.Application):
         drop_target.connect('drop', self.on_drop)
         self.w.display.add_controller(drop_target)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def switch_control(self, generate: bool, preview: bool, save: bool):
         # generate
@@ -162,7 +164,7 @@ class ImageFlowApplication(Adw.Application):
         else:
             self.w.save_file.remove_css_class('suggested-action')
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def accept_file(self, path: str):
         self.result, self.name = '', ''
@@ -242,7 +244,7 @@ class ImageFlowApplication(Adw.Application):
             except ValueError as err:
                 self.message_show('Analysis error', str(err))
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def open_file(self, _button, _=None):
         dialog = Gtk.FileChooserNative.new(
@@ -257,7 +259,6 @@ class ImageFlowApplication(Adw.Application):
         filter.set_name('All')
         filter.add_pattern('*.*')
         dialog.add_filter(filter)
-
         # video files:
         filter = Gtk.FileFilter.new()
         filter.set_name('Video')
@@ -330,7 +331,8 @@ class ImageFlowApplication(Adw.Application):
         # file type filters
         filters = Gio.ListStore.new(Gtk.FileFilter)
         default_filter = None
-        for title, extension in (('GIF', 'gif'), ('WebP', 'webp')):
+        for title, extension in (('GIF', 'gif'), ('WebP', 'webp'),
+                                 ('AVIF', 'avif')):
             f = Gtk.FileFilter()
             f.set_name(title)
             f.add_pattern(f'*.{extension}')
@@ -342,7 +344,7 @@ class ImageFlowApplication(Adw.Application):
             dialog.set_default_filter(default_filter)
         dialog.save(self.w, None, save_file_finish)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def stack_adjust_visibility(self, obj: str):
         match obj:
@@ -396,7 +398,7 @@ class ImageFlowApplication(Adw.Application):
             if self.current == self.source:
                 self.connect_stream()
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def trim_state(self, toggle_button):
         if self.freeze:
@@ -428,7 +430,7 @@ class ImageFlowApplication(Adw.Application):
             self.w.trim.set_sensitive(False)
         self.freeze = False
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def get_timestamp(self, _f, _p):
         if self.segment_point != 0:
@@ -572,12 +574,12 @@ class ImageFlowApplication(Adw.Application):
         return (hours * 3600 + minutes * 60 + seconds) * 1000000 \
             + milliseconds * 1000
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def preview_switch(self, widget, _):
         if self.result != '':
             if widget.get_active():
-                if self.file_format == '.webp':
+                if self.file_format in ('.webp', '.avif'):
                     self.stack_adjust_visibility('external')
                 else:
                     self.w.video.set_filename(self.result)
@@ -615,7 +617,7 @@ class ImageFlowApplication(Adw.Application):
         except GLib.Error:
             pass
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def options_load(self):
         for k in self.settings.keys():
@@ -661,7 +663,7 @@ class ImageFlowApplication(Adw.Application):
         if size != 0:  # 0 == original
             self.options['image-size'] = size
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def preparation(self):
         self.result = os.path.join(self.dir, TMP_NAME + self.file_format)
@@ -707,6 +709,15 @@ class ImageFlowApplication(Adw.Application):
                 '-compression_level',
                 str(self.settings.get_int('webp-compression')),
                 '-loop', '0', '-fps_mode', 'passthrough', '-y',
+            ]
+        elif self.file_format == '.avif':
+            cuatro = [
+                '-c:v', 'libaom-av1',
+                '-crf', str(self.settings.get_int('avif-quality')),
+                '-b:v', '0',
+                '-cpu-used', str(self.settings.get_int('avif-speed')),
+                '-threads', '0',
+                '-fps_mode', 'passthrough', '-y',
             ]
         else:
             cuatro = ['-fps_mode', 'passthrough', '-y']
@@ -793,7 +804,7 @@ class ImageFlowApplication(Adw.Application):
         thread = threading.Thread(target=self.generate, args=args, daemon=True)
         thread.start()
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def about_action(self, *_args):
         about = Adw.AboutDialog(
@@ -833,6 +844,10 @@ class ImageFlowApplication(Adw.Application):
             self.settings.get_int('webp-preset'))
         self.w.webp_compression.set_value(
             self.settings.get_int('webp-compression'))
+        self.w.avif_quality.set_value(
+            self.settings.get_int('avif-quality'))
+        self.w.avif_speed.set_value(
+            self.settings.get_int('avif-speed'))
         self.w.pref_dialog.present(self.props.active_window)
 
     def preferences_save(self, _):
@@ -854,6 +869,10 @@ class ImageFlowApplication(Adw.Application):
             'webp-preset', int(self.w.webp_preset.get_selected()))
         self.settings.set_int(
             'webp-compression', int(self.w.webp_compression.get_value()))
+        self.settings.set_int(
+            'avif-quality', int(self.w.avif_quality.get_value()))
+        self.settings.set_int(
+            'avif-speed', int(self.w.avif_speed.get_value()))
 
     def theme_change(self, widget, _):
         self.settings.set_boolean('theme-user', True)

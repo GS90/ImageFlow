@@ -78,6 +78,9 @@ class WindowIF(Adw.ApplicationWindow):
     webp_preset = Gtk.Template.Child('webp-preset')
     webp_compression = Gtk.Template.Child('webp-compression')
 
+    avif_quality = Gtk.Template.Child('avif-quality')
+    avif_speed = Gtk.Template.Child('avif-speed')
+
     # variables for translation
     ts_size = _('Done, image size in MB:')
     ts_save = _('Saved:')
@@ -92,8 +95,3 @@ class WindowIF(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-        # builder = Gtk.Builder()
-        # builder.add_from_resource(
-        #     '/tech/digiroad/ImageFlow/gtk/help-overlay.ui')
-        # self.set_help_overlay(builder.get_object('help_overlay'))

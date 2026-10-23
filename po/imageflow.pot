@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 02:02+0300\n"
+"POT-Creation-Date: 2026-10-23 09:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,21 +78,21 @@ msgstr ""
 msgid "ImageFlow, preferences"
 msgstr ""
 
-#: src/data.py:91
+#: src/data.py:94
 msgid ""
 "Select «Start» or «End» and rewind the video to the desired frame, or enter "
 "the time in the corresponding field."
 msgstr ""
 
-#: src/data.py:99
+#: src/data.py:102
 msgid "Time format - hours:minutes:seconds.milliseconds (00:00:00.000)"
 msgstr ""
 
-#: src/data.py:104
+#: src/data.py:107
 msgid "Time format - minutes:seconds.milliseconds (00:00.000)"
 msgstr ""
 
-#: src/data.py:109
+#: src/data.py:112
 msgid "Time format - seconds.milliseconds (00.000)"
 msgstr ""
 
@@ -121,47 +121,47 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr ""
 
-#: src/gtk/window.ui:31
+#: src/gtk/window.ui:30
 msgid "Start"
 msgstr ""
 
-#: src/gtk/window.ui:54
+#: src/gtk/window.ui:53
 msgid "End"
 msgstr ""
 
-#: src/gtk/window.ui:89
+#: src/gtk/window.ui:88
 msgid "View a file externally"
 msgstr ""
 
-#: src/gtk/window.ui:116
+#: src/gtk/window.ui:115
 msgid "Open"
 msgstr ""
 
-#: src/gtk/window.ui:119
+#: src/gtk/window.ui:118
 msgid "Open video file"
 msgstr ""
 
-#: src/gtk/window.ui:129
+#: src/gtk/window.ui:128
 msgid "Application menu"
 msgstr ""
 
-#: src/gtk/window.ui:134
+#: src/gtk/window.ui:133
 msgid "Loop"
 msgstr ""
 
-#: src/gtk/window.ui:136
+#: src/gtk/window.ui:135
 msgid "Video looping"
 msgstr ""
 
-#: src/gtk/window.ui:141
+#: src/gtk/window.ui:140
 msgid "Trim"
 msgstr ""
 
-#: src/gtk/window.ui:143
+#: src/gtk/window.ui:142
 msgid "Select a time segment"
 msgstr ""
 
-#: src/gtk/window.ui:165
+#: src/gtk/window.ui:164
 msgid ""
 "Original\n"
 "4320p\n"
@@ -174,59 +174,59 @@ msgid ""
 "User"
 msgstr ""
 
-#: src/gtk/window.ui:177
+#: src/gtk/window.ui:176
 msgid "Image size"
 msgstr ""
 
-#: src/gtk/window.ui:178
+#: src/gtk/window.ui:177
 msgid "Size"
 msgstr ""
 
-#: src/gtk/window.ui:194
+#: src/gtk/window.ui:193
 msgid "Width"
 msgstr ""
 
-#: src/gtk/window.ui:210
+#: src/gtk/window.ui:209
 msgid "Height"
 msgstr ""
 
-#: src/gtk/window.ui:239
+#: src/gtk/window.ui:238
 msgid "Interpolation"
 msgstr ""
 
-#: src/gtk/window.ui:240
+#: src/gtk/window.ui:239
 msgid "Scaler"
 msgstr ""
 
-#: src/gtk/window.ui:247
+#: src/gtk/window.ui:246
 msgid "Keep aspect ratio"
 msgstr ""
 
-#: src/gtk/window.ui:248
+#: src/gtk/window.ui:247
 msgid "Ratio"
 msgstr ""
 
-#: src/gtk/window.ui:264
+#: src/gtk/window.ui:263
 msgid "Frames per second"
 msgstr ""
 
-#: src/gtk/window.ui:265
+#: src/gtk/window.ui:264
 msgid "FPS"
 msgstr ""
 
-#: src/gtk/window.ui:293
+#: src/gtk/window.ui:292
 msgid "Dithering mode"
 msgstr ""
 
-#: src/gtk/window.ui:294
+#: src/gtk/window.ui:293
 msgid "Dither"
 msgstr ""
 
-#: src/gtk/window.ui:309
+#: src/gtk/window.ui:308
 msgid "Max colors"
 msgstr ""
 
-#: src/gtk/window.ui:310
+#: src/gtk/window.ui:309
 msgid "Palette"
 msgstr ""
 
@@ -258,94 +258,94 @@ msgstr ""
 msgid "_About ImageFlow"
 msgstr ""
 
-#: src/gtk/window.ui:399
+#: src/gtk/window.ui:392
 msgid "Application"
 msgstr ""
 
-#: src/gtk/window.ui:404
+#: src/gtk/window.ui:397
 msgid ""
 "Light\n"
 "Dark"
 msgstr ""
 
-#: src/gtk/window.ui:408
+#: src/gtk/window.ui:401
 msgid "Application color theme"
 msgstr ""
 
-#: src/gtk/window.ui:409
+#: src/gtk/window.ui:402
 msgid "Theme"
 msgstr ""
 
-#: src/gtk/window.ui:414
+#: src/gtk/window.ui:407
 msgid "Detect original file resolution"
 msgstr ""
 
-#: src/gtk/window.ui:415
+#: src/gtk/window.ui:408
 msgid "Detect size"
 msgstr ""
 
-#: src/gtk/window.ui:424
+#: src/gtk/window.ui:415
 msgid "Generation"
 msgstr ""
 
-#: src/gtk/window.ui:427
+#: src/gtk/window.ui:418
 msgid "Accurate rounding in interpolation"
 msgstr ""
 
-#: src/gtk/window.ui:428
+#: src/gtk/window.ui:419
 msgid "Accurate rounding"
 msgstr ""
 
-#: src/gtk/window.ui:441
+#: src/gtk/window.ui:432
 msgid "Statistics mode"
 msgstr ""
 
-#: src/gtk/window.ui:442
+#: src/gtk/window.ui:433
 msgid "Palette generation"
 msgstr ""
 
-#: src/gtk/window.ui:456
+#: src/gtk/window.ui:447
 msgid "Crosshatch pattern visibility level"
 msgstr ""
 
-#: src/gtk/window.ui:457
+#: src/gtk/window.ui:448
 msgid "Bayer scale"
 msgstr ""
 
-#: src/gtk/window.ui:467
+#: src/gtk/window.ui:458
 msgid "Lossless compression method"
 msgstr ""
 
-#: src/gtk/window.ui:468
+#: src/gtk/window.ui:459
 msgid "Lossless"
 msgstr ""
 
-#: src/gtk/window.ui:482
+#: src/gtk/window.ui:473
 msgid "Quality level"
 msgstr ""
 
-#: src/gtk/window.ui:483
+#: src/gtk/window.ui:474 src/gtk/window.ui:538
 msgid "Quality"
 msgstr ""
 
-#: src/gtk/window.ui:484
+#: src/gtk/window.ui:475
 msgid ""
 "For lossy encoding, this controls image quality. For lossless encoding, this "
 "controls the effort and time spent in compression. Range is 0 to 100. "
 "Default is 75."
 msgstr ""
 
-#: src/gtk/window.ui:501
+#: src/gtk/window.ui:492
 msgid ""
 "Warning!\n"
 "This value overrides other settings"
 msgstr ""
 
-#: src/gtk/window.ui:503
+#: src/gtk/window.ui:494
 msgid "Preset"
 msgstr ""
 
-#: src/gtk/window.ui:504
+#: src/gtk/window.ui:495
 msgid ""
 "This does some automatic settings based on the general type of the image.\n"
 "None: Do not use a preset.\n"
@@ -357,15 +357,15 @@ msgid ""
 "Text: Text-like."
 msgstr ""
 
-#: src/gtk/window.ui:525
+#: src/gtk/window.ui:516
 msgid "Adjusts quality and speed tradeoff"
 msgstr ""
 
-#: src/gtk/window.ui:526
+#: src/gtk/window.ui:517
 msgid "Compression level"
 msgstr ""
 
-#: src/gtk/window.ui:527
+#: src/gtk/window.ui:518
 msgid ""
 "For lossy, this is a quality/speed tradeoff. Higher values give better "
 "quality for a given size at the cost of increased encoding time. For "
@@ -376,30 +376,55 @@ msgid ""
 "valid range is 0 to 6. Default is 4."
 msgstr ""
 
-#: src/window.py:82
-msgid "Done, image size in MB:"
+#: src/gtk/window.ui:537
+msgid "Constant rate factor"
 msgstr ""
 
-#: src/window.py:83
-msgid "Saved:"
+#: src/gtk/window.ui:539
+msgid ""
+"Constant rate factor (CRF). Lower values mean better quality and a larger "
+"file, higher values mean worse quality and a smaller file. The valid range "
+"is 0 to 63. Default is 30."
 msgstr ""
 
-#: src/window.py:84
-msgid "Show in Files"
+#: src/gtk/window.ui:553
+msgid "Quality / speed tradeoff"
+msgstr ""
+
+#: src/gtk/window.ui:554
+msgid "Speed"
+msgstr ""
+
+#: src/gtk/window.ui:555
+msgid ""
+"Quality / speed tradeoff (cpu-used). Higher values give faster encoding at "
+"the cost of quality. The valid range is 0 to 8. Default is 6."
 msgstr ""
 
 #: src/window.py:85
-msgid "Source"
+msgid "Done, image size in MB:"
 msgstr ""
 
 #: src/window.py:86
-msgid "Application for converting video files to high-quality animated images."
+msgid "Saved:"
+msgstr ""
+
+#: src/window.py:87
+msgid "Show in Files"
+msgstr ""
+
+#: src/window.py:88
+msgid "Source"
 msgstr ""
 
 #: src/window.py:89
+msgid "Application for converting video files to high-quality animated images."
+msgstr ""
+
+#: src/window.py:92
 msgid "File not accessible"
 msgstr ""
 
-#: src/window.py:90
+#: src/window.py:93
 msgid "If you’re using Flatpak, verify file access permissions"
 msgstr ""

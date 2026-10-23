@@ -101,5 +101,15 @@
 			<summary>WebP, compression level</summary>
 			<description>Adjusts quality and speed tradeoff</description>
 		</key>
+		<key name="avif-quality" type="i">
+			<default>30</default>
+			<summary>AVIF, quality</summary>
+			<description>Constant rate factor (CRF) level</description>
+		</key>
+		<key name="avif-speed" type="i">
+			<default>6</default>
+			<summary>AVIF, speed</summary>
+			<description>Quality and speed tradeoff level</description>
+		</key>
 	</schema>
 </schemalist>
