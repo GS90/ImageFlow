@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 1.2.0 -->
 <interface>
   <!-- interface-name window.ui -->
   <requires lib="Adw" version="1.0"/>
@@ -385,8 +386,11 @@ AVIF</property>
     </section>
   </menu>
   <object class="AdwPreferencesDialog" id="pref-dialog">
+    <property name="content-width">600</property>
     <child>
       <object class="AdwPreferencesPage">
+        <property name="icon-name">preferences-system-symbolic</property>
+        <property name="title">General</property>
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Application</property>
@@ -419,6 +423,17 @@ Dark</property>
                 <property name="title" translatable="yes">Accurate rounding</property>
               </object>
             </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="icon-name">image-x-generic-symbolic</property>
+        <property name="title">GIF</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title">GIF</property>
             <child>
               <object class="AdwComboRow" id="stats-mode">
                 <property name="model">
@@ -450,6 +465,12 @@ Single</property>
             </child>
           </object>
         </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="icon-name">image-x-generic-symbolic</property>
+        <property name="title">WebP</property>
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title">WebP</property>
@@ -520,6 +541,12 @@ Text: Text-like.</property>
             </child>
           </object>
         </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="icon-name">image-x-generic-symbolic</property>
+        <property name="title">AVIF</property>
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title">AVIF</property>
@@ -559,6 +586,5 @@ Text: Text-like.</property>
         </child>
       </object>
     </child>
-    <property name="content-width">400</property>
   </object>
 </interface>

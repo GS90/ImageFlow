@@ -55,7 +55,15 @@
 
   <releases>
 
-    <release version="1.2.0" date="2026-10-23">
+    <release version="1.2.2" date="2026-10-24">
+      <description translate="no">
+        <ul>
+          <li>Improved preferences UI.</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="1.2.1" date="2026-10-23">
       <description translate="no">
         <ul>
           <li>Added AVIF support, bug fixes, and other improvements.</li>
