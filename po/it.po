@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-23 11:00+0300\n"
-"PO-Revision-Date: 2026-01-25 13:22+0200\n"
+"PO-Revision-Date: 2026-10-23 20:22+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -27,9 +27,8 @@ msgid "ImageFlow"
 msgstr "ImageFlow"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:8
-#, fuzzy
 msgid "video;converter;image;gif;webp;avif"
-msgstr "video;convertitore;immagine;gif;webp"
+msgstr "video;convertitore;immagine;gif;webp;avif"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
 msgid "Video to animated images"
@@ -40,18 +39,16 @@ msgid "Golodnikov Sergey"
 msgstr "Golodnikov Sergey"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
-#, fuzzy
 msgid ""
 "This application converts videos into animated GIF, WebP, and AVIF images "
 "using the FFmpeg library. You can configure key parameters, including output "
 "size, frame rate, filters (such as interpolation and dithering), palette-"
 "generation method, and maximum number of colors."
 msgstr ""
-"Questa applicazione è progettata per convertire i video in GIF animate e "
-"immagini WebP utilizzando la libreria FFmpeg. È possibile configurare "
-"parametri chiave,come la dimensione dell'immagine di output, la frequenza "
-"dei fotogrammi, i filtri applicati (metodo di interpolazione, modalità di "
-"dithering), metodo di generazione della tavolozza e numero massimo di colori."
+"Questa applicazione converte video in immagini animate nei formati GIF, WebP e AVIF "
+"utilizzando la libreria FFmpeg. È possibile configurare parametri chiave, tra cui "
+"le dimensioni dell'output, la frequenza dei fotogrammi, i filtri (come l'interpolazione e il dithering), "
+"il metodo di generazione della tavolozza e il numero massimo di colori."
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:15
 msgid "Features:"
@@ -426,7 +423,7 @@ msgstr ""
 
 #: src/gtk/window.ui:537
 msgid "Constant rate factor"
-msgstr ""
+msgstr "Fattore di qualità costante"
 
 #: src/gtk/window.ui:539
 msgid ""
@@ -434,21 +431,27 @@ msgid ""
 "file, higher values mean worse quality and a smaller file. The valid range "
 "is 0 to 63. Default is 30."
 msgstr ""
+"Fattore di qualità costante (CRF). Valori più bassi indicano una qualità "
+"migliore e un file di dimensioni maggiori; valori più alti indicano una "
+"qualità inferiore e un file di dimensioni minori. L'intervallo valido va "
+"da 0 a 63. Il valore predefinito è 30."
 
 #: src/gtk/window.ui:553
-#, fuzzy
 msgid "Quality / speed tradeoff"
-msgstr "Regola il compromesso tra qualità e velocità"
+msgstr "Compromesso qualità/velocità"
 
 #: src/gtk/window.ui:554
 msgid "Speed"
-msgstr ""
+msgstr "Velocità"
 
 #: src/gtk/window.ui:555
 msgid ""
 "Quality / speed tradeoff (cpu-used). Higher values give faster encoding at "
 "the cost of quality. The valid range is 0 to 8. Default is 6."
 msgstr ""
+"Compromesso qualità/velocità (cpu-used). Valori più elevati consentono una "
+"codifica più rapida a scapito della qualità. L'intervallo valido va da 0 a "
+"8. Il valore predefinito è 6."
 
 #: src/window.py:85
 msgid "Done, image size in MB:"
