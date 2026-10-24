@@ -549,10 +549,11 @@ class ImageFlowApplication(Adw.Application):
                 self.w.segment_entry_end.set_text(value)
 
     def segment_range_get(self):
-        return [
-            '-ss', self.microseconds_to_hms(self.segment_value_start),
-            '-to', self.microseconds_to_hms(self.segment_value_end),
-        ]
+        duration = self.segment_value_end - self.segment_value_start
+        return (
+            ['-ss', self.microseconds_to_hms(self.segment_value_start)],
+            ['-t', self.microseconds_to_hms(duration)],
+        )
 
     def microseconds_to_hms(self, microseconds):
         delta = timedelta(microseconds=microseconds)
@@ -743,8 +744,10 @@ class ImageFlowApplication(Adw.Application):
 
     def generate(self, uno, dos, tres, cuatro):
         try:
+            duration = []
             if self.enable_trim:
-                src = [*self.segment_range_get(), '-i', self.source]
+                seek, duration = self.segment_range_get()
+                src = [*seek, '-i', self.source]
             else:
                 src = ['-i', self.source,]
 
@@ -759,7 +762,7 @@ class ImageFlowApplication(Adw.Application):
             if self.file_format == '.gif':
                 # palette
                 result = subprocess.run([
-                    'ffmpeg', '-v', 'error', *src,
+                    'ffmpeg', '-v', 'error', *src, *duration,
                     '-vf', dos, '-y', self.palette,
                 ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 if result.returncode != 0:
@@ -768,12 +771,12 @@ class ImageFlowApplication(Adw.Application):
                         self.generation_failed, 'Palette error', err)
                     return
                 cmd.extend((
-                    '-i', self.palette,
+                    '-i', self.palette, *duration,
                     '-filter_complex', f'{uno} [x]; [x][1:v] {tres}',
                     *cuatro, self.result,
                 ))
             else:
-                cmd.extend(('-vf', uno, *cuatro, self.result))
+                cmd.extend((*duration, '-vf', uno, *cuatro, self.result))
 
             # conversion
             result = subprocess.run(
@@ -794,7 +797,8 @@ class ImageFlowApplication(Adw.Application):
         self.result = ''
         self.stack_adjust_visibility('display')
         self.switch_control(generate=True, preview=False, save=False)
-        self.trim_access(True)
+        self.w.trim.set_sensitive(True)
+        self.w.segment.set_visible(self.enable_trim)
         self.message_show(message, detail)
 
     def generation_complete(self):
@@ -814,7 +818,8 @@ class ImageFlowApplication(Adw.Application):
 
     def generate_wrapper(self, _):
         self.switch_control(generate=False, preview=False, save=False)
-        self.trim_access(False)
+        self.w.trim.set_sensitive(False)
+        self.w.segment.set_visible(False)
         self.stack_adjust_visibility('spinner')
         self.options_save()
         args = self.preparation()
