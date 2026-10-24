@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-24 15:07+0300\n"
-"PO-Revision-Date: 2026-10-24 15:11+0300\n"
+"PO-Revision-Date: 2026-10-24 18:50+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -494,10 +494,18 @@ msgid "Analysis error"
 msgstr "Ошибка при анализе"
 
 #: src/window.py:97
+msgid "No video stream found in file"
+msgstr "В файле не найден видеопоток"
+
+#: src/window.py:98
+msgid "Unable to determine video duration"
+msgstr "Не удалось определить продолжительность видео"
+
+#: src/window.py:99
 msgid "Saving error"
 msgstr "Ошибка сохранения"
 
-#: src/window.py:98
+#: src/window.py:100
 msgid "Timestamp"
 msgstr "Интервал обрезки"
 

@@ -55,11 +55,12 @@
 
   <releases>
 
-    <release version="1.2.2" date="2026-10-24">
+    <release version="1.2.4" date="2026-10-24">
       <description translate="no">
         <ul>
           <li>Improved preferences UI.</li>
           <li>Update Italian translation.</li>
+          <li>Bug fixes, and other improvements.</li>
         </ul>
       </description>
     </release>

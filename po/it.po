@@ -497,10 +497,18 @@ msgid "Analysis error"
 msgstr ""
 
 #: src/window.py:97
-msgid "Saving error"
+msgid "No video stream found in file"
 msgstr ""
 
 #: src/window.py:98
+msgid "Unable to determine video duration"
+msgstr ""
+
+#: src/window.py:99
+msgid "Saving error"
+msgstr ""
+
+#: src/window.py:100
 msgid "Timestamp"
 msgstr ""
 

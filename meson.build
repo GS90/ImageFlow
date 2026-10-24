@@ -1,5 +1,5 @@
 project('imageflow',
-          version: '1.2.2',
+          version: '1.2.4',
     meson_version: '>= 1.0.0',
   default_options: [ 'warning_level=2', 'werror=false', ],
 )

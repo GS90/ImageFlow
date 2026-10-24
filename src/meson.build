@@ -28,9 +28,9 @@ configure_file(
 
 if_sources = [
   '__init__.py',
+  'data.py',
   'main.py',
   'window.py',
-  'data.py',
 ]
 
 

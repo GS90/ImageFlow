@@ -154,7 +154,7 @@ class ImageFlowApplication(Adw.Application):
             'activate', self.segment_entry_end)
         # format
         self.w.format.connect('notify::selected-item', self.format_switch)
-        # drag and drop
+        # drag & drop
         drop_target = Gtk.DropTarget.new(Gio.File, Gdk.DragAction.COPY)
         drop_target.connect('drop', self.on_drop)
         self.w.display.add_controller(drop_target)
@@ -289,12 +289,12 @@ class ImageFlowApplication(Adw.Application):
         dialog.set_title('Select a video file')
         # file type filters
         filters = Gio.ListStore.new(Gtk.FileFilter)
-        # all files:
+        # all files
         filter = Gtk.FileFilter.new()
         filter.set_name('All')
         filter.add_pattern('*.*')
         filters.append(filter)
-        # video files:
+        # video files
         filter = Gtk.FileFilter.new()
         filter.set_name('Video')
 
