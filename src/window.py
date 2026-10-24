@@ -82,7 +82,7 @@ class WindowIF(Adw.ApplicationWindow):
     avif_speed = Gtk.Template.Child('avif-speed')
 
     # variables for translation
-    ts_size = _('Done, image size in MB:')
+    ts_size = _('Done, image size in MB =')
     ts_save = _('Saved:')
     ts_save_show = _('Show in Files')
     ts_src = _('Source')

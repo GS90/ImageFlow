@@ -19,6 +19,7 @@
 
 
 from datetime import timedelta
+import locale
 import os
 import re
 import shutil
@@ -801,7 +802,7 @@ class ImageFlowApplication(Adw.Application):
         self.name = basename + self.file_format
 
         file_size = round(os.path.getsize(self.result) / (1024 ** 2), 1)
-        file_size = str(file_size).replace('.', ',')
+        file_size = locale.format_string('%.1f', file_size)
         self.w.overlay.add_toast(Adw.Toast(
             title=f'{self.w.ts_size} {file_size}',
             timeout=4,

@@ -19,6 +19,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+
 import gettext
 import locale
 import os
@@ -32,6 +33,7 @@ localedir = '@localedir@'
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
+locale.setlocale(locale.LC_ALL, '')
 locale.bindtextdomain('imageflow', localedir)
 locale.textdomain('imageflow')
 
