@@ -94,6 +94,8 @@ class WindowIF(Adw.ApplicationWindow):
         _('If you’re using Flatpak, verify file access permissions'),
     )
     ts_error_analysis = _('Analysis error')
+    ts_error_analysis_video = _('No video stream found in file')
+    ts_error_analysis_duration = _('Unable to determine video duration')
     ts_error_saving = _('Saving error')
     ts_error_timestamp = _('Timestamp')
 

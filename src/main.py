@@ -187,14 +187,16 @@ class ImageFlowApplication(Adw.Application):
         self.switch_control(generate=True, preview=False, save=False)
         self.file_parsing()
         # stream & trim
-        self.connect_stream()
-        self.trim_access(True)
+        self.trim_access(self.connect_stream())
 
-    def connect_stream(self):
+    def connect_stream(self) -> bool:
         self.disconnect_stream()
         self.stream = self.w.video.get_media_stream()
+        if self.stream is None:
+            return False
         self.stream_timestamp_handler = self.stream.connect(
             'notify::timestamp', self.get_timestamp)
+        return True
 
     def disconnect_stream(self):
         if self.stream is not None and self.stream_timestamp_handler:
@@ -226,6 +228,11 @@ class ImageFlowApplication(Adw.Application):
             return
         lines = result.stdout.decode('utf-8').strip().split('\n')
         if len(lines) < 2:
+            if any(',' in line for line in lines):
+                detail = self.w.ts_error_analysis_duration
+            else:
+                detail = self.w.ts_error_analysis_video
+            self.message_show(self.w.ts_error_analysis, detail)
             return
         size, duration = lines[0], lines[1]
         # duration
@@ -418,6 +425,8 @@ class ImageFlowApplication(Adw.Application):
             return
         if self.source != self.current:
             return
+        if self.stream is None:
+            return
         state = toggle_button.get_active()
         self.enable_trim = state
         self.w.segment.set_visible(state)
@@ -471,6 +480,8 @@ class ImageFlowApplication(Adw.Application):
             self.w.segment_box_end.add_css_class('success')
 
     def segment_entry_start(self, entry):
+        if self.stream is None:
+            return
         text = entry.get_text()
         if re.fullmatch(self.segment_format_options[1], text):
             entry.remove_css_class('error')
@@ -486,6 +497,8 @@ class ImageFlowApplication(Adw.Application):
             entry.add_css_class('error')
 
     def segment_entry_end(self, entry):
+        if self.stream is None:
+            return
         text = entry.get_text()
         if re.fullmatch(self.segment_format_options[1], text):
             entry.remove_css_class('error')
