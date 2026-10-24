@@ -6,5 +6,6 @@ Terminal=false
 Type=Application
 Categories=GNOME;GTK;AudioVideo;Video;Graphics;
 Keywords=video;converter;image;gif;webp;avif;
+MimeType=video/mp4;video/mpeg;video/x-msvideo;video/ogg;video/quicktime;video/webm;video/x-matroska;
 StartupNotify=false
 DBusActivatable=true

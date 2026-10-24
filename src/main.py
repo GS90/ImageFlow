@@ -42,7 +42,7 @@ TMP_NAME = 'result'
 class ImageFlowApplication(Adw.Application):
     def __init__(self, version=''):
         super().__init__(application_id='tech.digiroad.ImageFlow',
-                         flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
+                         flags=Gio.ApplicationFlags.HANDLES_OPEN,
                          resource_base_path='/tech/digiroad/ImageFlow')
         self.version = version
         self.create_action('open', self.open_file, ['<primary>o'])
@@ -116,6 +116,14 @@ class ImageFlowApplication(Adw.Application):
             self.connect_signals()
         # format check
         self.format_switch(self.w.format, None)
+
+    def do_open(self, files, _hint):
+        self.activate()
+        for file in files:
+            path = file.get_path()
+            if path and os.path.exists(path):
+                self.accept_file(path)
+                break
 
     # -------------------------------------------------------------------------
 
@@ -264,18 +272,28 @@ class ImageFlowApplication(Adw.Application):
     # -------------------------------------------------------------------------
 
     def open_file(self, _button, _=None):
-        dialog = Gtk.FileChooserNative.new(
-            title='Select a video file',
-            parent=self.w.get_native(),
-            action=Gtk.FileChooserAction.OPEN,
-        )
-        dialog.set_modal(True)
+        def open_file_finish(dialog, result):
+            try:
+                file = dialog.open_finish(result)
+            except GLib.Error as err:
+                if err.matches(Gtk.DialogError.quark(),
+                               Gtk.DialogError.DISMISSED):
+                    return
+                self.message_show(self.w.ts_error_analysis, str(err))
+                return
+            if not file:
+                return
+            self.accept_file(file.get_path())
 
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title('Select a video file')
+        # file type filters
+        filters = Gio.ListStore.new(Gtk.FileFilter)
         # all files:
         filter = Gtk.FileFilter.new()
         filter.set_name('All')
         filter.add_pattern('*.*')
-        dialog.add_filter(filter)
+        filters.append(filter)
         # video files:
         filter = Gtk.FileFilter.new()
         filter.set_name('Video')
@@ -303,18 +321,10 @@ class ImageFlowApplication(Adw.Application):
         for e in extensions:
             filter.add_pattern(e)
 
-        dialog.add_filter(filter)
-        dialog.set_filter(filter)
-
-        def open_file_response(dialog, response_id):
-            if response_id == Gtk.ResponseType.ACCEPT:
-                file = dialog.get_file()
-                if file:
-                    self.accept_file(file.get_path())
-            dialog.destroy()
-
-        dialog.connect('response', open_file_response)
-        dialog.show()
+        filters.append(filter)
+        dialog.set_filters(filters)
+        dialog.set_default_filter(filter)
+        dialog.open(self.w, None, open_file_finish)
 
     def save_file(self, _):
         def save_file_finish(dialog, result):
@@ -412,8 +422,7 @@ class ImageFlowApplication(Adw.Application):
         self.w.video.set_loop(state)
         if self.current != '':
             self.w.video.set_filename(self.current)
-            if self.current == self.source:
-                self.connect_stream()
+            self.connect_stream()
 
     # -------------------------------------------------------------------------
 

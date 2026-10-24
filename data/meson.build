@@ -15,9 +15,10 @@ endif
 appstream_file = i18n.merge_file(
         input: 'tech.digiroad.ImageFlow.metainfo.xml.in',
        output: 'tech.digiroad.ImageFlow.metainfo.xml',
-       po_dir: '../po',
-      install: true,
-  install_dir: get_option('datadir') / 'metainfo'
+         type: 'xml',
+        po_dir: '../po',
+       install: true,
+   install_dir: get_option('datadir') / 'metainfo'
 )
 
 appstreamcli = find_program('appstreamcli', required: false, disabler: true)
