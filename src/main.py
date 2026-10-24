@@ -430,19 +430,25 @@ class ImageFlowApplication(Adw.Application):
         if self.freeze:
             return
         self.segment_point = 0
-        if self.source == '':
-            return
-        if self.source != self.current:
-            return
-        if self.stream is None:
-            return
         state = toggle_button.get_active()
-        self.enable_trim = state
-        self.w.segment.set_visible(state)
-        if state:
-            duration = self.stream.get_duration()
-            if duration != 0:
-                self.segment_range_set(self.stream.get_duration())
+        if not state:
+            self.enable_trim = False
+            self.w.segment.set_visible(False)
+            self.w.segment_box_start.remove_css_class('success')
+            self.w.segment_box_end.remove_css_class('success')
+            return
+        if self.source == '' or self.source != self.current \
+                or self.stream is None:
+            # trim unavailable: restore switch to real state
+            self.freeze = True
+            self.w.trim.set_active(False)
+            self.freeze = False
+            return
+        self.enable_trim = True
+        self.w.segment.set_visible(True)
+        duration = self.stream.get_duration()
+        if duration != 0:
+            self.segment_range_set(duration)
 
     def trim_access(self, access: bool):
         self.freeze = True
@@ -464,23 +470,22 @@ class ImageFlowApplication(Adw.Application):
         if self.segment_point != 0:
             self.segment_range_set(self.stream.get_timestamp())
 
-    def segment_button_start(self, _, entry=False):
+    def segment_button_start(self, _):
         self.enable_trim = True
         if self.segment_point == 1:  # start
-            if entry:
-                return
             self.segment_point = 0
             self.w.segment_box_start.remove_css_class('success')
         else:
             self.segment_point = 1
             self.w.segment_box_start.add_css_class('success')
             self.w.segment_box_end.remove_css_class('success')
+            if self.stream is not None \
+                    and self.segment_value_start == 0:
+                self.segment_range_set(self.stream.get_timestamp())
 
-    def segment_button_end(self, _, entry=False):
+    def segment_button_end(self, _):
         self.enable_trim = True
         if self.segment_point == 2:  # end
-            if entry:
-                return
             self.segment_point = 0
             self.w.segment_box_end.remove_css_class('success')
         else:
@@ -501,7 +506,10 @@ class ImageFlowApplication(Adw.Application):
                 return
             self.stream.seek(microseconds)
             self.segment_value_start = microseconds
-            self.segment_button_start(None, True)
+            # disarm live capture so the typed value is not overwritten
+            if self.segment_point == 1:
+                self.segment_point = 0
+            self.w.segment_box_start.add_css_class('success')
         else:
             entry.add_css_class('error')
 
@@ -518,7 +526,10 @@ class ImageFlowApplication(Adw.Application):
                 return
             self.stream.seek(microseconds)
             self.segment_value_end = microseconds
-            self.segment_button_end(None, True)
+            # disarm live capture so the typed value is not overwritten
+            if self.segment_point == 2:
+                self.segment_point = 0
+            self.w.segment_box_end.add_css_class('success')
         else:
             entry.add_css_class('error')
 
@@ -619,6 +630,7 @@ class ImageFlowApplication(Adw.Application):
     def preview_switch(self, widget, _):
         if self.result != '':
             if widget.get_active():
+                self.disconnect_stream()
                 if self.file_format in ('.webp', '.avif'):
                     self.stack_adjust_visibility('external')
                 else:
@@ -626,15 +638,17 @@ class ImageFlowApplication(Adw.Application):
                     self.stack_adjust_visibility('display')
                 self.current = self.result
                 self.w.preview.add_css_class('success')
-                # trim
-                self.trim_access(False)
+                # trim & segment
+                self.w.trim.set_sensitive(False)
+                self.w.segment.set_visible(False)
             else:
                 self.stack_adjust_visibility('display')
                 self.w.video.set_filename(self.source)
                 self.current = self.source
                 self.w.preview.remove_css_class('success')
-                # trim & stream
-                self.trim_access(True)
+                # trim, segment & stream
+                self.w.trim.set_sensitive(True)
+                self.w.segment.set_visible(self.enable_trim)
                 self.connect_stream()
 
     def toast_button_show(self, _, fp: str):
@@ -818,6 +832,11 @@ class ImageFlowApplication(Adw.Application):
     def generation_failed(self, message: str, detail: str):
         self.result = ''
         self.stack_adjust_visibility('display')
+        if self.source != '':
+            # return to source stream; otherwise trim to avoid stale result
+            self.w.video.set_filename(self.source)
+            self.current = self.source
+            self.connect_stream()
         self.switch_control(generate=True, preview=False, save=False)
         self.w.trim.set_sensitive(True)
         self.w.segment.set_visible(self.enable_trim)
@@ -839,6 +858,9 @@ class ImageFlowApplication(Adw.Application):
         self.switch_control(generate=True, preview=True, save=True)
 
     def generate_wrapper(self, _):
+        self.segment_point = 0
+        self.w.segment_box_start.remove_css_class('success')
+        self.w.segment_box_end.remove_css_class('success')
         self.switch_control(generate=False, preview=False, save=False)
         self.w.trim.set_sensitive(False)
         self.w.segment.set_visible(False)
