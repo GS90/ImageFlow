@@ -50,6 +50,7 @@ class ImageFlowApplication(Adw.Application):
         self.create_action('preferences',
                            self.preferences_action,
                            ['<primary>p'])
+        self.signal_handlers_connected = False
 
     def do_activate(self):
         self.settings = Gio.Settings.new('tech.digiroad.ImageFlow')
@@ -109,6 +110,15 @@ class ImageFlowApplication(Adw.Application):
 
         self.freeze = False
 
+        if not self.signal_handlers_connected:
+            self.signal_handlers_connected = True
+            self.connect_signals()
+        # format check
+        self.format_switch(self.w.format, None)
+
+    # -------------------------------------------------------------------------
+
+    def connect_signals(self):
         self.w.pref_theme.connect('notify::selected-item', self.theme_change)
         self.w.pref_dialog.connect('closed', self.preferences_save)
 
@@ -133,9 +143,8 @@ class ImageFlowApplication(Adw.Application):
             'activate', self.segment_entry_start)
         self.w.segment_entry_end.connect(
             'activate', self.segment_entry_end)
-        # format check
+        # format
         self.w.format.connect('notify::selected-item', self.format_switch)
-        self.format_switch(self.w.format, None)
         # drag and drop
         drop_target = Gtk.DropTarget.new(Gio.File, Gdk.DragAction.COPY)
         drop_target.connect('drop', self.on_drop)
@@ -464,7 +473,11 @@ class ImageFlowApplication(Adw.Application):
         text = entry.get_text()
         if re.fullmatch(self.segment_format_options[1], text):
             entry.remove_css_class('error')
-            microseconds = self.text_to_microseconds(text)
+            try:
+                microseconds = self.text_to_microseconds(text)
+            except ValueError as err:
+                self.message_show('Timestamp', str(err))
+                return
             self.stream.seek(microseconds)
             self.segment_value_start = microseconds
             self.segment_button_start(None, True)
@@ -475,7 +488,11 @@ class ImageFlowApplication(Adw.Application):
         text = entry.get_text()
         if re.fullmatch(self.segment_format_options[1], text):
             entry.remove_css_class('error')
-            microseconds = self.text_to_microseconds(text)
+            try:
+                microseconds = self.text_to_microseconds(text)
+            except ValueError as err:
+                self.message_show('Timestamp', str(err))
+                return
             self.stream.seek(microseconds)
             self.segment_value_end = microseconds
             self.segment_button_end(None, True)
@@ -567,9 +584,8 @@ class ImageFlowApplication(Adw.Application):
             seconds = int(split[0])
             milliseconds = int(split[1].ljust(3, '0')[:3])
         else:
-            err = f'Format parsing error: option "{text}" is invalid'
-            self.message_show('Timestamp', err)
-            return
+            raise ValueError(
+                f'Format parsing error: option "{text}" is invalid')
 
         return (hours * 3600 + minutes * 60 + seconds) * 1000000 \
             + milliseconds * 1000
