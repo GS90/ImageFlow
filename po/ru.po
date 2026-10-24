@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-24 01:22+0300\n"
-"PO-Revision-Date: 2026-10-23 11:03+0300\n"
+"POT-Creation-Date: 2026-10-24 15:07+0300\n"
+"PO-Revision-Date: 2026-10-24 15:11+0300\n"
 "Last-Translator: Golodnikov Sergey <nn19051990@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -27,8 +27,8 @@ msgid "ImageFlow"
 msgstr "ImageFlow"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:8
-msgid "video;converter;image;gif;webp;avif"
-msgstr "video;converter;image;gif;webp;avif"
+msgid "video;converter;image;gif;webp;avif;"
+msgstr "video;converter;image;gif;webp;avif;"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
 msgid "Video to animated images"
@@ -278,6 +278,10 @@ msgstr "_Сочетания клавиш"
 msgid "_About ImageFlow"
 msgstr "_О программе"
 
+#: src/gtk/window.ui:393
+msgid "General"
+msgstr "Основные"
+
 #: src/gtk/window.ui:396
 msgid "Application"
 msgstr "Приложение"
@@ -452,8 +456,8 @@ msgstr ""
 "Допустимый диапазон - от 0 до 8. По умолчанию - 6."
 
 #: src/window.py:85
-msgid "Done, image size in MB:"
-msgstr "Завершено, размер изображения (Мб):"
+msgid "Done, image size in MB ="
+msgstr "Завершено, размер изображения (Мб) ="
 
 #: src/window.py:86
 msgid "Saved:"
@@ -468,18 +472,34 @@ msgid "Source"
 msgstr "Исходный код"
 
 #: src/window.py:89
+msgid "Cancel"
+msgstr "Отмена"
+
+#: src/window.py:90
 msgid "Application for converting video files to high-quality animated images."
 msgstr ""
 "Приложение для преобразования видеофайлов в высококачественные анимированные "
 "изображения."
 
-#: src/window.py:92
+#: src/window.py:93
 msgid "File not accessible"
 msgstr "Файл недоступен"
 
-#: src/window.py:93
+#: src/window.py:94
 msgid "If you’re using Flatpak, verify file access permissions"
 msgstr "Если вы используете Flatpak, проверьте права доступа"
+
+#: src/window.py:96
+msgid "Analysis error"
+msgstr "Ошибка при анализе"
+
+#: src/window.py:97
+msgid "Saving error"
+msgstr "Ошибка сохранения"
+
+#: src/window.py:98
+msgid "Timestamp"
+msgstr "Интервал обрезки"
 
 #~ msgid "Configuration preset"
 #~ msgstr "Предустановленная конфигурация"

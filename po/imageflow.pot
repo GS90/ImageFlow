@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-24 01:27+0300\n"
+"POT-Creation-Date: 2026-10-24 15:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "ImageFlow"
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.desktop.in:8
-msgid "video;converter;image;gif;webp;avif"
+msgid "video;converter;image;gif;webp;avif;"
 msgstr ""
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
@@ -258,6 +258,10 @@ msgstr ""
 msgid "_About ImageFlow"
 msgstr ""
 
+#: src/gtk/window.ui:393
+msgid "General"
+msgstr ""
+
 #: src/gtk/window.ui:396
 msgid "Application"
 msgstr ""
@@ -402,7 +406,7 @@ msgid ""
 msgstr ""
 
 #: src/window.py:85
-msgid "Done, image size in MB:"
+msgid "Done, image size in MB ="
 msgstr ""
 
 #: src/window.py:86
@@ -418,13 +422,29 @@ msgid "Source"
 msgstr ""
 
 #: src/window.py:89
+msgid "Cancel"
+msgstr ""
+
+#: src/window.py:90
 msgid "Application for converting video files to high-quality animated images."
 msgstr ""
 
-#: src/window.py:92
+#: src/window.py:93
 msgid "File not accessible"
 msgstr ""
 
-#: src/window.py:93
+#: src/window.py:94
 msgid "If you’re using Flatpak, verify file access permissions"
+msgstr ""
+
+#: src/window.py:96
+msgid "Analysis error"
+msgstr ""
+
+#: src/window.py:97
+msgid "Saving error"
+msgstr ""
+
+#: src/window.py:98
+msgid "Timestamp"
 msgstr ""

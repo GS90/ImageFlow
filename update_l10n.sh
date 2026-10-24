@@ -1,8 +1,10 @@
 #!/bin/bash
+set -euo pipefail
+cd "$(dirname "$0")"
 
 xgettext -o po/imageflow.pot --files-from=po/POTFILES.in
 
-msgmerge --update --backup='off' po/it.po po/imageflow.pot
-msgmerge --update --backup='off' po/ru.po po/imageflow.pot
-
-exit 0
+while IFS= read -r lang; do
+    [ -z "$lang" ] && continue
+    msgmerge --update --backup='off' "po/${lang}.po" po/imageflow.pot
+done < po/LINGUAS

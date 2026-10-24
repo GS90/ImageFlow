@@ -222,7 +222,7 @@ class ImageFlowApplication(Adw.Application):
         ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if result.returncode != 0:
             err = result.stderr.decode('utf-8').strip()
-            self.message_show('Analysis error', err)
+            self.message_show(self.w.ts_error_analysis, err)
             return
         lines = result.stdout.decode('utf-8').strip().split('\n')
         if len(lines) < 2:
@@ -233,7 +233,7 @@ class ImageFlowApplication(Adw.Application):
             duration = int(float(duration) * 1000000)
             self.segment_range_set(duration, init=True)
         except ValueError as err:
-            self.message_show('Analysis error', str(err))
+            self.message_show(self.w.ts_error_analysis, str(err))
         # size
         split = size.split(',')
         if len(split) == 2:
@@ -252,7 +252,7 @@ class ImageFlowApplication(Adw.Application):
                     self.w.image_height.set_value(height)
                     self.freeze = False
             except ValueError as err:
-                self.message_show('Analysis error', str(err))
+                self.message_show(self.w.ts_error_analysis, str(err))
 
     # -------------------------------------------------------------------------
 
@@ -316,7 +316,7 @@ class ImageFlowApplication(Adw.Application):
             except Exception as err:
                 err = str(err)
                 if 'dismissed by user' not in err.lower():
-                    self.message_show('Saving error', err)
+                    self.message_show(self.w.ts_error_saving, err)
                 return
             if not file:
                 return
@@ -326,7 +326,7 @@ class ImageFlowApplication(Adw.Application):
             try:
                 shutil.copy2(self.result, fp)
             except OSError as err:
-                self.message_show('Saving error', str(err))
+                self.message_show(self.w.ts_error_saving, str(err))
                 return
             toast_title = f'{self.w.ts_save} {self.name}'
             toast = Adw.Toast.new(title=toast_title)
@@ -477,7 +477,7 @@ class ImageFlowApplication(Adw.Application):
             try:
                 microseconds = self.text_to_microseconds(text)
             except ValueError as err:
-                self.message_show('Timestamp', str(err))
+                self.message_show(self.w.ts_error_timestamp, str(err))
                 return
             self.stream.seek(microseconds)
             self.segment_value_start = microseconds
@@ -492,7 +492,7 @@ class ImageFlowApplication(Adw.Application):
             try:
                 microseconds = self.text_to_microseconds(text)
             except ValueError as err:
-                self.message_show('Timestamp', str(err))
+                self.message_show(self.w.ts_error_timestamp, str(err))
                 return
             self.stream.seek(microseconds)
             self.segment_value_end = microseconds
@@ -938,7 +938,7 @@ class ImageFlowApplication(Adw.Application):
         dialog = Gtk.AlertDialog(
             message=message,
             detail=detail,
-            buttons=('Cancel',),
+            buttons=(self.w.ts_cancel,),
         )
         dialog.show(self.w)
 

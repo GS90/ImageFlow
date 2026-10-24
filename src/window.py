@@ -86,12 +86,16 @@ class WindowIF(Adw.ApplicationWindow):
     ts_save = _('Saved:')
     ts_save_show = _('Show in Files')
     ts_src = _('Source')
+    ts_cancel = _('Cancel')
     ts_comment = _('Application for converting video files to '
                    'high-quality animated images.')
     ts_error_permissions = (
         _('File not accessible'),
         _('If you’re using Flatpak, verify file access permissions'),
     )
+    ts_error_analysis = _('Analysis error')
+    ts_error_saving = _('Saving error')
+    ts_error_timestamp = _('Timestamp')
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

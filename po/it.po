@@ -4,13 +4,14 @@
 # ALBANO BATTISTELLA <ALBANOBATTISTELLA@GMAIL.COM>, 2026.  
 #  
 # Golodnikov Sergey <nn19051990@gmail.com>, 2026.
+# Albano Battistella <albanobattistella@gmail.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-24 01:22+0300\n"
-"PO-Revision-Date: 2026-10-23 20:22+0200\n"
+"POT-Creation-Date: 2026-10-24 15:07+0300\n"
+"PO-Revision-Date: 2026-10-24 14:49+0300\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 51.0\n"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:2
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:370
@@ -27,8 +28,8 @@ msgid "ImageFlow"
 msgstr "ImageFlow"
 
 #: data/tech.digiroad.ImageFlow.desktop.in:8
-msgid "video;converter;image;gif;webp;avif"
-msgstr "video;convertitore;immagine;gif;webp;avif"
+msgid "video;converter;image;gif;webp;avif;"
+msgstr "video;convertitore;immagine;gif;webp;avif;"
 
 #: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
 msgid "Video to animated images"
@@ -278,6 +279,10 @@ msgstr "_Scorciatoie da tastiera"
 msgid "_About ImageFlow"
 msgstr "_Informazioni su ImageFlow"
 
+#: src/gtk/window.ui:393
+msgid "General"
+msgstr "Generale"
+
 #: src/gtk/window.ui:396
 msgid "Application"
 msgstr "Applicazione"
@@ -455,8 +460,8 @@ msgstr ""
 "8. Il valore predefinito è 6."
 
 #: src/window.py:85
-msgid "Done, image size in MB:"
-msgstr "Fatto, dimensione immagine in MB:"
+msgid "Done, image size in MB ="
+msgstr "Fatto, dimensione immagine in MB ="
 
 #: src/window.py:86
 msgid "Saved:"
@@ -471,17 +476,33 @@ msgid "Source"
 msgstr "Sorgente"
 
 #: src/window.py:89
+msgid "Cancel"
+msgstr ""
+
+#: src/window.py:90
 msgid "Application for converting video files to high-quality animated images."
 msgstr ""
 "Applicazione per convertire file video in immagini animate di alta qualità."
 
-#: src/window.py:92
+#: src/window.py:93
 msgid "File not accessible"
 msgstr "File non accessibile"
 
-#: src/window.py:93
+#: src/window.py:94
 msgid "If you’re using Flatpak, verify file access permissions"
 msgstr "Se stai utilizzando Flatpak, verifica i permessi di accesso ai file"
+
+#: src/window.py:96
+msgid "Analysis error"
+msgstr ""
+
+#: src/window.py:97
+msgid "Saving error"
+msgstr ""
+
+#: src/window.py:98
+msgid "Timestamp"
+msgstr ""
 
 #~ msgid "Configuration preset"
 #~ msgstr "Preimpostazione di configurazione"
