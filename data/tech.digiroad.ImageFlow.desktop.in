@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=ImageFlow
-Exec=imageflow
+Exec=imageflow %F
 Icon=tech.digiroad.ImageFlow
 Terminal=false
 Type=Application

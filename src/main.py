@@ -117,11 +117,11 @@ class ImageFlowApplication(Adw.Application):
         # format check
         self.format_switch(self.w.format, None)
 
-    def do_open(self, files, _hint):
+    def do_open(self, files, n_files, _hint):
         self.activate()
-        for file in files:
+        for file in files[:n_files]:
             path = file.get_path()
-            if path and os.path.exists(path):
+            if path is not None:
                 self.accept_file(path)
                 break
 

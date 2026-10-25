@@ -34,7 +34,7 @@
   <content_rating type="oars-1.1"/>
 
   <branding>
-    <color type="primary" scheme_preference="light">#165aaa</color>
+    <color type="primary" scheme_preference="light">#4c9290</color>
     <color type="primary" scheme_preference="dark">#0a2a4e</color>
   </branding>
 
@@ -54,6 +54,14 @@
   </screenshots>
 
   <releases>
+
+    <release version="1.2.5" date="2026-10-25">
+      <description translate="no">
+        <ul>
+          <li>Added "Open With" support.</li>
+        </ul>
+      </description>
+    </release>
 
     <release version="1.2.4" date="2026-10-24">
       <description translate="no">
