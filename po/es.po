@@ -1,0 +1,506 @@
+# Spanish translation for ImageFlow.
+# Copyright (C) 2026 Golodnikov Sergey
+# This file is distributed under the same license as the ImageFlow package.
+# Pedro Flores, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-24 15:07+0300\n"
+"PO-Revision-Date: 2026-11-19 10:00+0100\n"
+"Last-Translator: Pedro Flores\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/tech.digiroad.ImageFlow.desktop.in:2
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:5 src/gtk/window.ui:370
+msgid "ImageFlow"
+msgstr "ImageFlow"
+
+#: data/tech.digiroad.ImageFlow.desktop.in:8
+msgid "video;converter;image;gif;webp;avif;"
+msgstr ""
+"video;converter;image;gif;webp;avif;vídeo;conversor;convertidor;imagen;animación;"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:8
+msgid "Video to animated images"
+msgstr "Convierte vídeos en imágenes animadas"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:10
+msgid "Golodnikov Sergey"
+msgstr "Golodnikov Sergey"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:14
+msgid ""
+"This application converts videos into animated GIF, WebP, and AVIF images "
+"using the FFmpeg library. You can configure key parameters, including output "
+"size, frame rate, filters (such as interpolation and dithering), palette-"
+"generation method, and maximum number of colors."
+msgstr ""
+"Esta aplicación convierte vídeos en imágenes animadas GIF, WebP y AVIF "
+"mediante la biblioteca FFmpeg. Puedes configurar los parámetros principales, "
+"como el tamaño de salida, la velocidad de fotogramas, los filtros (por "
+"ejemplo, la interpolación y el difuminado), el método de generación de la "
+"paleta y el número máximo de colores."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:15
+msgid "Features:"
+msgstr "Características:"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:17
+msgid "All conversion parameters can be configured."
+msgstr "Todos los parámetros de conversión son configurables."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:18
+msgid "Time range selection option."
+msgstr "Opción para seleccionar un intervalo de tiempo."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:19
+msgid "Preview of the result."
+msgstr "Vista previa del resultado."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:20
+msgid "Support for many formats."
+msgstr "Compatibilidad con muchos formatos."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:21
+msgid "Intuitive and user-friendly interface."
+msgstr "Interfaz intuitiva y fácil de usar."
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:44
+msgid "ImageFlow in dark mode"
+msgstr "ImageFlow en modo oscuro"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:48
+msgid "ImageFlow in light mode"
+msgstr "ImageFlow en modo claro"
+
+#: data/tech.digiroad.ImageFlow.metainfo.xml.in:52
+msgid "ImageFlow, preferences"
+msgstr "ImageFlow, preferencias"
+
+#: src/data.py:94
+msgid ""
+"Select «Start» or «End» and rewind the video to the desired frame, or enter "
+"the time in the corresponding field."
+msgstr ""
+"Selecciona «Inicio» o «Fin» y desplázate por el vídeo hasta el fotograma "
+"deseado, o introduce el tiempo en el campo correspondiente."
+
+#: src/data.py:102
+msgid "Time format - hours:minutes:seconds.milliseconds (00:00:00.000)"
+msgstr "Formato de tiempo - horas:minutos:segundos.milisegundos (00:00:00.000)"
+
+#: src/data.py:107
+msgid "Time format - minutes:seconds.milliseconds (00:00.000)"
+msgstr "Formato de tiempo - minutos:segundos.milisegundos (00:00.000)"
+
+#: src/data.py:112
+msgid "Time format - seconds.milliseconds (00.000)"
+msgstr "Formato de tiempo - segundos.milisegundos (00.000)"
+
+#: src/gtk/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "General"
+
+#: src/gtk/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Open video file"
+msgstr "Abrir archivo de vídeo"
+
+#: src/gtk/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: src/gtk/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostrar atajos"
+
+#: src/gtk/help-overlay.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Salir"
+
+#: src/gtk/window.ui:31
+msgid "Start"
+msgstr "Inicio"
+
+#: src/gtk/window.ui:54
+msgid "End"
+msgstr "Fin"
+
+#: src/gtk/window.ui:89
+msgid "View a file externally"
+msgstr "Ver el archivo en una aplicación externa"
+
+#: src/gtk/window.ui:116
+msgid "Open"
+msgstr "Abrir"
+
+#: src/gtk/window.ui:119
+msgid "Open video file"
+msgstr "Abrir archivo de vídeo"
+
+#: src/gtk/window.ui:129
+msgid "Application menu"
+msgstr "Menú de la aplicación"
+
+#: src/gtk/window.ui:134
+msgid "Loop"
+msgstr "Bucle"
+
+#: src/gtk/window.ui:136
+msgid "Video looping"
+msgstr "Reproducir el vídeo en bucle"
+
+#: src/gtk/window.ui:141
+msgid "Trim"
+msgstr "Recortar"
+
+#: src/gtk/window.ui:143
+msgid "Select a time segment"
+msgstr "Seleccionar un fragmento de tiempo"
+
+#: src/gtk/window.ui:165
+msgid ""
+"Original\n"
+"4320p\n"
+"2160p\n"
+"1440p\n"
+"1080p\n"
+"720p\n"
+"480p\n"
+"360p\n"
+"User"
+msgstr ""
+"Original\n"
+"4320p\n"
+"2160p\n"
+"1440p\n"
+"1080p\n"
+"720p\n"
+"480p\n"
+"360p\n"
+"Personalizado"
+
+#: src/gtk/window.ui:177
+msgid "Image size"
+msgstr "Tamaño de la imagen"
+
+#: src/gtk/window.ui:178
+msgid "Size"
+msgstr "Tamaño"
+
+#: src/gtk/window.ui:194
+msgid "Width"
+msgstr "Anchura"
+
+#: src/gtk/window.ui:210
+msgid "Height"
+msgstr "Altura"
+
+#: src/gtk/window.ui:239
+msgid "Interpolation"
+msgstr "Interpolación"
+
+#: src/gtk/window.ui:240
+msgid "Scaler"
+msgstr "Escalado"
+
+#: src/gtk/window.ui:247
+msgid "Keep aspect ratio"
+msgstr "Mantener la relación de aspecto"
+
+#: src/gtk/window.ui:248
+msgid "Ratio"
+msgstr "Proporción"
+
+#: src/gtk/window.ui:264
+msgid "Frames per second"
+msgstr "Fotogramas por segundo"
+
+#: src/gtk/window.ui:265
+msgid "FPS"
+msgstr "FPS"
+
+#: src/gtk/window.ui:293
+msgid "Dithering mode"
+msgstr "Modo de difuminado"
+
+#: src/gtk/window.ui:294
+msgid "Dither"
+msgstr "Difuminado"
+
+#: src/gtk/window.ui:309
+msgid "Max colors"
+msgstr "Máximo de colores"
+
+#: src/gtk/window.ui:310
+msgid "Palette"
+msgstr "Paleta"
+
+#: src/gtk/window.ui:324
+msgid "Format"
+msgstr "Formato"
+
+#: src/gtk/window.ui:340
+msgid "Generate"
+msgstr "Generar"
+
+#: src/gtk/window.ui:347
+msgid "Preview"
+msgstr "Vista previa"
+
+#: src/gtk/window.ui:354
+msgid "Save"
+msgstr "Guardar"
+
+#: src/gtk/window.ui:376
+msgid "_Preferences"
+msgstr "_Preferencias"
+
+#: src/gtk/window.ui:380
+msgid "_Keyboard Shortcuts"
+msgstr "Atajos del _teclado"
+
+#: src/gtk/window.ui:384
+msgid "_About ImageFlow"
+msgstr "_Acerca de ImageFlow"
+
+#: src/gtk/window.ui:393
+msgid "General"
+msgstr "General"
+
+#: src/gtk/window.ui:396
+msgid "Application"
+msgstr "Aplicación"
+
+#: src/gtk/window.ui:401
+msgid ""
+"Light\n"
+"Dark"
+msgstr ""
+"Claro\n"
+"Oscuro"
+
+#: src/gtk/window.ui:405
+msgid "Application color theme"
+msgstr "Tema de color de la aplicación"
+
+#: src/gtk/window.ui:406
+msgid "Theme"
+msgstr "Tema"
+
+#: src/gtk/window.ui:411
+msgid "Detect original file resolution"
+msgstr "Detectar la resolución del archivo original"
+
+#: src/gtk/window.ui:412
+msgid "Detect size"
+msgstr "Detectar el tamaño"
+
+#: src/gtk/window.ui:419
+msgid "Generation"
+msgstr "Generación"
+
+#: src/gtk/window.ui:422
+msgid "Accurate rounding in interpolation"
+msgstr "Redondeo preciso en la interpolación"
+
+#: src/gtk/window.ui:423
+msgid "Accurate rounding"
+msgstr "Redondeo preciso"
+
+#: src/gtk/window.ui:447
+msgid "Statistics mode"
+msgstr "Modo de estadísticas"
+
+#: src/gtk/window.ui:448
+msgid "Palette generation"
+msgstr "Generación de la paleta"
+
+#: src/gtk/window.ui:462
+msgid "Crosshatch pattern visibility level"
+msgstr "Nivel de visibilidad del patrón de sombreado cruzado"
+
+#: src/gtk/window.ui:463
+msgid "Bayer scale"
+msgstr "Escala de Bayer"
+
+#: src/gtk/window.ui:479
+msgid "Lossless compression method"
+msgstr "Método de compresión sin pérdida"
+
+#: src/gtk/window.ui:480
+msgid "Lossless"
+msgstr "Sin pérdida"
+
+#: src/gtk/window.ui:494
+msgid "Quality level"
+msgstr "Nivel de calidad"
+
+#: src/gtk/window.ui:495 src/gtk/window.ui:565
+msgid "Quality"
+msgstr "Calidad"
+
+#: src/gtk/window.ui:496
+msgid ""
+"For lossy encoding, this controls image quality. For lossless encoding, this "
+"controls the effort and time spent in compression. Range is 0 to 100. "
+"Default is 75."
+msgstr ""
+"En la codificación con pérdida, controla la calidad de la imagen. En la "
+"codificación sin pérdida, controla el esfuerzo y el tiempo dedicados a la "
+"compresión. El intervalo va de 0 a 100. El valor predeterminado es 75."
+
+#: src/gtk/window.ui:513
+msgid ""
+"Warning!\n"
+"This value overrides other settings"
+msgstr ""
+"¡Atención!\n"
+"Este valor anula otros ajustes"
+
+#: src/gtk/window.ui:515
+msgid "Preset"
+msgstr "Preajuste"
+
+#: src/gtk/window.ui:516
+msgid ""
+"This does some automatic settings based on the general type of the image.\n"
+"None: Do not use a preset.\n"
+"Default: Use the encoder default.\n"
+"Picture: Digital picture, like portrait, inner shot.\n"
+"Photo: Outdoor photograph, with natural lighting.\n"
+"Drawing: Hand or line drawing, with high-contrast details.\n"
+"Icon: Small-sized colorful images.\n"
+"Text: Text-like."
+msgstr ""
+"Aplica algunos ajustes automáticos según el tipo general de imagen.\n"
+"None: no usar ningún preajuste.\n"
+"Default: usar el valor predeterminado del codificador.\n"
+"Picture: imagen digital, como un retrato o una foto de interior.\n"
+"Photo: fotografía de exterior, con iluminación natural.\n"
+"Drawing: dibujo a mano o de líneas, con detalles de alto contraste.\n"
+"Icon: imágenes pequeñas y coloridas.\n"
+"Text: contenido similar a texto."
+
+#: src/gtk/window.ui:537
+msgid "Adjusts quality and speed tradeoff"
+msgstr "Ajusta el equilibrio entre calidad y velocidad"
+
+#: src/gtk/window.ui:538
+msgid "Compression level"
+msgstr "Nivel de compresión"
+
+#: src/gtk/window.ui:539
+msgid ""
+"For lossy, this is a quality/speed tradeoff. Higher values give better "
+"quality for a given size at the cost of increased encoding time. For "
+"lossless, this is a size/speed tradeoff. Higher values give smaller size at "
+"the cost of increased encoding time. More specifically, it controls the "
+"number of extra algorithms and compression tools used, and varies the "
+"combination of these tools. This maps to the method option in libwebp. The "
+"valid range is 0 to 6. Default is 4."
+msgstr ""
+"En la compresión con pérdida, es un equilibrio entre calidad y velocidad: "
+"los valores más altos ofrecen mejor calidad para un tamaño dado a costa de "
+"un mayor tiempo de codificación. En la compresión sin pérdida, es un "
+"equilibrio entre tamaño y velocidad: los valores más altos ofrecen un tamaño "
+"menor a costa de un mayor tiempo de codificación. En concreto, controla el "
+"número de algoritmos y herramientas de compresión adicionales que se usan y "
+"varía la combinación de estas herramientas. Corresponde a la opción «method» "
+"de libwebp. El intervalo válido va de 0 a 6. El valor predeterminado es 4."
+
+#: src/gtk/window.ui:564
+msgid "Constant rate factor"
+msgstr "Factor de tasa constante"
+
+#: src/gtk/window.ui:566
+msgid ""
+"Constant rate factor (CRF). Lower values mean better quality and a larger "
+"file, higher values mean worse quality and a smaller file. The valid range "
+"is 0 to 63. Default is 30."
+msgstr ""
+"Factor de tasa constante (CRF). Los valores más bajos implican mejor calidad "
+"y un archivo más grande; los más altos, peor calidad y un archivo más "
+"pequeño. El intervalo válido va de 0 a 63. El valor predeterminado es 30."
+
+#: src/gtk/window.ui:580
+msgid "Quality / speed tradeoff"
+msgstr "Equilibrio calidad/velocidad"
+
+#: src/gtk/window.ui:581
+msgid "Speed"
+msgstr "Velocidad"
+
+#: src/gtk/window.ui:582
+msgid ""
+"Quality / speed tradeoff (cpu-used). Higher values give faster encoding at "
+"the cost of quality. The valid range is 0 to 8. Default is 6."
+msgstr ""
+"Equilibrio entre calidad y velocidad (cpu-used). Los valores más altos "
+"ofrecen una codificación más rápida a costa de la calidad. El intervalo "
+"válido va de 0 a 8. El valor predeterminado es 6."
+
+#: src/window.py:85
+msgid "Done, image size in MB ="
+msgstr "Listo, tamaño de la imagen en MB ="
+
+#: src/window.py:86
+msgid "Saved:"
+msgstr "Guardado:"
+
+#: src/window.py:87
+msgid "Show in Files"
+msgstr "Mostrar en Archivos"
+
+#: src/window.py:88
+msgid "Source"
+msgstr "Código fuente"
+
+#: src/window.py:89
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/window.py:90
+msgid "Application for converting video files to high-quality animated images."
+msgstr ""
+"Aplicación para convertir archivos de vídeo en imágenes animadas de alta "
+"calidad."
+
+#: src/window.py:93
+msgid "File not accessible"
+msgstr "No se puede acceder al archivo"
+
+#: src/window.py:94
+msgid "If you’re using Flatpak, verify file access permissions"
+msgstr "Si usas Flatpak, comprueba los permisos de acceso a archivos"
+
+#: src/window.py:96
+msgid "Analysis error"
+msgstr "Error de análisis"
+
+#: src/window.py:97
+msgid "No video stream found in file"
+msgstr "No se ha encontrado ningún flujo de vídeo en el archivo"
+
+#: src/window.py:98
+msgid "Unable to determine video duration"
+msgstr "No se puede determinar la duración del vídeo"
+
+#: src/window.py:99
+msgid "Saving error"
+msgstr "Error al guardar"
+
+#: src/window.py:100
+msgid "Timestamp"
+msgstr "Marca de tiempo"
